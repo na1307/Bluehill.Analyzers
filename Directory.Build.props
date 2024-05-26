@@ -15,7 +15,7 @@
     <RepositoryUrl>https://github.com/na1307/Bluehill.Analyzers</RepositoryUrl>
     <AssemblyVersion>1</AssemblyVersion>
     <FileVersion>1.0.0</FileVersion>
-    <Version>1.0-beta.1</Version>
+    <Version>1.0-beta.1.1</Version>
     <IncludeSourceRevisionInInformationalVersion>false</IncludeSourceRevisionInInformationalVersion>
     <EnforceCodeStyleInBuild>True</EnforceCodeStyleInBuild>
     <EnableNETAnalyzers>True</EnableNETAnalyzers>

@@ -23,10 +23,10 @@ public class BH0002FieldsShouldBeAtTheTopAnalyzer : DiagnosticAnalyzer {
     public override void Initialize(AnalysisContext context) {
         context.ConfigureGeneratedCodeAnalysis(GeneratedCodeAnalysisFlags.None);
         context.EnableConcurrentExecution();
-        context.RegisterSemanticModelAction(asdf);
+        context.RegisterSemanticModelAction(semanticModelAction);
     }
 
-    private static void asdf(SemanticModelAnalysisContext context) {
+    private static void semanticModelAction(SemanticModelAnalysisContext context) {
         var token = context.CancellationToken;
         var model = context.SemanticModel;
 
@@ -34,11 +34,9 @@ public class BH0002FieldsShouldBeAtTheTopAnalyzer : DiagnosticAnalyzer {
             .OfType<VariableDeclarationSyntax>().SelectMany(v => v.Variables)) {
             if (model.GetDeclaredSymbol(variable, token) is IFieldSymbol fieldSymbol) {
                 var location = fieldSymbol.Locations[0];
-                var min = fieldSymbol.ContainingType.GetMembers()
-                    .Where(m => !m.IsImplicitlyDeclared && m.Kind != SymbolKind.Field)
-                    .Min(m => m.Locations[0].SourceSpan.Start);
+                var members = fieldSymbol.ContainingType.GetMembers().Where(m => !m.IsImplicitlyDeclared && m.Kind != SymbolKind.Field).ToArray();
 
-                if (location.SourceSpan.Start > min) {
+                if (members.Length != 0 && location.SourceSpan.Start > members.Min(m => m.Locations[0].SourceSpan.Start)) {
                     context.ReportDiagnostic(Diagnostic.Create(rule, location, fieldSymbol.Name));
                 }
             }

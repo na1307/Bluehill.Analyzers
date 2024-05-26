@@ -536,9 +536,6 @@ dotnet_diagnostic.SYSLIB1096.severity = silent
 # Add blank line after using directive list
 dotnet_diagnostic.rcs0003.severity = error
 
-# Add blank line between declaration and documentation comment
-dotnet_diagnostic.rcs0009.severity = error
-
 # Put attribute list on its own line
 dotnet_diagnostic.rcs0016.severity = error
 
@@ -719,6 +716,9 @@ dotnet_diagnostic.rcs1005.severity = none
 # Add 'static' modifier to all partial class declarations
 dotnet_diagnostic.rcs1108.severity = none
 
+# Use string.Length instead of comparison with empty string
+dotnet_diagnostic.rcs1156.severity = none
+
 # Enum should declare explicit values
 dotnet_diagnostic.rcs1161.severity = none
 
@@ -727,6 +727,9 @@ dotnet_diagnostic.rcs1163.severity = none
 
 # Convert comment to documentation comment
 dotnet_diagnostic.rcs1181.severity = none
+
+# Implement exception constructors
+dotnet_diagnostic.rcs1194.severity = none
 
 # Call extension method as instance method
 dotnet_diagnostic.rcs1196.severity = none

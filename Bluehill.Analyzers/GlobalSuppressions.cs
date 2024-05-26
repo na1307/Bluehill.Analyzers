@@ -8,3 +8,4 @@ using System.Diagnostics.CodeAnalysis;
 #pragma warning disable RCS0056
 [assembly: SuppressMessage("Roslynator", "RCS0056:A line is too long", Justification = "<보류 중>", Scope = "member", Target = "~F:Bluehill.Analyzers.BH0001TypesShouldBeSealedAnalyzer.rule")]
 [assembly: SuppressMessage("Roslynator", "RCS0056:A line is too long", Justification = "<보류 중>", Scope = "member", Target = "~F:Bluehill.Analyzers.BH0002FieldsShouldBeAtTheTopAnalyzer.rule")]
+[assembly: SuppressMessage("Roslynator", "RCS0056:A line is too long", Justification = "<보류 중>", Scope = "member", Target = "~M:Bluehill.Analyzers.BH0002FieldsShouldBeAtTheTopAnalyzer.semanticModelAction(Microsoft.CodeAnalysis.Diagnostics.SemanticModelAnalysisContext)")]

@@ -8,7 +8,4 @@
     <PackageVersion Include="Microsoft.CodeAnalysis.CSharp.Workspaces" Version="4.10.0-3.final" />
     <PackageVersion Include="SonarAnalyzer.CSharp" Version="9.25.1.91650" />
   </ItemGroup>
-  <ItemGroup>
-    <GlobalPackageReference Include="Bluehill.Imports" Version="1.0.4" />
-  </ItemGroup>
 </Project>

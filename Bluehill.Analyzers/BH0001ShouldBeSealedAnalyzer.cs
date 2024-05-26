@@ -7,7 +7,7 @@ namespace Bluehill.Analyzers;
 [DiagnosticAnalyzer(LanguageNames.CSharp)]
 public sealed class BH0001ShouldBeSealedAnalyzer : DiagnosticAnalyzer {
     public const string DiagnosticId = "BH0001";
-    private const string category = "Usage";
+    private const string category = "Design";
     private static readonly LocalizableString title = new LocalizableResourceString(nameof(Resources.BH0001AnalyzerTitle), Resources.ResourceManager, typeof(Resources));
     private static readonly LocalizableString messageFormat = new LocalizableResourceString(nameof(Resources.BH0001AnalyzerMessageFormat), Resources.ResourceManager, typeof(Resources));
     private static readonly LocalizableString description = new LocalizableResourceString(nameof(Resources.BH0001AnalyzerDescription), Resources.ResourceManager, typeof(Resources));

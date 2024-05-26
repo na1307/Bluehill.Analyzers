@@ -61,7 +61,7 @@ namespace Bluehill.Analyzers {
         }
         
         /// <summary>
-        ///   Types without a derived type should be sealed.과(와) 유사한 지역화된 문자열을 찾습니다.
+        ///   Types without derived types should be sealed.과(와) 유사한 지역화된 문자열을 찾습니다.
         /// </summary>
         internal static string BH0001AnalyzerDescription {
             get {
@@ -79,7 +79,7 @@ namespace Bluehill.Analyzers {
         }
         
         /// <summary>
-        ///   Types without a derived type should be sealed과(와) 유사한 지역화된 문자열을 찾습니다.
+        ///   Types without derived types should be sealed과(와) 유사한 지역화된 문자열을 찾습니다.
         /// </summary>
         internal static string BH0001AnalyzerTitle {
             get {

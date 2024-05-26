@@ -4,4 +4,4 @@
 
 Rule ID | Category | Severity | Notes
 --------|----------|----------|--------------------
-BH0001  |  Usage   |   Info   | BH0001ShouldBeSealedAnalyzer, [Documentation](https://na1307.github.io/Bluehill.Analyzers/BH0001)
+BH0001  |  Design  |   Info   | BH0001ShouldBeSealedAnalyzer, [Documentation](https://na1307.github.io/Bluehill.Analyzers/BH0001)

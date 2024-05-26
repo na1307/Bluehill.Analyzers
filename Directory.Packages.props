@@ -6,6 +6,7 @@
     <PackageVersion Include="Microsoft.CodeAnalysis.Analyzers" Version="3.11.0-beta1.24219.2" />
     <PackageVersion Include="Microsoft.CodeAnalysis.CSharp" Version="4.10.0-3.final" />
     <PackageVersion Include="Microsoft.CodeAnalysis.CSharp.Workspaces" Version="4.10.0-3.final" />
-    <PackageVersion Include="SonarAnalyzer.CSharp" Version="9.25.1.91650" />
+    <PackageVersion Include="Roslynator.CSharp" Version="4.12.3" />
+    <PackageVersion Include="Roslynator.CSharp.Workspaces" Version="4.12.3" />
   </ItemGroup>
 </Project>

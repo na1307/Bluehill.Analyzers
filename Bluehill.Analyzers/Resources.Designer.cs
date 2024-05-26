@@ -86,5 +86,32 @@ namespace Bluehill.Analyzers {
                 return ResourceManager.GetString("BH0001AnalyzerTitle", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Fields should be at the top of the type definition.과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string BH0002AnalyzerDescription {
+            get {
+                return ResourceManager.GetString("BH0002AnalyzerDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   &apos;{0}&apos; is not at the top of the type definition과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string BH0002AnalyzerMessageFormat {
+            get {
+                return ResourceManager.GetString("BH0002AnalyzerMessageFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Fields should be at the top of the type definition과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string BH0002AnalyzerTitle {
+            get {
+                return ResourceManager.GetString("BH0002AnalyzerTitle", resourceCulture);
+            }
+        }
     }
 }

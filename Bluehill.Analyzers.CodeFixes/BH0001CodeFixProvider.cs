@@ -8,9 +8,10 @@ using System.Composition;
 
 namespace Bluehill.Analyzers;
 
-[ExportCodeFixProvider(LanguageNames.CSharp, Name = nameof(BH0001CodeFixProvider)), Shared]
+[ExportCodeFixProvider(LanguageNames.CSharp, Name = nameof(BH0001CodeFixProvider))]
+[Shared]
 public sealed class BH0001CodeFixProvider : CodeFixProvider {
-    public override ImmutableArray<string> FixableDiagnosticIds => [BH0001ShouldBeSealedAnalyzer.DiagnosticId];
+    public override ImmutableArray<string> FixableDiagnosticIds => [BH0001TypesShouldBeSealedAnalyzer.DiagnosticId];
 
     public override FixAllProvider GetFixAllProvider() => WellKnownFixAllProviders.BatchFixer;
 
@@ -19,7 +20,10 @@ public sealed class BH0001CodeFixProvider : CodeFixProvider {
         var diagnostic = context.Diagnostics[0];
         var diagnosticSpan = diagnostic.Location.SourceSpan;
         var declaration = root!.FindToken(diagnosticSpan.Start).Parent!.AncestorsAndSelf().OfType<TypeDeclarationSyntax>().First();
-        var action = CodeAction.Create(CodeFixResources.BH0001CodeFixTitle, _ => makeSealedAsync(context.Document, declaration, root), nameof(CodeFixResources.BH0001CodeFixTitle));
+        var action = CodeAction.Create(
+            CodeFixResources.BH0001CodeFixTitle,
+            _ => makeSealedAsync(context.Document, declaration, root),
+            nameof(CodeFixResources.BH0001CodeFixTitle));
 
         // Register a code action that will invoke the fix.
         context.RegisterCodeFix(action, diagnostic);

@@ -129,4 +129,16 @@
     <value>Types without derived types should be sealed</value>
     <comment>The title of the diagnostic.</comment>
   </data>
+  <data name="BH0002AnalyzerDescription" xml:space="preserve">
+    <value>Fields should be at the top of the type definition.</value>
+    <comment>An optional longer localizable description of the diagnostic.</comment>
+  </data>
+  <data name="BH0002AnalyzerMessageFormat" xml:space="preserve">
+    <value>'{0}' is not at the top of the type definition</value>
+    <comment>The format-able message the diagnostic displays.</comment>
+  </data>
+  <data name="BH0002AnalyzerTitle" xml:space="preserve">
+    <value>Fields should be at the top of the type definition</value>
+    <comment>The title of the diagnostic.</comment>
+  </data>
 </root>

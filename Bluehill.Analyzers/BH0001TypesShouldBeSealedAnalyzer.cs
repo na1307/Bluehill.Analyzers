@@ -5,13 +5,17 @@ using System.Collections.Immutable;
 namespace Bluehill.Analyzers;
 
 [DiagnosticAnalyzer(LanguageNames.CSharp)]
-public sealed class BH0001ShouldBeSealedAnalyzer : DiagnosticAnalyzer {
+public sealed class BH0001TypesShouldBeSealedAnalyzer : DiagnosticAnalyzer {
     public const string DiagnosticId = "BH0001";
     private const string category = "Design";
-    private static readonly LocalizableString title = new LocalizableResourceString(nameof(Resources.BH0001AnalyzerTitle), Resources.ResourceManager, typeof(Resources));
-    private static readonly LocalizableString messageFormat = new LocalizableResourceString(nameof(Resources.BH0001AnalyzerMessageFormat), Resources.ResourceManager, typeof(Resources));
-    private static readonly LocalizableString description = new LocalizableResourceString(nameof(Resources.BH0001AnalyzerDescription), Resources.ResourceManager, typeof(Resources));
-    private static readonly DiagnosticDescriptor rule = new(DiagnosticId, title, messageFormat, category, DiagnosticSeverity.Info, true, description, "https://na1307.github.io/Bluehill.Analyzers/BH0001");
+    private static readonly LocalizableString title =
+        new LocalizableResourceString(nameof(Resources.BH0001AnalyzerTitle), Resources.ResourceManager, typeof(Resources));
+    private static readonly LocalizableString messageFormat =
+        new LocalizableResourceString(nameof(Resources.BH0001AnalyzerMessageFormat), Resources.ResourceManager, typeof(Resources));
+    private static readonly LocalizableString description =
+        new LocalizableResourceString(nameof(Resources.BH0001AnalyzerDescription), Resources.ResourceManager, typeof(Resources));
+    private static readonly DiagnosticDescriptor rule =
+        new(DiagnosticId, title, messageFormat, category, DiagnosticSeverity.Warning, true, description, "https://na1307.github.io/Bluehill.Analyzers/BH0001");
 
     public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics => [rule];
 
@@ -24,7 +28,8 @@ public sealed class BH0001ShouldBeSealedAnalyzer : DiagnosticAnalyzer {
     private static void compilationStartAction(CompilationStartAnalysisContext context) {
         var token = context.CancellationToken;
         var typeAndBase = context.Compilation.GetSymbolsWithName(_ => true, SymbolFilter.Type, token).Cast<INamedTypeSymbol>()
-            .Select(symbol => new KeyValuePair<INamedTypeSymbol, INamedTypeSymbol?>(symbol, symbol.BaseType)).ToImmutableDictionary(SymbolEqualityComparer.Default);
+            .Select(symbol => new KeyValuePair<INamedTypeSymbol, INamedTypeSymbol?>(symbol, symbol.BaseType))
+            .ToImmutableDictionary(SymbolEqualityComparer.Default);
 
         context.RegisterSymbolAction(context => symbolAction(context, typeAndBase), SymbolKind.NamedType);
     }
@@ -60,7 +65,8 @@ public sealed class BH0001ShouldBeSealedAnalyzer : DiagnosticAnalyzer {
             return;
         }
 
-        if (!typeAndBase.FirstOrDefault(ts => SymbolEqualityComparer.Default.Equals(namedTypeSymbol, ts.Value)).Equals(default(KeyValuePair<INamedTypeSymbol, INamedTypeSymbol?>))) {
+        if (!typeAndBase.FirstOrDefault(ts => SymbolEqualityComparer.Default.Equals(namedTypeSymbol, ts.Value))
+            .Equals(default(KeyValuePair<INamedTypeSymbol, INamedTypeSymbol?>))) {
             return;
         }
 

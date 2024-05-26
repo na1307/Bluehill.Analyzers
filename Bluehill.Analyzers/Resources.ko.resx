@@ -129,4 +129,16 @@
     <value>파생 형식이 없는 형식은 봉인되어야 함</value>
     <comment>The title of the diagnostic.</comment>
   </data>
+  <data name="BH0002AnalyzerDescription" xml:space="preserve">
+    <value>필드는 형식 정의의 최상단에 위치해야 합니다.</value>
+    <comment>An optional longer localizable description of the diagnostic.</comment>
+  </data>
+  <data name="BH0002AnalyzerMessageFormat" xml:space="preserve">
+    <value>'{0}'이(가) 형식 정의 최상단에 위치하지 않음</value>
+    <comment>The format-able message the diagnostic displays.</comment>
+  </data>
+  <data name="BH0002AnalyzerTitle" xml:space="preserve">
+    <value>필드는 형식 정의의 최상단에 위치해야 함</value>
+    <comment>The title of the diagnostic.</comment>
+  </data>
 </root>

@@ -22,6 +22,9 @@
     <ProjectReference Include="..\Bluehill.Analyzers\Bluehill.Analyzers.csproj" />
   </ItemGroup>
   <ItemGroup>
+    <GlobalPackageReference Remove="Bluehill.Analyzers" />
+  </ItemGroup>
+  <ItemGroup>
     <None Update="tools\*.ps1" CopyToOutputDirectory="PreserveNewest" Pack="true" PackagePath="" />
   </ItemGroup>
   <Target Name="_AddAnalyzersToOutput">

@@ -1,4 +1,5 @@
 ﻿using Microsoft.CodeAnalysis;
+using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Diagnostics;
 using System.Collections.Immutable;
@@ -6,7 +7,7 @@ using System.Collections.Immutable;
 namespace Bluehill.Analyzers;
 
 [DiagnosticAnalyzer(LanguageNames.CSharp)]
-public class BH0002FieldsShouldBeAtTheTopAnalyzer : DiagnosticAnalyzer {
+public sealed class BH0002FieldsShouldBeAtTheTopAnalyzer : DiagnosticAnalyzer {
     public const string DiagnosticId = "BH0002";
     private const string category = "Style";
     private static readonly LocalizableString title =
@@ -33,11 +34,22 @@ public class BH0002FieldsShouldBeAtTheTopAnalyzer : DiagnosticAnalyzer {
         foreach (var variable in model.SyntaxTree.GetRoot(token).DescendantNodesAndSelf()
             .OfType<VariableDeclarationSyntax>().SelectMany(v => v.Variables)) {
             if (model.GetDeclaredSymbol(variable, token) is IFieldSymbol fieldSymbol) {
-                var location = fieldSymbol.Locations[0];
-                var members = fieldSymbol.ContainingType.GetMembers().Where(m => !m.IsImplicitlyDeclared && m.Kind != SymbolKind.Field).ToArray();
+                var type = fieldSymbol.ContainingType;
 
-                if (members.Length != 0 && location.SourceSpan.Start > members.Min(m => m.Locations[0].SourceSpan.Start)) {
-                    context.ReportDiagnostic(Diagnostic.Create(rule, location, fieldSymbol.Name));
+                // Suppress on record types (I don't know how to handle the record's primary constructor.)
+                if (!type.GetMembers().Any(m => m.Name == "<Clone>$")) {
+                    var members = type.GetMembers().Where(m =>
+                    // Remove implicitly declared
+                    !m.IsImplicitlyDeclared
+                    // Only fields
+                    && m.Kind != SymbolKind.Field
+                    // Remove Primary constructor (Its location is the same as that of the type definition.)
+                    && m.Locations[0].SourceSpan.Start != type.Locations[0].SourceSpan.Start).ToArray();
+                    var location = fieldSymbol.Locations[0];
+
+                    if (members.Length != 0 && location.SourceSpan.Start > members.Min(m => m.Locations[0].SourceSpan.Start)) {
+                        context.ReportDiagnostic(Diagnostic.Create(rule, location, fieldSymbol.Name));
+                    }
                 }
             }
         }

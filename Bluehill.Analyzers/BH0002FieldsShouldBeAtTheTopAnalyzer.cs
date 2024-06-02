@@ -6,7 +6,7 @@ using System.Collections.Immutable;
 
 namespace Bluehill.Analyzers;
 
-[DiagnosticAnalyzer(LanguageNames.CSharp)]
+//[DiagnosticAnalyzer(LanguageNames.CSharp)]
 public sealed class BH0002FieldsShouldBeAtTheTopAnalyzer : DiagnosticAnalyzer {
     public const string DiagnosticId = "BH0002";
     private const string category = "Style";

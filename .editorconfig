@@ -568,9 +568,6 @@ dotnet_diagnostic.rcs1052.severity = error
 
 ## Warnings ##
 
-# A line is too long
-dotnet_diagnostic.rcs0056.severity = warning
-
 # Merge 'else' with nested 'if'
 dotnet_diagnostic.rcs1006.severity = warning
 
@@ -708,6 +705,9 @@ dotnet_diagnostic.rcs1093.severity = none
 
 # Add 'static' modifier to all partial class declarations
 dotnet_diagnostic.rcs1108.severity = none
+
+# Remove redundant overriding member
+dotnet_diagnostic.rcs1132.severity = none
 
 # Use string.Length instead of comparison with empty string
 dotnet_diagnostic.rcs1156.severity = none

@@ -8,7 +8,7 @@ on:
 jobs:
   build:
     name: SonarCloud
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     env:
       NUGET_PACKAGES: ${{ github.workspace }}/.nuget/packages
     steps:

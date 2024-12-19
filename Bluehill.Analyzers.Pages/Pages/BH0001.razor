@@ -1,0 +1,33 @@
+@page "/BH0001"
+
+<h1>BH0001: Classes without derived types should be sealed</h1>
+
+<p>Classes without derived types should be sealed. Note: Sealed or abstract classes, and static classes are not included in this rule.</p>
+
+<h2>Code with violation</h2>
+
+<CodeHighlight>
+    public class TestClass {
+        public void TestMethod() {
+            Console.WriteLine("Test");
+        }
+    }
+    
+    public class AnotherClass;
+    
+    public class InheritedClass : AnotherClass;
+</CodeHighlight>
+
+<h2>Fixed Code</h2>
+
+<CodeHighlight>
+    public sealed class TestClass {
+        public void TestMethod() {
+            Console.WriteLine("Test");
+        }
+    }
+
+    public class AnotherClass;
+
+    public sealed class InheritedClass : AnotherClass;
+</CodeHighlight>

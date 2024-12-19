@@ -1,0 +1,37 @@
+@page "/BH0002"
+
+<h1>BH0002: Fields should be at the top of the type definition</h1>
+
+<p>Fields should be at the top of the type definition.</p>
+
+<h2>Code with violation</h2>
+
+<CodeHighlight>
+    public class TestClass {
+        public TestClass(string name) {
+            this.name = name;
+        }
+    
+        public void TestMethod() {
+            Console.WriteLine(name);
+        }
+    
+        private readonly string name;
+    }
+</CodeHighlight>
+
+<h2>Fixed Code</h2>
+
+<CodeHighlight>
+    public class TestClass {
+        private readonly string name;
+    
+        public TestClass(string name) {
+            this.name = name;
+        }
+
+        public void TestMethod() {
+            Console.WriteLine(name);
+        }
+    }
+</CodeHighlight>

@@ -118,15 +118,15 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="BH0001AnalyzerDescription" xml:space="preserve">
-    <value>파생 형식이 없는 형식은 봉인되어야 합니다.</value>
+    <value>파생 형식이 없는 클래스는 봉인되어야 합니다.</value>
     <comment>An optional longer localizable description of the diagnostic.</comment>
   </data>
   <data name="BH0001AnalyzerMessageFormat" xml:space="preserve">
-    <value>'{0}' 형식에서 파생된 형식이 없음</value>
+    <value>'{0}' 클래스에서 파생된 형식이 없음</value>
     <comment>The format-able message the diagnostic displays.</comment>
   </data>
   <data name="BH0001AnalyzerTitle" xml:space="preserve">
-    <value>파생 형식이 없는 형식은 봉인되어야 함</value>
+    <value>파생 형식이 없는 클래스는 봉인되어야 함</value>
     <comment>The title of the diagnostic.</comment>
   </data>
   <data name="BH0002AnalyzerDescription" xml:space="preserve">

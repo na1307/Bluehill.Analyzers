@@ -118,15 +118,15 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="BH0001AnalyzerDescription" xml:space="preserve">
-    <value>Types without derived types should be sealed.</value>
+    <value>Classes without derived types should be sealed.</value>
     <comment>An optional longer localizable description of the diagnostic.</comment>
   </data>
   <data name="BH0001AnalyzerMessageFormat" xml:space="preserve">
-    <value>No types are derived from type '{0}'</value>
+    <value>No types are derived from class '{0}'</value>
     <comment>The format-able message the diagnostic displays.</comment>
   </data>
   <data name="BH0001AnalyzerTitle" xml:space="preserve">
-    <value>Types without derived types should be sealed</value>
+    <value>Classes without derived types should be sealed</value>
     <comment>The title of the diagnostic.</comment>
   </data>
   <data name="BH0002AnalyzerDescription" xml:space="preserve">

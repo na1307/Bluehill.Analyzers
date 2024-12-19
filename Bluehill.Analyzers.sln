@@ -3,11 +3,22 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.10.34916.146
 MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "솔루션 항목", "솔루션 항목", "{1D0B1A11-2D25-4D8E-AD56-964EAA210C13}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+		.gitignore = .gitignore
+		Directory.Build.props = Directory.Build.props
+		Directory.Packages.props = Directory.Packages.props
+		README.md = README.md
+	EndProjectSection
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bluehill.Analyzers", "Bluehill.Analyzers\Bluehill.Analyzers.csproj", "{421FF4F6-7EEF-46D6-866F-CDC175A4152B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bluehill.Analyzers.CodeFixes", "Bluehill.Analyzers.CodeFixes\Bluehill.Analyzers.CodeFixes.csproj", "{289D4789-E049-4B55-81C9-12868F3A7844}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bluehill.Analyzers.Package", "Bluehill.Analyzers.Package\Bluehill.Analyzers.Package.csproj", "{D8B410E8-06E1-46C5-8624-97DAB6B05CF2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bluehill.Analyzers.Tests", "Bluehill.Analyzers.Tests\Bluehill.Analyzers.Tests.csproj", "{DA195974-E0E5-40AB-BD2E-C1429CF31CE6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +38,10 @@ Global
 		{D8B410E8-06E1-46C5-8624-97DAB6B05CF2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D8B410E8-06E1-46C5-8624-97DAB6B05CF2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D8B410E8-06E1-46C5-8624-97DAB6B05CF2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DA195974-E0E5-40AB-BD2E-C1429CF31CE6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DA195974-E0E5-40AB-BD2E-C1429CF31CE6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DA195974-E0E5-40AB-BD2E-C1429CF31CE6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DA195974-E0E5-40AB-BD2E-C1429CF31CE6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

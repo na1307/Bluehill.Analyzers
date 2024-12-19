@@ -37,39 +37,48 @@ public sealed class BH0001TypesShouldBeSealedAnalyzer : DiagnosticAnalyzer {
     private static void symbolAction(SymbolAnalysisContext context, ImmutableDictionary<INamedTypeSymbol, INamedTypeSymbol?> typeAndBase) {
         var namedTypeSymbol = (INamedTypeSymbol)context.Symbol;
 
+        // Skip static
         if (namedTypeSymbol.IsStatic) {
             return;
         }
 
+        // Skip sealed
         if (namedTypeSymbol.IsSealed) {
             return;
         }
 
+        // Skip abstract
         if (namedTypeSymbol.IsAbstract) {
             return;
         }
 
+        // Skip implicitily declared
         if (namedTypeSymbol.IsImplicitlyDeclared) {
             return;
         }
 
+        // Skip implicit classes
         if (namedTypeSymbol.IsImplicitClass) {
             return;
         }
 
+        // Skip if it is not a class
         if (namedTypeSymbol.TypeKind != TypeKind.Class) {
             return;
         }
 
+        // Skip Top level statement Program class
         if (namedTypeSymbol.Name == WellKnownMemberNames.TopLevelStatementsEntryPointTypeName) {
             return;
         }
 
+        // Check is there are derived classes
         if (!typeAndBase.FirstOrDefault(ts => SymbolEqualityComparer.Default.Equals(namedTypeSymbol, ts.Value))
             .Equals(default(KeyValuePair<INamedTypeSymbol, INamedTypeSymbol?>))) {
             return;
         }
 
+        // Report diagnostic
         context.ReportDiagnostic(Diagnostic.Create(rule, namedTypeSymbol.Locations[0], namedTypeSymbol.Name));
     }
 }

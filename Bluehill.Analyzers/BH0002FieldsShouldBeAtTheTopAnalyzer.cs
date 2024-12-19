@@ -6,7 +6,7 @@ using System.Collections.Immutable;
 
 namespace Bluehill.Analyzers;
 
-//[DiagnosticAnalyzer(LanguageNames.CSharp)]
+[DiagnosticAnalyzer(LanguageNames.CSharp)]
 public sealed class BH0002FieldsShouldBeAtTheTopAnalyzer : DiagnosticAnalyzer {
     public const string DiagnosticId = "BH0002";
     private const string category = "Style";
@@ -33,25 +33,40 @@ public sealed class BH0002FieldsShouldBeAtTheTopAnalyzer : DiagnosticAnalyzer {
 
         foreach (var variable in model.SyntaxTree.GetRoot(token).DescendantNodesAndSelf()
             .OfType<VariableDeclarationSyntax>().SelectMany(v => v.Variables)) {
-            if (model.GetDeclaredSymbol(variable, token) is IFieldSymbol fieldSymbol) {
-                var type = fieldSymbol.ContainingType;
-
-                // Suppress on record types (I don't know how to handle the record's primary constructor.)
-                if (!type.GetMembers().Any(m => m.Name == "<Clone>$")) {
-                    var members = type.GetMembers().Where(m =>
-                    // Remove implicitly declared
-                    !m.IsImplicitlyDeclared
-                    // Only fields
-                    && m.Kind != SymbolKind.Field
-                    // Remove Primary constructor (Its location is the same as that of the type definition.)
-                    && m.Locations[0].SourceSpan.Start != type.Locations[0].SourceSpan.Start).ToArray();
-                    var location = fieldSymbol.Locations[0];
-
-                    if (members.Length != 0 && location.SourceSpan.Start > members.Min(m => m.Locations[0].SourceSpan.Start)) {
-                        context.ReportDiagnostic(Diagnostic.Create(rule, location, fieldSymbol.Name));
-                    }
-                }
+            // Skip if variable is not a field
+            if (model.GetDeclaredSymbol(variable, token) is not IFieldSymbol fieldSymbol) {
+                continue;
             }
+
+            var type = fieldSymbol.ContainingType;
+
+            // Skip partial types
+            if (type.DeclaringSyntaxReferences.Select(s => s.GetSyntax(token) as TypeDeclarationSyntax)
+                .Any(tds => tds?.Modifiers.Any(m => m.IsKind(SyntaxKind.PartialKeyword)) ?? false)) {
+                continue;
+            }
+
+            // Suppress on record types (I don't know how to handle the record's primary constructor.)
+            if (type.GetMembers().Any(m => m.Name == "<Clone>$")) {
+                continue;
+            }
+
+            var members = type.GetMembers().Where(m =>
+            // Not for fields
+            m.Kind != SymbolKind.Field
+            // Remove implicitly declared
+            && !m.IsImplicitlyDeclared
+            // Remove Primary constructor (Its location is the same as that of the type definition.)
+            && m.Locations[0].SourceSpan.Start != type.Locations[0].SourceSpan.Start).ToArray();
+            var location = fieldSymbol.Locations[0];
+
+            // Location check
+            if (members.Length == 0 || location.SourceSpan.Start <= members.Min(m => m.Locations[0].SourceSpan.Start)) {
+                continue;
+            }
+
+            // Report diagnostic
+            context.ReportDiagnostic(Diagnostic.Create(rule, location, fieldSymbol.Name));
         }
     }
 }

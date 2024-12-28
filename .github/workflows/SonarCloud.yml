@@ -4,11 +4,15 @@ on:
   push:
     branches:
       - main
+  pull_request:
+    branches:
+      - main
 
 jobs:
-  build:
+  sonarcloud:
     name: SonarCloud
     runs-on: ubuntu-latest
+    if: github.event_name == 'push' || github.event.pull_request.head.repo.full_name == github.repository
     env:
       NUGET_PACKAGES: ${{ github.workspace }}/.nuget/packages
     steps:
@@ -22,8 +26,6 @@ jobs:
           distribution: temurin
       - name: Setup .NET
         uses: actions/setup-dotnet@v4
-        with:
-          dotnet-version: 9.0.x
       - name: Cache NuGet
         uses: actions/cache@v4
         with:
@@ -32,13 +34,19 @@ jobs:
           restore-keys: ${{ runner.os }}-sonar-nuget-
       - name: Install Tools
         run: dotnet tool restore
-      - name: Build and analyze
+      - name: SonarScanner Begin
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        run: |
-          dotnet sonarscanner begin /k:"na1307_Bluehill.Analyzers" /o:"na1307" /d:sonar.token="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.cs.vscoveragexml.reportsPaths=coverage.xml /d:sonar.scanner.skipJreProvisioning=true
-          dotnet restore
-          dotnet build --no-restore --no-incremental
-          dotnet coverage collect 'dotnet test --no-build --verbosity normal' -f xml  -o 'coverage.xml'
-          dotnet sonarscanner end /d:sonar.token="${{ secrets.SONAR_TOKEN }}"
+        run: dotnet sonarscanner begin /k:"na1307_Bluehill.Analyzers" /o:"na1307" /d:sonar.token="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.cs.vscoveragexml.reportsPaths=coverage.xml /d:sonar.scanner.skipJreProvisioning=true
+      - name: Restore dependencies
+        run: dotnet restore
+      - name: Build
+        run: dotnet build --no-restore --no-incremental
+      - name: Test
+        run: dotnet coverage collect 'dotnet test --no-build --verbosity normal' -f xml  -o 'coverage.xml'
+      - name: SonarScanner End
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        run: dotnet sonarscanner end /d:sonar.token="${{ secrets.SONAR_TOKEN }}"

@@ -10,9 +10,9 @@ public sealed class BH0002AnalyzerTest {
         """
         public class TestClass {
             public TestClass(string name) => this.name = name;
-        
+
             public string GetName() => name;
-        
+
             private readonly string [|name|];
         }
         """
@@ -21,9 +21,9 @@ public sealed class BH0002AnalyzerTest {
         """
         public class TestClass {
             private readonly string name;
-        
+
             public TestClass(string name) => this.name = name;
-        
+
             public string GetName() => name;
         }
         """
@@ -32,9 +32,9 @@ public sealed class BH0002AnalyzerTest {
         """
         public class TestClass {
             public TestClass(string name) => this.name = name;
-        
+
             public string GetName() => name;
-        
+
             [System.NonSerialized]
             private readonly string [|name|];
         }
@@ -45,9 +45,9 @@ public sealed class BH0002AnalyzerTest {
         public class TestClass {
             [System.NonSerialized]
             private readonly string name;
-        
+
             public TestClass(string name) => this.name = name;
-        
+
             public string GetName() => name;
         }
         """
@@ -56,9 +56,9 @@ public sealed class BH0002AnalyzerTest {
         """
         public partial class TestClass {
             public TestClass(string name) => this.name = name;
-        
+
             public string GetName() => name;
-        
+
             private readonly string name;
         }
         """
@@ -67,9 +67,9 @@ public sealed class BH0002AnalyzerTest {
         """
         public record class TestClass {
             public TestClass(string name) => this.name = name;
-        
+
             public string GetName() => name;
-        
+
             private readonly string name;
         }
         """
@@ -78,7 +78,7 @@ public sealed class BH0002AnalyzerTest {
         """
         public class TestClass(string constructorName) {
             public string GetName() => name;
-        
+
             private readonly string [|name|] = constructorName;
         }
         """
@@ -87,7 +87,7 @@ public sealed class BH0002AnalyzerTest {
         """
         public class TestClass(string constructorName) {
             private readonly string name = constructorName;
-        
+
             public string GetName() => name;
         }
         """

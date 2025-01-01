@@ -141,4 +141,13 @@
     <value>필드는 형식 정의의 최상단에 위치해야 함</value>
     <comment>The title of the diagnostic.</comment>
   </data>
+  <data name="BH0003AnalyzerDescription" xml:space="preserve">
+    <value>기본 생성자의 매개변수를 다시 할당해서는 안됩니다.</value>
+  </data>
+  <data name="BH0003AnalyzerMessageFormat" xml:space="preserve">
+    <value>'{0}'이(가) 다시 할당됨</value>
+  </data>
+  <data name="BH0003AnalyzerTitle" xml:space="preserve">
+    <value>기본 생성자(Primary Constructor) 매개변수 재할당 금지</value>
+  </data>
 </root>

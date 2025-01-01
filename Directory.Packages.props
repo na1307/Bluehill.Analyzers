@@ -6,7 +6,7 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageVersion Include="Bluehill.Blazor" Version="0.8.1" />
-    <PackageVersion Include="Bluehill.Blazor.GHPage" Version="0.8.1" />
+    <PackageVersion Include="Bluehill.Blazor.GHPages" Version="1.0.1" />
     <PackageVersion Include="HighlightBlazor" Version="0.1.10" />
     <PackageVersion Include="Microsoft.AspNetCore.Components.WebAssembly" Version="9.0.0" />
     <PackageVersion Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="9.0.0" />
@@ -23,6 +23,5 @@
     <GlobalPackageReference Include="Roslynator.Analyzers" Version="4.12.10" />
     <GlobalPackageReference Include="Roslynator.CodeAnalysis.Analyzers" Version="4.12.10" />
     <GlobalPackageReference Include="Roslynator.Formatting.Analyzers" Version="4.12.10" />
-    <GlobalPackageReference Include="SonarAnalyzer.CSharp" Version="10.4.0.108396" />
   </ItemGroup>
 </Project>

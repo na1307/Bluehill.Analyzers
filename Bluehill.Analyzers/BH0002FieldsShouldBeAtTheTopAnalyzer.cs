@@ -56,8 +56,8 @@ public sealed class BH0002FieldsShouldBeAtTheTopAnalyzer : DiagnosticAnalyzer {
             m.Kind != SymbolKind.Field
             // Remove implicitly declared
             && !m.IsImplicitlyDeclared
-            // Remove Primary constructor (Its location is the same as that of the type definition.)
-            && m.Locations[0].SourceSpan.Start != type.Locations[0].SourceSpan.Start).ToArray();
+            // Remove Primary constructor
+            && !m.DeclaringSyntaxReferences.Any(sr => sr.GetSyntax(context.CancellationToken) is ClassDeclarationSyntax or StructDeclarationSyntax)).ToArray();
             var location = fieldSymbol.Locations[0];
 
             // Location check

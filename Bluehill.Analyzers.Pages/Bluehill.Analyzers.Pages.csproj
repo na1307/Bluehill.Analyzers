@@ -6,7 +6,7 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Bluehill.Blazor" />
-    <PackageReference Include="Bluehill.Blazor.GHPage" />
+    <PackageReference Include="Bluehill.Blazor.GHPages" />
     <PackageReference Include="HighlightBlazor" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" PrivateAssets="all" />

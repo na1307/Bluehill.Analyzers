@@ -20,21 +20,30 @@ public sealed class BH0001TypesShouldBeSealedAnalyzer : DiagnosticAnalyzer {
     public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics => [rule];
 
     public override void Initialize(AnalysisContext context) {
+        // Configure generated code analysis
         context.ConfigureGeneratedCodeAnalysis(GeneratedCodeAnalysisFlags.None);
+
+        // Enable concurrent execution
         context.EnableConcurrentExecution();
+
+        // Register compilation start action
         context.RegisterCompilationStartAction(compilationStartAction);
     }
 
     private static void compilationStartAction(CompilationStartAnalysisContext context) {
         var token = context.CancellationToken;
+
+        // Get all named types and their base types
         var typeAndBase = context.Compilation.GetSymbolsWithName(_ => true, SymbolFilter.Type, token).Cast<INamedTypeSymbol>()
             .Select(symbol => new KeyValuePair<INamedTypeSymbol, INamedTypeSymbol?>(symbol, symbol.BaseType))
             .ToImmutableDictionary(SymbolEqualityComparer.Default);
 
+        // Register symbol action
         context.RegisterSymbolAction(context => symbolAction(context, typeAndBase), SymbolKind.NamedType);
     }
 
     private static void symbolAction(SymbolAnalysisContext context, ImmutableDictionary<INamedTypeSymbol, INamedTypeSymbol?> typeAndBase) {
+        // Get named type symbol
         var namedTypeSymbol = (INamedTypeSymbol)context.Symbol;
 
         // Skip static

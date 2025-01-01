@@ -141,4 +141,13 @@
     <value>Fields should be at the top of the type definition</value>
     <comment>The title of the diagnostic.</comment>
   </data>
+  <data name="BH0003AnalyzerDescription" xml:space="preserve">
+    <value>The parameters of the primary constructor must not be reassigned.</value>
+  </data>
+  <data name="BH0003AnalyzerMessageFormat" xml:space="preserve">
+    <value>'{0}' has been reassigned</value>
+  </data>
+  <data name="BH0003AnalyzerTitle" xml:space="preserve">
+    <value>Prohibit reassignment of primary constructor parameters</value>
+  </data>
 </root>

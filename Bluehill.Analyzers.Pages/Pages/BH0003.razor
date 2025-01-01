@@ -1,0 +1,27 @@
+@page "/BH0003"
+
+<h1>BH0003: Prohibit reassignment of primary constructor parameters</h1>
+
+<p>The parameters of the primary constructor must not be reassigned.</p>
+
+<h2>Code with violation</h2>
+
+<CodeHighlight>
+    public class TestClass(int i) {
+        public void TestMethod() {
+            i = 10;
+        }
+    }
+</CodeHighlight>
+
+<h2>Fixed Code</h2>
+
+<CodeHighlight>
+    public class TestClass(int i) {
+        private int I = i;
+
+        public void TestMethod() {
+            I = 10;
+        }
+    }
+</CodeHighlight>

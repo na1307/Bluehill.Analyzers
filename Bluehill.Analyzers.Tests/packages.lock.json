@@ -38,12 +38,6 @@
         "resolved": "4.12.10",
         "contentHash": "Wecq3nfhTvnJPxX87hKbjMdX1xeCAMJf9rdBX3nQLTntQs9v0fFbUB2eQSSOArXMuFh7MxjLWaL4+b6XMi1NDA=="
       },
-      "Roslynator.CodeAnalysis.Analyzers": {
-        "type": "Direct",
-        "requested": "[4.12.10, )",
-        "resolved": "4.12.10",
-        "contentHash": "P/8rraJ0lDO792C8VajyKsaljMR4pWheoSv6bJnCspydf8gNZe+r2JJNis0IxMO2a8vLOyB+8CMIaVLIUndSNQ=="
-      },
       "Roslynator.Formatting.Analyzers": {
         "type": "Direct",
         "requested": "[4.12.10, )",
@@ -751,7 +745,6 @@
       "*Bluehill.Analyzers.csproj*": {
         "type": "Project",
         "dependencies": {
-          "Microsoft.CodeAnalysis.Analyzers": "[3.11.0, )",
           "Microsoft.CodeAnalysis.CSharp": "[4.12.0, )"
         }
       },
@@ -759,7 +752,6 @@
         "type": "Project",
         "dependencies": {
           "*Bluehill.Analyzers.csproj*": "[1.2.0, )",
-          "Microsoft.CodeAnalysis.Analyzers": "[3.11.0, )",
           "Microsoft.CodeAnalysis.CSharp.Workspaces": "[4.12.0, )"
         }
       },

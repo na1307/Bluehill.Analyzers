@@ -150,4 +150,22 @@
   <data name="BH0003AnalyzerTitle" xml:space="preserve">
     <value>기본 생성자(Primary Constructor) 매개변수 재할당 금지</value>
   </data>
+  <data name="BH0004AnalyzerDescription" xml:space="preserve">
+    <value>IXmlSerializable.GetSchema()는 명시적으로 구현해야만 합니다.</value>
+  </data>
+  <data name="BH0004AnalyzerMessageFormat" xml:space="preserve">
+    <value>IXmlSerializable.GetSchema()가 명시적으로 구현되지 않음</value>
+  </data>
+  <data name="BH0004AnalyzerTitle" xml:space="preserve">
+    <value>IXmlSerializable.GetSchema()는 명시적으로 구현해야 함</value>
+  </data>
+  <data name="BH0005AnalyzerDescription" xml:space="preserve">
+    <value>IXmlSerializable.GetSchema()는 null을 반환해야만 하며, 추상적이거나 예외를 던져서는 안됩니다.</value>
+  </data>
+  <data name="BH0005AnalyzerMessageFormat" xml:space="preserve">
+    <value>IXmlSerializable.GetSchema()가 null을 반환하지 않음</value>
+  </data>
+  <data name="BH0005AnalyzerTitle" xml:space="preserve">
+    <value>IXmlSerializable.GetSchema()는 null을 반환해야 함</value>
+  </data>
 </root>

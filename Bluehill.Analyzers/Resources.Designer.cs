@@ -140,5 +140,59 @@ namespace Bluehill.Analyzers {
                 return ResourceManager.GetString("BH0003AnalyzerTitle", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   IXmlSerializable.GetSchema() must be implemented explicitly.과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string BH0004AnalyzerDescription {
+            get {
+                return ResourceManager.GetString("BH0004AnalyzerDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   IXmlSerializable.GetSchema() is not explicitly implemented과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string BH0004AnalyzerMessageFormat {
+            get {
+                return ResourceManager.GetString("BH0004AnalyzerMessageFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   IXmlSerializable.GetSchema() must be explicitly implemented과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string BH0004AnalyzerTitle {
+            get {
+                return ResourceManager.GetString("BH0004AnalyzerTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   IXmlSerializable.GetSchema() must return null, and must not be abstract or throw exceptions.과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string BH0005AnalyzerDescription {
+            get {
+                return ResourceManager.GetString("BH0005AnalyzerDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   IXmlSerializable.GetSchema() does not return null과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string BH0005AnalyzerMessageFormat {
+            get {
+                return ResourceManager.GetString("BH0005AnalyzerMessageFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   IXmlSerializable.GetSchema() must return null과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string BH0005AnalyzerTitle {
+            get {
+                return ResourceManager.GetString("BH0005AnalyzerTitle", resourceCulture);
+            }
+        }
     }
 }

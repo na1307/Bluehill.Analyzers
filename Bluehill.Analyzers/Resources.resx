@@ -150,4 +150,22 @@
   <data name="BH0003AnalyzerTitle" xml:space="preserve">
     <value>Prohibit reassignment of primary constructor parameters</value>
   </data>
+  <data name="BH0004AnalyzerDescription" xml:space="preserve">
+    <value>IXmlSerializable.GetSchema() must be implemented explicitly.</value>
+  </data>
+  <data name="BH0004AnalyzerMessageFormat" xml:space="preserve">
+    <value>IXmlSerializable.GetSchema() is not explicitly implemented</value>
+  </data>
+  <data name="BH0004AnalyzerTitle" xml:space="preserve">
+    <value>IXmlSerializable.GetSchema() must be explicitly implemented</value>
+  </data>
+  <data name="BH0005AnalyzerDescription" xml:space="preserve">
+    <value>IXmlSerializable.GetSchema() must return null, and must not be abstract or throw exceptions.</value>
+  </data>
+  <data name="BH0005AnalyzerMessageFormat" xml:space="preserve">
+    <value>IXmlSerializable.GetSchema() does not return null</value>
+  </data>
+  <data name="BH0005AnalyzerTitle" xml:space="preserve">
+    <value>IXmlSerializable.GetSchema() must return null</value>
+  </data>
 </root>

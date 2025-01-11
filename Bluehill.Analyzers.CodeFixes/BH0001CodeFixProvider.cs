@@ -1,6 +1,4 @@
-﻿using System.Composition;
-
-namespace Bluehill.Analyzers;
+﻿namespace Bluehill.Analyzers;
 
 [ExportCodeFixProvider(LanguageNames.CSharp, Name = nameof(BH0001CodeFixProvider))]
 [Shared]

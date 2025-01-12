@@ -38,8 +38,7 @@ public sealed class BH0004AndBH0005Analyzer : DiagnosticAnalyzer {
 
     // Register actions to be performed at the start of compilation
     private static void register(CompilationStartAnalysisContext context) {
-        var compilation = context.Compilation;
-        var ixs = compilation.GetTypeByMetadataName("System.Xml.Serialization.IXmlSerializable") ?? throw new InvalidOperationException("Something went wrong");
+        var ixs = context.Compilation.GetTypeByMetadataName("System.Xml.Serialization.IXmlSerializable") ?? throw new InvalidOperationException("Something went wrong");
         var ixsgs = (IMethodSymbol)ixs.GetMembers("GetSchema").Single();
 
         context.RegisterSyntaxNodeAction(ac => analyzeMethod(ac, ixs, ixsgs), SyntaxKind.MethodDeclaration);
@@ -60,7 +59,7 @@ public sealed class BH0004AndBH0005Analyzer : DiagnosticAnalyzer {
 
             // Report BH0005 if the method is abstract or its return value is not null
             if (methodSymbol.IsAbstract || isReturnValueNotNull(methodDeclaration, model)) {
-                var location = methodDeclaration.DescendantNodes().FirstOrDefault(n => n is BlockSyntax or ArrowExpressionClauseSyntax)?.GetLocation() ?? methodSymbol.Locations[0];
+                var location = methodDeclaration.DescendantNodes().FirstOrDefault(n => n is BlockSyntax or ArrowExpressionClauseSyntax)?.GetLocation() ?? methodDeclaration.GetLocation();
 
                 context.ReportDiagnostic(Diagnostic.Create(ruleBH0005, location));
             }
@@ -81,14 +80,17 @@ public sealed class BH0004AndBH0005Analyzer : DiagnosticAnalyzer {
 
     // Check if the return value of the method is not null
     private static bool isReturnValueNotNull(MethodDeclarationSyntax methodDeclaration, SemanticModel model) => methodDeclaration.DescendantNodes()
-        .Where(n => n is ReturnStatementSyntax or ArrowExpressionClauseSyntax or ThrowStatementSyntax or ThrowExpressionSyntax)
         .Select(s => s switch {
             ReturnStatementSyntax statement => statement.Expression,
             ArrowExpressionClauseSyntax arrowExpressionClause => arrowExpressionClause.Expression,
             ThrowStatementSyntax throwStatement => throwStatement.Expression,
             ThrowExpressionSyntax throwExpression => throwExpression.Expression,
-            _ => throw new InvalidOperationException("Something went wrong")
-        }).Where(e => e is not null).Select(e => e!).Any(e => {
+            _ => null
+        }).Any(e => {
+            if (e is null) {
+                return false;
+            }
+
             var constantValue = model.GetConstantValue(e);
 
             return !constantValue.HasValue || constantValue.Value is not null;

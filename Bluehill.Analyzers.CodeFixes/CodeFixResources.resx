@@ -121,4 +121,7 @@
     <value>Make sealed</value>
     <comment>The title of the code fix.</comment>
   </data>
+  <data name="BH0005CodeFixTitle" xml:space="preserve">
+    <value>Return null</value>
+  </data>
 </root>

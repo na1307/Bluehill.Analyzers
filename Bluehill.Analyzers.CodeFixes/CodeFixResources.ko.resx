@@ -121,4 +121,7 @@
     <value>봉인으로 만들기</value>
     <comment>The title of the code fix.</comment>
   </data>
+  <data name="BH0005CodeFixTitle" xml:space="preserve">
+    <value>null 반환</value>
+  </data>
 </root>

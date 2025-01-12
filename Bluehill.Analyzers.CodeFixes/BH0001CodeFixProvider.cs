@@ -8,9 +8,9 @@ public sealed class BH0001CodeFixProvider : CodeFixProvider {
     public override FixAllProvider GetFixAllProvider() => WellKnownFixAllProviders.BatchFixer;
 
     public override async Task RegisterCodeFixesAsync(CodeFixContext context) {
-        var root = await context.Document.GetSyntaxRootAsync(context.CancellationToken).ConfigureAwait(false);
-        var diagnostic = context.Diagnostics[0];
+        var diagnostic = context.Diagnostics.Single(d => d.Id == "BH0001");
         var diagnosticSpan = diagnostic.Location.SourceSpan;
+        var root = await context.Document.GetSyntaxRootAsync(context.CancellationToken).ConfigureAwait(false);
         var declaration = root!.FindToken(diagnosticSpan.Start).Parent!.AncestorsAndSelf().OfType<TypeDeclarationSyntax>().First();
         var action = CodeAction.Create(
             CodeFixResources.BH0001CodeFixTitle,

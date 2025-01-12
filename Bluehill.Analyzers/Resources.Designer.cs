@@ -194,5 +194,32 @@ namespace Bluehill.Analyzers {
                 return ResourceManager.GetString("BH0005AnalyzerTitle", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   IXmlSerializable.GetSchema() should never be called.과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string BH0006AnalyzerDescription {
+            get {
+                return ResourceManager.GetString("BH0006AnalyzerDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Calling IXmlSerializable.GetSchema()과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string BH0006AnalyzerMessageFormat {
+            get {
+                return ResourceManager.GetString("BH0006AnalyzerMessageFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Never call IXmlSerializable.GetSchema()과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string BH0006AnalyzerTitle {
+            get {
+                return ResourceManager.GetString("BH0006AnalyzerTitle", resourceCulture);
+            }
+        }
     }
 }

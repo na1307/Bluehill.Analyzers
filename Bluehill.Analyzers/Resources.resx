@@ -168,4 +168,13 @@
   <data name="BH0005AnalyzerTitle" xml:space="preserve">
     <value>IXmlSerializable.GetSchema() must return null</value>
   </data>
+  <data name="BH0006AnalyzerDescription" xml:space="preserve">
+    <value>IXmlSerializable.GetSchema() should never be called.</value>
+  </data>
+  <data name="BH0006AnalyzerMessageFormat" xml:space="preserve">
+    <value>Calling IXmlSerializable.GetSchema()</value>
+  </data>
+  <data name="BH0006AnalyzerTitle" xml:space="preserve">
+    <value>Never call IXmlSerializable.GetSchema()</value>
+  </data>
 </root>

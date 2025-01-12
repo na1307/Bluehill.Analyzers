@@ -3,7 +3,7 @@
 [ExportCodeFixProvider(LanguageNames.CSharp, Name = nameof(BH0005CodeFixProvider))]
 [Shared]
 public sealed class BH0005CodeFixProvider : CodeFixProvider {
-    public override ImmutableArray<string> FixableDiagnosticIds => [BH0004AndBH0005Analyzer.DiagnosticIdBH0005];
+    public override ImmutableArray<string> FixableDiagnosticIds => [BH0004ToBH0006Analyzer.DiagnosticIdBH0005];
 
     public override FixAllProvider GetFixAllProvider() => WellKnownFixAllProviders.BatchFixer;
 

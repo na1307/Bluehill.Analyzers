@@ -1,7 +1,7 @@
 ﻿namespace Bluehill.Analyzers;
 
 [DiagnosticAnalyzer(LanguageNames.CSharp)]
-public sealed class BH0004AndBH0005Analyzer : DiagnosticAnalyzer {
+public sealed class BH0004ToBH0006Analyzer : DiagnosticAnalyzer {
     // BH0004
     public const string DiagnosticIdBH0004 = "BH0004";
     private const string categoryBH0004 = "Design";
@@ -26,8 +26,20 @@ public sealed class BH0004AndBH0005Analyzer : DiagnosticAnalyzer {
     private static readonly DiagnosticDescriptor ruleBH0005 =
         new(DiagnosticIdBH0005, titleBH0005, messageFormatBH0005, categoryBH0005, DiagnosticSeverity.Error, true, descriptionBH0005, "https://na1307.github.io/Bluehill.Analyzers/BH0005");
 
+    // BH0006
+    public const string DiagnosticIdBH0006 = "BH0006";
+    private const string categoryBH0006 = "Design";
+    private static readonly LocalizableString titleBH0006 =
+        new LocalizableResourceString(nameof(Resources.BH0006AnalyzerTitle), Resources.ResourceManager, typeof(Resources));
+    private static readonly LocalizableString messageFormatBH0006 =
+        new LocalizableResourceString(nameof(Resources.BH0006AnalyzerMessageFormat), Resources.ResourceManager, typeof(Resources));
+    private static readonly LocalizableString descriptionBH0006 =
+        new LocalizableResourceString(nameof(Resources.BH0006AnalyzerDescription), Resources.ResourceManager, typeof(Resources));
+    private static readonly DiagnosticDescriptor ruleBH0006 =
+        new(DiagnosticIdBH0006, titleBH0006, messageFormatBH0006, categoryBH0006, DiagnosticSeverity.Error, true, descriptionBH0006, "https://na1307.github.io/Bluehill.Analyzers/BH0006");
+
     // Supported diagnostics
-    public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics => [ruleBH0004, ruleBH0005];
+    public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics => [ruleBH0004, ruleBH0005, ruleBH0006];
 
     // Initialize the analyzer
     public override void Initialize(AnalysisContext context) {
@@ -42,6 +54,7 @@ public sealed class BH0004AndBH0005Analyzer : DiagnosticAnalyzer {
         var ixsgs = (IMethodSymbol)ixs.GetMembers("GetSchema").Single();
 
         context.RegisterSyntaxNodeAction(ac => analyzeMethod(ac, ixs, ixsgs), SyntaxKind.MethodDeclaration);
+        context.RegisterOperationAction(oc => analyzeInvocation(oc, ixs, ixsgs), OperationKind.Invocation);
     }
 
     // Analyze method declarations
@@ -63,6 +76,15 @@ public sealed class BH0004AndBH0005Analyzer : DiagnosticAnalyzer {
 
                 context.ReportDiagnostic(Diagnostic.Create(ruleBH0005, location));
             }
+        }
+    }
+
+    private static void analyzeInvocation(OperationAnalysisContext context, INamedTypeSymbol ixs, IMethodSymbol ixsgs) {
+        var operation = (IInvocationOperation)context.Operation;
+        var targetMethod = operation.TargetMethod;
+
+        if (SymbolEqualityComparer.Default.Equals(targetMethod, ixsgs) || isGetSchema(targetMethod, ixs)) {
+            context.ReportDiagnostic(Diagnostic.Create(ruleBH0006, operation.Syntax.GetLocation()));
         }
     }
 

@@ -1,6 +1,4 @@
-﻿using Microsoft.CodeAnalysis.Operations;
-
-namespace Bluehill.Analyzers;
+﻿namespace Bluehill.Analyzers;
 
 [DiagnosticAnalyzer(LanguageNames.CSharp)]
 public sealed class BH0003ProhibitPCPReassignmentAnalyzer : DiagnosticAnalyzer {

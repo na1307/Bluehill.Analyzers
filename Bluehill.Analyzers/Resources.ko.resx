@@ -168,4 +168,13 @@
   <data name="BH0005AnalyzerTitle" xml:space="preserve">
     <value>IXmlSerializable.GetSchema()는 null을 반환해야 함</value>
   </data>
+  <data name="BH0006AnalyzerDescription" xml:space="preserve">
+    <value>IXmlSerializable.GetSchema()를 절대 호출해서는 안됩니다.</value>
+  </data>
+  <data name="BH0006AnalyzerMessageFormat" xml:space="preserve">
+    <value>IXmlSerializable.GetSchema()를 호출하고 있음</value>
+  </data>
+  <data name="BH0006AnalyzerTitle" xml:space="preserve">
+    <value>IXmlSerializable.GetSchema()를 절대 호출해서는 안됨</value>
+  </data>
 </root>

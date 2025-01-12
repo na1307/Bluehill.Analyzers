@@ -16,6 +16,7 @@
     <Using Include="Microsoft.CodeAnalysis.CSharp" />
     <Using Include="Microsoft.CodeAnalysis.CSharp.Syntax" />
     <Using Include="Microsoft.CodeAnalysis.Diagnostics" />
+    <Using Include="Microsoft.CodeAnalysis.Operations" />
     <Using Include="System.Collections.Immutable" />
   </ItemGroup>
   <ItemGroup>

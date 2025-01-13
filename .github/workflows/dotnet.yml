@@ -97,9 +97,9 @@ jobs:
     name: Publish to NuGet
     if: github.event_name == 'release'
     needs: build
+    runs-on: ubuntu-latest
     permissions:
       contents: write
-    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - name: Setup .NET

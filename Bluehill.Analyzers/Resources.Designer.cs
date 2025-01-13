@@ -248,5 +248,32 @@ namespace Bluehill.Analyzers {
                 return ResourceManager.GetString("BH0007AnalyzerTitle", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   The negated pattern should not be used repeatedly.과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string BH0008AnalyzerDescription {
+            get {
+                return ResourceManager.GetString("BH0008AnalyzerDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Use &apos;not&apos; only once or not at all과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string BH0008AnalyzerMessageFormat {
+            get {
+                return ResourceManager.GetString("BH0008AnalyzerMessageFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Don&apos;t repeat negative patterns과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string BH0008AnalyzerTitle {
+            get {
+                return ResourceManager.GetString("BH0008AnalyzerTitle", resourceCulture);
+            }
+        }
     }
 }

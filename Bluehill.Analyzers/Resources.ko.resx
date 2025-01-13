@@ -186,4 +186,13 @@
   <data name="BH0007AnalyzerTitle" xml:space="preserve">
     <value>System.Object보다 System.Threading.Lock을 사용하세요</value>
   </data>
+  <data name="BH0008AnalyzerDescription" xml:space="preserve">
+    <value>부정 패턴은 반복해서 사용하면 안됩니다.</value>
+  </data>
+  <data name="BH0008AnalyzerMessageFormat" xml:space="preserve">
+    <value>'not'을 한번만 사용하거나 아예 사용하지 마세요.</value>
+  </data>
+  <data name="BH0008AnalyzerTitle" xml:space="preserve">
+    <value>부정 패턴을 반복해서 사용하면 안됨</value>
+  </data>
 </root>

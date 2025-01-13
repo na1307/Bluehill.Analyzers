@@ -4,7 +4,7 @@
 public sealed class BH0004ToBH0006Analyzer : DiagnosticAnalyzer {
     // BH0004
     public const string DiagnosticIdBH0004 = "BH0004";
-    private const string categoryBH0004 = "Design";
+    private const string categoryBH0004 = "Usage";
     private static readonly LocalizableString titleBH0004 =
         new LocalizableResourceString(nameof(Resources.BH0004AnalyzerTitle), Resources.ResourceManager, typeof(Resources));
     private static readonly LocalizableString messageFormatBH0004 =
@@ -16,7 +16,7 @@ public sealed class BH0004ToBH0006Analyzer : DiagnosticAnalyzer {
 
     // BH0005
     public const string DiagnosticIdBH0005 = "BH0005";
-    private const string categoryBH0005 = "Design";
+    private const string categoryBH0005 = "Usage";
     private static readonly LocalizableString titleBH0005 =
         new LocalizableResourceString(nameof(Resources.BH0005AnalyzerTitle), Resources.ResourceManager, typeof(Resources));
     private static readonly LocalizableString messageFormatBH0005 =
@@ -28,7 +28,7 @@ public sealed class BH0004ToBH0006Analyzer : DiagnosticAnalyzer {
 
     // BH0006
     public const string DiagnosticIdBH0006 = "BH0006";
-    private const string categoryBH0006 = "Design";
+    private const string categoryBH0006 = "Usage";
     private static readonly LocalizableString titleBH0006 =
         new LocalizableResourceString(nameof(Resources.BH0006AnalyzerTitle), Resources.ResourceManager, typeof(Resources));
     private static readonly LocalizableString messageFormatBH0006 =

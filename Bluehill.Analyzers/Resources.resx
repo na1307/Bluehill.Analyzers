@@ -177,4 +177,13 @@
   <data name="BH0006AnalyzerTitle" xml:space="preserve">
     <value>Never call IXmlSerializable.GetSchema()</value>
   </data>
+  <data name="BH0007AnalyzerDescription" xml:space="preserve">
+    <value>It is recommended to use System.Threading.Lock instead of System.Object for locking.</value>
+  </data>
+  <data name="BH0007AnalyzerMessageFormat" xml:space="preserve">
+    <value>Use System.Threading.Lock</value>
+  </data>
+  <data name="BH0007AnalyzerTitle" xml:space="preserve">
+    <value>Prefer System.Threading.Lock over System.Object</value>
+  </data>
 </root>

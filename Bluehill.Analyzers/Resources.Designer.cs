@@ -221,5 +221,32 @@ namespace Bluehill.Analyzers {
                 return ResourceManager.GetString("BH0006AnalyzerTitle", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   It is recommended to use System.Threading.Lock instead of System.Object for locking.과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string BH0007AnalyzerDescription {
+            get {
+                return ResourceManager.GetString("BH0007AnalyzerDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Use System.Threading.Lock과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string BH0007AnalyzerMessageFormat {
+            get {
+                return ResourceManager.GetString("BH0007AnalyzerMessageFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Prefer System.Threading.Lock over System.Object과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string BH0007AnalyzerTitle {
+            get {
+                return ResourceManager.GetString("BH0007AnalyzerTitle", resourceCulture);
+            }
+        }
     }
 }

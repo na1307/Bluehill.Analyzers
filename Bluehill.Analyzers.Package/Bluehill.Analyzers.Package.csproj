@@ -19,7 +19,6 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Bluehill.Analyzers.CodeFixes\Bluehill.Analyzers.CodeFixes.csproj" />
-    <ProjectReference Include="..\Bluehill.Analyzers\Bluehill.Analyzers.csproj" />
   </ItemGroup>
   <ItemGroup>
     <None Update="tools\*.ps1" CopyToOutputDirectory="PreserveNewest" Pack="true" PackagePath="" />

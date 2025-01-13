@@ -53,8 +53,8 @@ public sealed class BH0004ToBH0006Analyzer : DiagnosticAnalyzer {
         var ixs = context.Compilation.GetTypeByMetadataName("System.Xml.Serialization.IXmlSerializable") ?? throw new InvalidOperationException("Something went wrong");
         var ixsgs = (IMethodSymbol)ixs.GetMembers("GetSchema").Single();
 
-        context.RegisterSyntaxNodeAction(ac => analyzeMethod(ac, ixs, ixsgs), SyntaxKind.MethodDeclaration);
-        context.RegisterOperationAction(oc => analyzeInvocation(oc, ixs, ixsgs), OperationKind.Invocation);
+        context.RegisterSyntaxNodeAction(context => analyzeMethod(context, ixs, ixsgs), SyntaxKind.MethodDeclaration);
+        context.RegisterOperationAction(context => analyzeInvocation(context, ixs, ixsgs), OperationKind.Invocation);
     }
 
     // Analyze method declarations

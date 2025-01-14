@@ -30,7 +30,7 @@ public sealed class BH0009DontDivideByZeroAnalyzer : DiagnosticAnalyzer {
         var operation = (IBinaryOperation)context.Operation;
 
         // This is not a division operation
-        if (operation.OperatorKind is not BinaryOperatorKind.Divide or BinaryOperatorKind.Remainder) {
+        if (operation.OperatorKind is not BinaryOperatorKind.Divide and not BinaryOperatorKind.Remainder) {
             return;
         }
 

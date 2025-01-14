@@ -275,5 +275,32 @@ namespace Bluehill.Analyzers {
                 return ResourceManager.GetString("BH0008AnalyzerTitle", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   It should not be divided by 0.과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string BH0009AnalyzerDescription {
+            get {
+                return ResourceManager.GetString("BH0009AnalyzerDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Dividing by 0과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string BH0009AnalyzerMessageFormat {
+            get {
+                return ResourceManager.GetString("BH0009AnalyzerMessageFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Do not divide by 0과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string BH0009AnalyzerTitle {
+            get {
+                return ResourceManager.GetString("BH0009AnalyzerTitle", resourceCulture);
+            }
+        }
     }
 }

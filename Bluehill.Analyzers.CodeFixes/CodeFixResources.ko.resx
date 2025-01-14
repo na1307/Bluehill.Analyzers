@@ -124,4 +124,7 @@
   <data name="BH0005CodeFixTitle" xml:space="preserve">
     <value>null 반환</value>
   </data>
+  <data name="BH0008CodeFixTitle" xml:space="preserve">
+    <value>패턴 부정 단순화</value>
+  </data>
 </root>

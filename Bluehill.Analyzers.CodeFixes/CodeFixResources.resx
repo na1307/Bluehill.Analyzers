@@ -124,4 +124,7 @@
   <data name="BH0005CodeFixTitle" xml:space="preserve">
     <value>Return null</value>
   </data>
+  <data name="BH0008CodeFixTitle" xml:space="preserve">
+    <value>Simplify pattern negation</value>
+  </data>
 </root>

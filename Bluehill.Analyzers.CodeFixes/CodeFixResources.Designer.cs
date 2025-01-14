@@ -77,5 +77,14 @@ namespace Bluehill.Analyzers {
                 return ResourceManager.GetString("BH0005CodeFixTitle", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Simplify pattern negation과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string BH0008CodeFixTitle {
+            get {
+                return ResourceManager.GetString("BH0008CodeFixTitle", resourceCulture);
+            }
+        }
     }
 }

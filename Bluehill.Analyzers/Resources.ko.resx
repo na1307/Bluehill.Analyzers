@@ -196,12 +196,12 @@
     <value>부정 패턴을 반복해서 사용하면 안됨</value>
   </data>
   <data name="BH0009AnalyzerDescription" xml:space="preserve">
-    <value>0으로 나눠서는 안됩니다.</value>
+    <value>정수를 절대로 상수 0으로 나눠서는 안됩니다. 이는 DivideByZeroException을 일으킬 수 있습니다.</value>
   </data>
   <data name="BH0009AnalyzerMessageFormat" xml:space="preserve">
-    <value>0으로 나누고 있음</value>
+    <value>상수 0으로 나누고 있음</value>
   </data>
   <data name="BH0009AnalyzerTitle" xml:space="preserve">
-    <value>0으로 나눠서는 안됨</value>
+    <value>정수를 절대로 상수 0으로 나눠서는 안됨</value>
   </data>
 </root>

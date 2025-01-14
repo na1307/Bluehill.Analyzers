@@ -1,14 +1,14 @@
 @page "/BH0009"
 
-<h1>BH0008: Do not divide by 0</h1>
+<h1>BH0009: Integers should never be divided by the constant 0</h1>
 
-<p>It should not be divided by 0. NOTE: This rule supplements CS0020.</p>
+<p>Integers should never be divided by the constant 0. This may cause a DividedByZeroException. NOTE: This rule supplements CS0020.</p>
 
 <h2>Code with violation</h2>
 
 <CodeHighlight>
     public class TestClass {
-        public int TestMethod1(int value) {
+        public int TestMethod(int value) {
             return int / 0;
         }
     }

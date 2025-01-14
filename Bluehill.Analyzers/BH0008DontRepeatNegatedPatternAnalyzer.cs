@@ -31,17 +31,20 @@ public sealed class BH0008DontRepeatNegatedPatternAnalyzer : DiagnosticAnalyzer 
     private static void analyzeNotPattern(SyntaxNodeAnalysisContext context) {
         var syntax = (UnaryPatternSyntax)context.Node;
 
+        // Subpattern is actual pattern
         if (syntax.Pattern is not UnaryPatternSyntax) {
             return;
         }
 
+        // Parent is negated pattern. It is already handled.
         if (syntax.Parent is UnaryPatternSyntax) {
             return;
         }
 
-        var firstLocation = syntax.GetLocation().SourceSpan.Start;
-        var nonFirstLocation = syntax.DescendantNodes().Where(n => n is not UnaryPatternSyntax).Min(n => n.GetLocation().SourceSpan.Start);
+        var firstLocation = syntax.SpanStart;
+        var nonFirstLocation = syntax.DescendantNodes().Where(n => n is not UnaryPatternSyntax).Min(n => n.SpanStart);
 
+        // Report diagnostic
         context.ReportDiagnostic(Diagnostic.Create(rule, Location.Create(syntax.SyntaxTree, TextSpan.FromBounds(firstLocation, nonFirstLocation - 1))));
     }
 }

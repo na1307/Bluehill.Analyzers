@@ -1,7 +1,7 @@
 ﻿namespace Bluehill.Analyzers;
 
 [DiagnosticAnalyzer(LanguageNames.CSharp)]
-public sealed class BH0009DontDivideByZeroAnalyzer : DiagnosticAnalyzer {
+public sealed class BH0009DontDivideByConstantZeroAnalyzer : DiagnosticAnalyzer {
     public const string DiagnosticId = "BH0009";
     private const string category = "Reliability";
     private static readonly LocalizableString title =
@@ -54,7 +54,5 @@ public sealed class BH0009DontDivideByZeroAnalyzer : DiagnosticAnalyzer {
         (value is byte b && b == 0) || (value is sbyte sb && sb == 0)
         || (value is short s && s == 0) || (value is ushort us && us == 0)
         || (value is int i && i == 0) || (value is uint ui && ui == 0)
-        || (value is long l && l == 0) || (value is ulong ul && ul == 0)
-        || (value is float f && f == 0) || (value is double d && d == 0)
-        || (value is decimal dc && dc == 0);
+        || (value is long l && l == 0) || (value is ulong ul && ul == 0);
 }

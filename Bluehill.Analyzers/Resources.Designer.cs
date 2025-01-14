@@ -277,7 +277,7 @@ namespace Bluehill.Analyzers {
         }
         
         /// <summary>
-        ///   It should not be divided by 0.과(와) 유사한 지역화된 문자열을 찾습니다.
+        ///   Integers should never be divided by the constant 0. This may cause a DividedByZeroException.과(와) 유사한 지역화된 문자열을 찾습니다.
         /// </summary>
         internal static string BH0009AnalyzerDescription {
             get {
@@ -286,7 +286,7 @@ namespace Bluehill.Analyzers {
         }
         
         /// <summary>
-        ///   Dividing by 0과(와) 유사한 지역화된 문자열을 찾습니다.
+        ///   Dividing by constant 0과(와) 유사한 지역화된 문자열을 찾습니다.
         /// </summary>
         internal static string BH0009AnalyzerMessageFormat {
             get {
@@ -295,7 +295,7 @@ namespace Bluehill.Analyzers {
         }
         
         /// <summary>
-        ///   Do not divide by 0과(와) 유사한 지역화된 문자열을 찾습니다.
+        ///   Integers should never be divided by the constant 0과(와) 유사한 지역화된 문자열을 찾습니다.
         /// </summary>
         internal static string BH0009AnalyzerTitle {
             get {

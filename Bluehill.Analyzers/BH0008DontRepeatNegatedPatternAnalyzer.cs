@@ -3,7 +3,7 @@
 namespace Bluehill.Analyzers;
 
 [DiagnosticAnalyzer(LanguageNames.CSharp)]
-public sealed class BH0008DontRepeatNegatedPatternAnalyzer : DiagnosticAnalyzer {
+public sealed class BH0008DontRepeatNegatedPatternAnalyzer : BHAnalyzer {
     public const string DiagnosticId = "BH0008";
     private const string category = "Design";
     private static readonly LocalizableString title =
@@ -18,11 +18,7 @@ public sealed class BH0008DontRepeatNegatedPatternAnalyzer : DiagnosticAnalyzer 
     public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics => [rule];
 
     public override void Initialize(AnalysisContext context) {
-        // Configure generated code analysis
-        context.ConfigureGeneratedCodeAnalysis(GeneratedCodeAnalysisFlags.None);
-
-        // Enable concurrent execution
-        context.EnableConcurrentExecution();
+        base.Initialize(context);
 
         // Register syntax node action
         context.RegisterSyntaxNodeAction(analyzeNotPattern, SyntaxKind.NotPattern);
@@ -45,6 +41,6 @@ public sealed class BH0008DontRepeatNegatedPatternAnalyzer : DiagnosticAnalyzer 
         var nonFirstLocation = syntax.DescendantNodes().Where(n => n is not UnaryPatternSyntax).Min(n => n.SpanStart);
 
         // Report diagnostic
-        context.ReportDiagnostic(Diagnostic.Create(rule, Location.Create(syntax.SyntaxTree, TextSpan.FromBounds(firstLocation, nonFirstLocation - 1))));
+        context.ReportDiagnostic(rule, Location.Create(syntax.SyntaxTree, TextSpan.FromBounds(firstLocation, nonFirstLocation - 1)));
     }
 }

@@ -3,6 +3,7 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
     <EnforceExtendedAnalyzerRules>true</EnforceExtendedAnalyzerRules>
+    <NoWarn>$(NoWarn);RS1025;RS1026</NoWarn>
     <IsPackable>false</IsPackable>
     <NeutralLanguage>en</NeutralLanguage>
     <RestorePackagesWithLockFile>true</RestorePackagesWithLockFile>
@@ -17,14 +18,15 @@
     <Using Include="Microsoft.CodeAnalysis.CSharp.Syntax" />
     <Using Include="Microsoft.CodeAnalysis.Diagnostics" />
     <Using Include="Microsoft.CodeAnalysis.Operations" />
+    <Using Include="Roslynator" />
     <Using Include="System.Collections.Immutable" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Microsoft.CodeAnalysis.CSharp" />
     <PackageReference Include="Roslynator.CodeAnalysis.Analyzers">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Roslynator.CSharp" />
   </ItemGroup>
   <ItemGroup>
     <Compile Update="Resources.Designer.cs" DesignTime="True" AutoGen="True" DependentUpon="Resources.resx" />

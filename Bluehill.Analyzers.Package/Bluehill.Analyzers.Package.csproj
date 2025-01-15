@@ -1,14 +1,15 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <IncludeBuildOutput>false</IncludeBuildOutput>
     <SuppressDependenciesWhenPacking>true</SuppressDependenciesWhenPacking>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <PackageId>Bluehill.Analyzers</PackageId>
-    <Description>Bluehill's Roslyn analyzers</Description>
     <DevelopmentDependency>true</DevelopmentDependency>
     <NoPackageAnalysis>true</NoPackageAnalysis>
+    <RestorePackagesWithLockFile>true</RestorePackagesWithLockFile>
+    <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+    <PackageId>Bluehill.Analyzers</PackageId>
+    <Description>Bluehill's Roslyn analyzers</Description>
     <TargetsForTfmSpecificContentInPackage>$(TargetsForTfmSpecificContentInPackage);_AddAnalyzersToOutput</TargetsForTfmSpecificContentInPackage>
   </PropertyGroup>
   <ItemGroup>
@@ -27,6 +28,11 @@
     <ItemGroup>
       <TfmSpecificPackageFile Include="$(OutputPath)\Bluehill.Analyzers.dll" PackagePath="analyzers/dotnet/cs" />
       <TfmSpecificPackageFile Include="$(OutputPath)\Bluehill.Analyzers.CodeFixes.dll" PackagePath="analyzers/dotnet/cs" />
+      <TfmSpecificPackageFile Include="$(OutputPath)\Microsoft.Extensions.FileSystemGlobbing.dll" PackagePath="analyzers/dotnet/cs" />
+      <TfmSpecificPackageFile Include="$(OutputPath)\Roslynator.Core.dll" PackagePath="analyzers/dotnet/cs" />
+      <TfmSpecificPackageFile Include="$(OutputPath)\Roslynator.CSharp.dll" PackagePath="analyzers/dotnet/cs" />
+      <TfmSpecificPackageFile Include="$(OutputPath)\Roslynator.CSharp.Workspaces.dll" PackagePath="analyzers/dotnet/cs" />
+      <TfmSpecificPackageFile Include="$(OutputPath)\Roslynator.Workspaces.Core.dll" PackagePath="analyzers/dotnet/cs" />
       <TfmSpecificPackageFile Include="$(OutputPath)\ko\Bluehill.Analyzers.resources.dll" PackagePath="analyzers/dotnet/cs/ko" />
       <TfmSpecificPackageFile Include="$(OutputPath)\ko\Bluehill.Analyzers.CodeFixes.resources.dll" PackagePath="analyzers/dotnet/cs/ko" />
     </ItemGroup>

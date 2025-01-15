@@ -1,7 +1,7 @@
 ﻿namespace Bluehill.Analyzers;
 
 [DiagnosticAnalyzer(LanguageNames.CSharp)]
-public sealed class BH0001TypesShouldBeSealedAnalyzer : DiagnosticAnalyzer {
+public sealed class BH0001TypesShouldBeSealedAnalyzer : BHAnalyzer {
     public const string DiagnosticId = "BH0001";
     private const string category = "Design";
     private static readonly LocalizableString title =
@@ -16,21 +16,15 @@ public sealed class BH0001TypesShouldBeSealedAnalyzer : DiagnosticAnalyzer {
     public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics => [rule];
 
     public override void Initialize(AnalysisContext context) {
-        // Configure generated code analysis
-        context.ConfigureGeneratedCodeAnalysis(GeneratedCodeAnalysisFlags.None);
-
-        // Enable concurrent execution
-        context.EnableConcurrentExecution();
+        base.Initialize(context);
 
         // Register compilation start action
         context.RegisterCompilationStartAction(compilationStartAction);
     }
 
     private static void compilationStartAction(CompilationStartAnalysisContext context) {
-        var token = context.CancellationToken;
-
         // Get all named types and their base types
-        var typeAndBase = context.Compilation.GetSymbolsWithName(_ => true, SymbolFilter.Type, token).Cast<INamedTypeSymbol>()
+        var typeAndBase = context.Compilation.GetSymbolsWithName(_ => true, SymbolFilter.Type, context.CancellationToken).Cast<INamedTypeSymbol>()
             .Select(symbol => new KeyValuePair<INamedTypeSymbol, INamedTypeSymbol?>(symbol, symbol.BaseType))
             .ToImmutableDictionary(SymbolEqualityComparer.Default);
 
@@ -84,6 +78,6 @@ public sealed class BH0001TypesShouldBeSealedAnalyzer : DiagnosticAnalyzer {
         }
 
         // Report diagnostic
-        context.ReportDiagnostic(Diagnostic.Create(rule, namedTypeSymbol.Locations[0], namedTypeSymbol.Name));
+        context.ReportDiagnostic(rule, namedTypeSymbol.Locations[0], namedTypeSymbol.Name);
     }
 }

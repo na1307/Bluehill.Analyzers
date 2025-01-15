@@ -1,7 +1,7 @@
 ﻿namespace Bluehill.Analyzers;
 
 [DiagnosticAnalyzer(LanguageNames.CSharp)]
-public sealed class BH0003ProhibitPCPReassignmentAnalyzer : DiagnosticAnalyzer {
+public sealed class BH0003ProhibitPCPReassignmentAnalyzer : BHAnalyzer {
     public const string DiagnosticId = "BH0003";
     private const string category = "Design";
     private static readonly LocalizableString title =
@@ -16,9 +16,7 @@ public sealed class BH0003ProhibitPCPReassignmentAnalyzer : DiagnosticAnalyzer {
     public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics => [rule];
 
     public override void Initialize(AnalysisContext context) {
-        // Ignore generated code and allow concurrent analysis
-        context.ConfigureGeneratedCodeAnalysis(GeneratedCodeAnalysisFlags.None);
-        context.EnableConcurrentExecution();
+        base.Initialize(context);
 
         // Register for different kinds of assignment operations
         context.RegisterOperationAction(analyzeAssignment, OperationKind.SimpleAssignment);

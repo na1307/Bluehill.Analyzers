@@ -1,7 +1,7 @@
 ﻿namespace Bluehill.Analyzers;
 
 [DiagnosticAnalyzer(LanguageNames.CSharp)]
-public sealed class BH0009DontDivideByConstantZeroAnalyzer : DiagnosticAnalyzer {
+public sealed class BH0009DontDivideByConstantZeroAnalyzer : BHAnalyzer {
     public const string DiagnosticId = "BH0009";
     private const string category = "Reliability";
     private static readonly LocalizableString title =
@@ -16,11 +16,7 @@ public sealed class BH0009DontDivideByConstantZeroAnalyzer : DiagnosticAnalyzer 
     public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics => [rule];
 
     public override void Initialize(AnalysisContext context) {
-        // Configure generated code analysis
-        context.ConfigureGeneratedCodeAnalysis(GeneratedCodeAnalysisFlags.None);
-
-        // Enable concurrent execution
-        context.EnableConcurrentExecution();
+        base.Initialize(context);
 
         // Register operation action
         context.RegisterOperationAction(binaryOperationAction, OperationKind.Binary);

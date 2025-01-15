@@ -1,7 +1,7 @@
 ﻿namespace Bluehill.Analyzers;
 
 [DiagnosticAnalyzer(LanguageNames.CSharp)]
-public sealed class BH0004ToBH0006Analyzer : DiagnosticAnalyzer {
+public sealed class BH0004ToBH0006Analyzer : BHAnalyzer {
     // BH0004
     public const string DiagnosticIdBH0004 = "BH0004";
     private const string categoryBH0004 = "Usage";
@@ -43,14 +43,21 @@ public sealed class BH0004ToBH0006Analyzer : DiagnosticAnalyzer {
 
     // Initialize the analyzer
     public override void Initialize(AnalysisContext context) {
-        context.EnableConcurrentExecution();
-        context.ConfigureGeneratedCodeAnalysis(GeneratedCodeAnalysisFlags.None);
+        base.Initialize(context);
+
+        // Register compilation start action
         context.RegisterCompilationStartAction(register);
     }
 
     // Register actions to be performed at the start of compilation
     private static void register(CompilationStartAnalysisContext context) {
-        var ixs = context.Compilation.GetTypeByMetadataName("System.Xml.Serialization.IXmlSerializable") ?? throw new InvalidOperationException("Something went wrong");
+        var ixs = context.Compilation.GetTypeByMetadataName("System.Xml.Serialization.IXmlSerializable");
+
+        // IXmlSerializable not found (might be .NET Standard 1.0)
+        if (ixs is null) {
+            return;
+        }
+
         var ixsgs = (IMethodSymbol)ixs.GetMembers("GetSchema").Single();
 
         context.RegisterSyntaxNodeAction(context => analyzeMethod(context, ixs, ixsgs), SyntaxKind.MethodDeclaration);
@@ -67,14 +74,14 @@ public sealed class BH0004ToBH0006Analyzer : DiagnosticAnalyzer {
         if (isGetSchema(methodSymbol, ixs)) {
             // Report BH0004 if the method does not explicitly implement IXmlSerializable.GetSchema
             if (!methodSymbol.ExplicitInterfaceImplementations.Any(i => SymbolEqualityComparer.Default.Equals(i, ixsgs))) {
-                context.ReportDiagnostic(Diagnostic.Create(ruleBH0004, methodSymbol.Locations[0]));
+                context.ReportDiagnostic(ruleBH0004, methodSymbol.Locations[0]);
             }
 
             // Report BH0005 if the method is abstract or its return value is not null
             if (methodSymbol.IsAbstract || isReturnValueNotNull(methodDeclaration, model)) {
                 var location = methodDeclaration.DescendantNodes().FirstOrDefault(n => n is BlockSyntax or ArrowExpressionClauseSyntax)?.GetLocation() ?? methodDeclaration.GetLocation();
 
-                context.ReportDiagnostic(Diagnostic.Create(ruleBH0005, location));
+                context.ReportDiagnostic(ruleBH0005, location);
             }
         }
     }
@@ -90,14 +97,13 @@ public sealed class BH0004ToBH0006Analyzer : DiagnosticAnalyzer {
 
     // Check if the method is GetSchema from IXmlSerializable
     private static bool isGetSchema(IMethodSymbol method, INamedTypeSymbol ixs) {
-        var hasIxs = method.ContainingType.AllInterfaces.Any(i => SymbolEqualityComparer.Default.Equals(i, ixs));
-        var isInIxs = ixs.GetMembers().Select(method.ContainingType.FindImplementationForInterfaceMember).Any(im => SymbolEqualityComparer.Default.Equals(method, im));
+        var hasIxs = method.ImplementsInterfaceMember(ixs, true);
 
         // We have already verified that this method is IXmlSerializable.
         // We use Contains rather than Equals to detect explicit interface implementations.
         var isGs = method.Name.Contains("GetSchema");
 
-        return hasIxs && isInIxs && isGs;
+        return hasIxs && isGs;
     }
 
     // Check if the return value of the method is not null

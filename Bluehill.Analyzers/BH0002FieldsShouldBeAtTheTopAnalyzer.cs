@@ -1,7 +1,7 @@
 ﻿namespace Bluehill.Analyzers;
 
 [DiagnosticAnalyzer(LanguageNames.CSharp)]
-public sealed class BH0002FieldsShouldBeAtTheTopAnalyzer : DiagnosticAnalyzer {
+public sealed class BH0002FieldsShouldBeAtTheTopAnalyzer : BHAnalyzer {
     public const string DiagnosticId = "BH0002";
     private const string category = "Style";
     private static readonly LocalizableString title =
@@ -16,8 +16,9 @@ public sealed class BH0002FieldsShouldBeAtTheTopAnalyzer : DiagnosticAnalyzer {
     public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics => [rule];
 
     public override void Initialize(AnalysisContext context) {
-        context.ConfigureGeneratedCodeAnalysis(GeneratedCodeAnalysisFlags.None);
-        context.EnableConcurrentExecution();
+        base.Initialize(context);
+
+        // Register semantic model action
         context.RegisterSemanticModelAction(semanticModelAction);
     }
 

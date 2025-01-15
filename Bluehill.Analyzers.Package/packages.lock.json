@@ -17,23 +17,6 @@
         "resolved": "4.12.10",
         "contentHash": "Wecq3nfhTvnJPxX87hKbjMdX1xeCAMJf9rdBX3nQLTntQs9v0fFbUB2eQSSOArXMuFh7MxjLWaL4+b6XMi1NDA=="
       },
-      "Roslynator.CodeAnalysis.Analyzers": {
-        "type": "Direct",
-        "requested": "[4.12.10, )",
-        "resolved": "4.12.10",
-        "contentHash": "P/8rraJ0lDO792C8VajyKsaljMR4pWheoSv6bJnCspydf8gNZe+r2JJNis0IxMO2a8vLOyB+8CMIaVLIUndSNQ=="
-      },
-      "Roslynator.CSharp.Workspaces": {
-        "type": "Direct",
-        "requested": "[4.12.10, )",
-        "resolved": "4.12.10",
-        "contentHash": "oRhZzcCjtbWGgZsmsbQyOW97GTwysSICRS6BLaDRIuAQDQIyjfZFmtXFF/DuCZeyTpMjvY7IogQq5KdhunfYag==",
-        "dependencies": {
-          "Microsoft.CodeAnalysis.CSharp.Workspaces": "4.7.0",
-          "Roslynator.CSharp": "4.12.10",
-          "Roslynator.Workspaces.Core": "4.12.10"
-        }
-      },
       "Roslynator.Formatting.Analyzers": {
         "type": "Direct",
         "requested": "[4.12.10, )",
@@ -251,6 +234,13 @@
           "Roslynator.CSharp": "[4.12.10, )"
         }
       },
+      "bluehill.analyzers.codefixes": {
+        "type": "Project",
+        "dependencies": {
+          "*Bluehill.Analyzers.csproj*": "[1.4.0, )",
+          "Roslynator.CSharp.Workspaces": "[4.12.10, )"
+        }
+      },
       "Microsoft.CodeAnalysis.Analyzers": {
         "type": "CentralTransitive",
         "requested": "[3.11.0, )",
@@ -308,6 +298,17 @@
         "dependencies": {
           "Microsoft.CodeAnalysis.CSharp": "4.7.0",
           "Roslynator.Core": "4.12.10"
+        }
+      },
+      "Roslynator.CSharp.Workspaces": {
+        "type": "CentralTransitive",
+        "requested": "[4.12.10, )",
+        "resolved": "4.12.10",
+        "contentHash": "oRhZzcCjtbWGgZsmsbQyOW97GTwysSICRS6BLaDRIuAQDQIyjfZFmtXFF/DuCZeyTpMjvY7IogQq5KdhunfYag==",
+        "dependencies": {
+          "Microsoft.CodeAnalysis.CSharp.Workspaces": "4.7.0",
+          "Roslynator.CSharp": "4.12.10",
+          "Roslynator.Workspaces.Core": "4.12.10"
         }
       }
     }

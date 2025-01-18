@@ -13,8 +13,7 @@ public sealed class BH0003AnalyzerTest {
                 [|i|] = 10;
             }
         }
-        """
-        )]
+        """)]
     [InlineData(
         """
         public class TestClass(int i) {
@@ -29,8 +28,7 @@ public sealed class BH0003AnalyzerTest {
                 i2 = array[1];
             }
         }
-        """
-        )]
+        """)]
     [InlineData(
         """
         public class TestClass(int i) {
@@ -38,8 +36,7 @@ public sealed class BH0003AnalyzerTest {
                 [|i|] += 10;
             }
         }
-        """
-        )]
+        """)]
     [InlineData(
         """
         public class TestClass(int i) {
@@ -47,8 +44,7 @@ public sealed class BH0003AnalyzerTest {
                 [|i|] -= 10;
             }
         }
-        """
-        )]
+        """)]
     [InlineData(
         """
         public class TestClass(string? s) {
@@ -56,8 +52,7 @@ public sealed class BH0003AnalyzerTest {
                 [|s|] ??= string.Empty;
             }
         }
-        """
-        )]
+        """)]
     [InlineData(
         """
         public class TestClass(int i) {
@@ -65,8 +60,7 @@ public sealed class BH0003AnalyzerTest {
                 [|i|]++;
             }
         }
-        """
-        )]
+        """)]
     [InlineData(
         """
         public class TestClass(int i) {
@@ -74,7 +68,6 @@ public sealed class BH0003AnalyzerTest {
                 [|i|]--;
             }
         }
-        """
-        )]
+        """)]
     public Task Test(string source) => Verify.VerifyAnalyzerAsync(source);
 }

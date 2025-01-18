@@ -18,8 +18,7 @@ public sealed class BH0004ToBH0006AnalyzerTest {
             public void ReadXml(XmlReader reader) => throw new NotImplementedException();
             public void WriteXml(XmlWriter writer) => throw new NotImplementedException();
         }
-        """
-        )]
+        """)]
     [InlineData(
         """
         using System;
@@ -32,8 +31,7 @@ public sealed class BH0004ToBH0006AnalyzerTest {
             public void ReadXml(XmlReader reader) => throw new NotImplementedException();
             public void WriteXml(XmlWriter writer) => throw new NotImplementedException();
         }
-        """
-        )]
+        """)]
     [InlineData(
         """
         using System;
@@ -46,8 +44,7 @@ public sealed class BH0004ToBH0006AnalyzerTest {
             public void ReadXml(XmlReader reader) => throw new NotImplementedException();
             public void WriteXml(XmlWriter writer) => throw new NotImplementedException();
         }
-        """
-        )]
+        """)]
     [InlineData(
         """
         using System;
@@ -62,8 +59,7 @@ public sealed class BH0004ToBH0006AnalyzerTest {
             public void ReadXml(XmlReader reader) => throw new NotImplementedException();
             public void WriteXml(XmlWriter writer) => throw new NotImplementedException();
         }
-        """
-        )]
+        """)]
     [InlineData(
         """
         using System;
@@ -78,8 +74,7 @@ public sealed class BH0004ToBH0006AnalyzerTest {
             public void ReadXml(XmlReader reader) => throw new NotImplementedException();
             public void WriteXml(XmlWriter writer) => throw new NotImplementedException();
         }
-        """
-        )]
+        """)]
     [InlineData(
         """
         using System;
@@ -94,8 +89,7 @@ public sealed class BH0004ToBH0006AnalyzerTest {
             public void ReadXml(XmlReader reader) => throw new NotImplementedException();
             public void WriteXml(XmlWriter writer) => throw new NotImplementedException();
         }
-        """
-        )]
+        """)]
     [InlineData(
         """
         using System;
@@ -108,8 +102,7 @@ public sealed class BH0004ToBH0006AnalyzerTest {
             public void ReadXml(XmlReader reader) => throw new NotImplementedException();
             public void WriteXml(XmlWriter writer) => throw new NotImplementedException();
         }
-        """
-        )]
+        """)]
     [InlineData(
         """
         using System;
@@ -122,8 +115,7 @@ public sealed class BH0004ToBH0006AnalyzerTest {
             public void ReadXml(XmlReader reader) => throw new NotImplementedException();
             public void WriteXml(XmlWriter writer) => throw new NotImplementedException();
         }
-        """
-        )]
+        """)]
     [InlineData(
         """
         using System;
@@ -136,8 +128,7 @@ public sealed class BH0004ToBH0006AnalyzerTest {
             public void ReadXml(XmlReader reader) => throw new NotImplementedException();
             public void WriteXml(XmlWriter writer) => throw new NotImplementedException();
         }
-        """
-        )]
+        """)]
     [InlineData(
         """
         using System;
@@ -153,8 +144,7 @@ public sealed class BH0004ToBH0006AnalyzerTest {
                 {|BH0006:GetSchema()|};
             }
         }
-        """
-        )]
+        """)]
     [InlineData(
         """
         using System;
@@ -170,8 +160,7 @@ public sealed class BH0004ToBH0006AnalyzerTest {
                 {|BH0006:((IXmlSerializable)this).GetSchema()|};
             }
         }
-        """
-        )]
+        """)]
     [InlineData(
         """
         using System;
@@ -185,8 +174,7 @@ public sealed class BH0004ToBH0006AnalyzerTest {
             public void WriteXml(XmlWriter writer) => throw new NotImplementedException();
             public void Test() => {|BH0006:GetSchema()|};
         }
-        """
-        )]
+        """)]
     [InlineData(
         """
         using System;
@@ -200,8 +188,7 @@ public sealed class BH0004ToBH0006AnalyzerTest {
             public void WriteXml(XmlWriter writer) => throw new NotImplementedException();
             public void Test() => {|BH0006:((IXmlSerializable)this).GetSchema()|};
         }
-        """
-        )]
+        """)]
     [InlineData(
         """
         using System;
@@ -217,8 +204,7 @@ public sealed class BH0004ToBH0006AnalyzerTest {
                 return {|BH0006:GetSchema()|};
             }
         }
-        """
-        )]
+        """)]
     [InlineData(
         """
         using System;
@@ -234,8 +220,7 @@ public sealed class BH0004ToBH0006AnalyzerTest {
                 return {|BH0006:((IXmlSerializable)this).GetSchema()|};
             }
         }
-        """
-        )]
+        """)]
     [InlineData(
         """
         using System;
@@ -249,8 +234,7 @@ public sealed class BH0004ToBH0006AnalyzerTest {
             public void WriteXml(XmlWriter writer) => throw new NotImplementedException();
             public XmlSchema? Test() => {|BH0006:GetSchema()|};
         }
-        """
-        )]
+        """)]
     [InlineData(
         """
         using System;
@@ -264,7 +248,6 @@ public sealed class BH0004ToBH0006AnalyzerTest {
             public void WriteXml(XmlWriter writer) => throw new NotImplementedException();
             public XmlSchema? Test() => {|BH0006:((IXmlSerializable)this).GetSchema()|};
         }
-        """
-        )]
+        """)]
     public Task Test(string source) => Verify.VerifyAnalyzerAsync(source);
 }

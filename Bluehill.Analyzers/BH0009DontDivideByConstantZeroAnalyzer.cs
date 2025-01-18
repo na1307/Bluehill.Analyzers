@@ -3,26 +3,33 @@
 [DiagnosticAnalyzer(LanguageNames.CSharp)]
 public sealed class BH0009DontDivideByConstantZeroAnalyzer : BHAnalyzer {
     public const string DiagnosticId = "BH0009";
-    private const string category = "Reliability";
-    private static readonly LocalizableString title =
-        new LocalizableResourceString(nameof(Resources.BH0009AnalyzerTitle), Resources.ResourceManager, typeof(Resources));
-    private static readonly LocalizableString messageFormat =
-        new LocalizableResourceString(nameof(Resources.BH0009AnalyzerMessageFormat), Resources.ResourceManager, typeof(Resources));
-    private static readonly LocalizableString description =
-        new LocalizableResourceString(nameof(Resources.BH0009AnalyzerDescription), Resources.ResourceManager, typeof(Resources));
-    private static readonly DiagnosticDescriptor rule =
-        new(DiagnosticId, title, messageFormat, category, DiagnosticSeverity.Error, true, description, "https://na1307.github.io/Bluehill.Analyzers/BH0009");
+    private const string Category = "Reliability";
 
-    public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics => [rule];
+    private static readonly LocalizableString Title =
+        new LocalizableResourceString(nameof(Resources.BH0009AnalyzerTitle), Resources.ResourceManager, typeof(Resources));
+
+    private static readonly LocalizableString MessageFormat =
+        new LocalizableResourceString(nameof(Resources.BH0009AnalyzerMessageFormat), Resources.ResourceManager,
+            typeof(Resources));
+
+    private static readonly LocalizableString Description =
+        new LocalizableResourceString(nameof(Resources.BH0009AnalyzerDescription), Resources.ResourceManager,
+            typeof(Resources));
+
+    private static readonly DiagnosticDescriptor Rule =
+        new(DiagnosticId, Title, MessageFormat, Category, DiagnosticSeverity.Error, true, Description,
+            "https://na1307.github.io/Bluehill.Analyzers/BH0009");
+
+    public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics => [Rule];
 
     public override void Initialize(AnalysisContext context) {
         base.Initialize(context);
 
         // Register operation action
-        context.RegisterOperationAction(binaryOperationAction, OperationKind.Binary);
+        context.RegisterOperationAction(BinaryOperationAction, OperationKind.Binary);
     }
 
-    private static void binaryOperationAction(OperationAnalysisContext context) {
+    private static void BinaryOperationAction(OperationAnalysisContext context) {
         var operation = (IBinaryOperation)context.Operation;
 
         // This is not a division operation
@@ -38,17 +45,17 @@ public sealed class BH0009DontDivideByConstantZeroAnalyzer : BHAnalyzer {
         }
 
         // The value is not zero
-        if (!isZero(rightConstant.Value)) {
+        if (!IsZero(rightConstant.Value)) {
             return;
         }
 
         // Report diagnostic
-        context.ReportDiagnostic(Diagnostic.Create(rule, operation.Syntax.GetLocation()));
+        context.ReportDiagnostic(Diagnostic.Create(Rule, operation.Syntax.GetLocation()));
     }
 
-    private static bool isZero(object? value) =>
+    private static bool IsZero(object? value) =>
         (value is byte b && b == 0) || (value is sbyte sb && sb == 0)
-        || (value is short s && s == 0) || (value is ushort us && us == 0)
-        || (value is int i && i == 0) || (value is uint ui && ui == 0)
-        || (value is long l && l == 0) || (value is ulong ul && ul == 0);
+                                    || (value is short s && s == 0) || (value is ushort us && us == 0)
+                                    || (value is int i && i == 0) || (value is uint ui && ui == 0)
+                                    || (value is long l && l == 0) || (value is ulong ul && ul == 0);
 }

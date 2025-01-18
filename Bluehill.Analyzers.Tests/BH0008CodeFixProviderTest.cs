@@ -13,14 +13,14 @@ public sealed class BH0008CodeFixProviderTest {
                 _ = obj is [|not not|] null;
             }
         }
-        """, """
+        """,
+        """
         public class TestClass {
             public void TestMethod(object? obj) {
                 _ = obj is null;
             }
         }
-        """
-        )]
+        """)]
     [InlineData(
         """
         public class TestClass {
@@ -28,14 +28,15 @@ public sealed class BH0008CodeFixProviderTest {
                 _ = obj is [|not not not|] null;
             }
         }
-        """, """
+        """,
+        """
         public class TestClass {
             public void TestMethod(object? obj) {
                 _ = obj is not null;
             }
         }
-        """
-        )]
+        """)]
+#pragma warning disable SA1005, S125
     // https://github.com/dotnet/roslyn-sdk/issues/1202
     //[InlineData(
     //    """
@@ -64,6 +65,7 @@ public sealed class BH0008CodeFixProviderTest {
     //    }
     //    """
     //    )]
+#pragma warning restore SA1005
     [InlineData(
         """
         public class TestClass {
@@ -77,7 +79,8 @@ public sealed class BH0008CodeFixProviderTest {
             Two,
             Three
         }
-        """, """
+        """,
+        """
         public class TestClass {
             public void TestMethod(TestEnum te) {
                 _ = te is not TestEnum.One;
@@ -89,8 +92,7 @@ public sealed class BH0008CodeFixProviderTest {
             Two,
             Three
         }
-        """
-        )]
+        """)]
     [InlineData(
         """
         public class TestClass {
@@ -104,7 +106,8 @@ public sealed class BH0008CodeFixProviderTest {
         namespace System.Runtime.CompilerServices {
             public sealed class IsExternalInit;
         }
-        """, """
+        """,
+        """
         public class TestClass {
             public void TestMethod(TestRecord tr) {
                 _ = tr is { Id: 0 };
@@ -116,8 +119,7 @@ public sealed class BH0008CodeFixProviderTest {
         namespace System.Runtime.CompilerServices {
             public sealed class IsExternalInit;
         }
-        """
-        )]
+        """)]
     [InlineData(
         """
         public class TestClass {
@@ -131,7 +133,8 @@ public sealed class BH0008CodeFixProviderTest {
         namespace System.Runtime.CompilerServices {
             public sealed class IsExternalInit;
         }
-        """, """
+        """,
+        """
         public class TestClass {
             public void TestMethod(TestRecord tr) {
                 _ = tr is not { Id: 0 };
@@ -143,8 +146,7 @@ public sealed class BH0008CodeFixProviderTest {
         namespace System.Runtime.CompilerServices {
             public sealed class IsExternalInit;
         }
-        """
-        )]
+        """)]
     [InlineData(
         """
         public class TestClass {
@@ -152,14 +154,14 @@ public sealed class BH0008CodeFixProviderTest {
                 _ = str is [|not not|] [ 'C', '#' ];
             }
         }
-        """, """
+        """,
+        """
         public class TestClass {
             public void TestMethod(string str) {
                 _ = str is [ 'C', '#' ];
             }
         }
-        """
-        )]
+        """)]
     [InlineData(
         """
         public class TestClass {
@@ -167,13 +169,13 @@ public sealed class BH0008CodeFixProviderTest {
                 _ = str is [|not not not|] [ 'C', '#' ];
             }
         }
-        """, """
+        """,
+        """
         public class TestClass {
             public void TestMethod(string str) {
                 _ = str is not [ 'C', '#' ];
             }
         }
-        """
-        )]
+        """)]
     public Task Test(string source, string fixedSource) => Verify.VerifyCodeFixAsync(source, fixedSource);
 }

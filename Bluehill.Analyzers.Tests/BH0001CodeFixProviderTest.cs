@@ -12,8 +12,7 @@ public sealed class BH0001CodeFixProviderTest {
         """,
         """
         public sealed class TestClass;
-        """
-    )]
+        """)]
     [InlineData(
         """
         public class TestClass;
@@ -22,8 +21,7 @@ public sealed class BH0001CodeFixProviderTest {
         """
         public class TestClass;
         public sealed class TestClass2 : TestClass;
-        """
-    )]
+        """)]
     [InlineData(
         """
         public class [|TestClass|] {
@@ -34,8 +32,7 @@ public sealed class BH0001CodeFixProviderTest {
         public sealed class TestClass {
             public sealed class NestedClass;
         }
-        """
-    )]
+        """)]
     [InlineData(
         """
         public sealed class TestClass {
@@ -46,8 +43,7 @@ public sealed class BH0001CodeFixProviderTest {
         public sealed class TestClass {
             public sealed class NestedClass;
         }
-        """
-    )]
+        """)]
     [InlineData(
         """
         public class [|TestClass|] {
@@ -58,8 +54,7 @@ public sealed class BH0001CodeFixProviderTest {
         public sealed class TestClass {
             public sealed class NestedClass;
         }
-        """
-    )]
+        """)]
     [InlineData(
         """
         public sealed class TestClass {
@@ -72,7 +67,6 @@ public sealed class BH0001CodeFixProviderTest {
             public class NestedClass;
             public sealed class NestedClass2 : NestedClass;
         }
-        """
-    )]
+        """)]
     public Task Test(string source, string fixedSource) => Verify.VerifyCodeFixAsync(source, fixedSource);
 }

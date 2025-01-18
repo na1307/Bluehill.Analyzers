@@ -5,7 +5,8 @@ using Verify =
 namespace Bluehill.Analyzers.Tests;
 
 public sealed class BH0005CodeFixProviderTest {
-    private const string fixedCodeNotExplicit = """
+    private const string FixedCodeNotExplicit =
+        """
         using System;
         using System.Xml;
         using System.Xml.Schema;
@@ -17,7 +18,9 @@ public sealed class BH0005CodeFixProviderTest {
             public void WriteXml(XmlWriter writer) => throw new NotImplementedException();
         }
         """;
-    private const string fixedCodeExplicit = """
+
+    private const string FixedCodeExplicit =
+        """
         using System;
         using System.Xml;
         using System.Xml.Schema;
@@ -29,7 +32,9 @@ public sealed class BH0005CodeFixProviderTest {
             public void WriteXml(XmlWriter writer) => throw new NotImplementedException();
         }
         """;
-    private const string fixedCodeAbstract = """
+
+    private const string FixedCodeAbstract =
+        """
         using System;
         using System.Xml;
         using System.Xml.Schema;
@@ -56,8 +61,7 @@ public sealed class BH0005CodeFixProviderTest {
             public void WriteXml(XmlWriter writer) => throw new NotImplementedException();
         }
         """,
-        fixedCodeNotExplicit
-        )]
+        FixedCodeNotExplicit)]
     [InlineData(
         """
         using System;
@@ -71,8 +75,7 @@ public sealed class BH0005CodeFixProviderTest {
             public void WriteXml(XmlWriter writer) => throw new NotImplementedException();
         }
         """,
-        fixedCodeNotExplicit
-        )]
+        FixedCodeNotExplicit)]
     [InlineData(
         """
         using System;
@@ -88,8 +91,7 @@ public sealed class BH0005CodeFixProviderTest {
             public void WriteXml(XmlWriter writer) => throw new NotImplementedException();
         }
         """,
-        fixedCodeNotExplicit
-        )]
+        FixedCodeNotExplicit)]
     [InlineData(
         """
         using System;
@@ -105,8 +107,7 @@ public sealed class BH0005CodeFixProviderTest {
             public void WriteXml(XmlWriter writer) => throw new NotImplementedException();
         }
         """,
-        fixedCodeNotExplicit
-        )]
+        FixedCodeNotExplicit)]
     [InlineData(
         """
         using System;
@@ -120,8 +121,7 @@ public sealed class BH0005CodeFixProviderTest {
             public void WriteXml(XmlWriter writer) => throw new NotImplementedException();
         }
         """,
-        fixedCodeExplicit
-        )]
+        FixedCodeExplicit)]
     [InlineData(
         """
         using System;
@@ -135,8 +135,7 @@ public sealed class BH0005CodeFixProviderTest {
             public void WriteXml(XmlWriter writer) => throw new NotImplementedException();
         }
         """,
-        fixedCodeExplicit
-        )]
+        FixedCodeExplicit)]
     [InlineData(
         """
         using System;
@@ -150,7 +149,6 @@ public sealed class BH0005CodeFixProviderTest {
             public void WriteXml(XmlWriter writer) => throw new NotImplementedException();
         }
         """,
-        fixedCodeAbstract
-        )]
+        FixedCodeAbstract)]
     public Task Test(string source, string fixedSource) => Verify.VerifyCodeFixAsync(source, fixedSource);
 }

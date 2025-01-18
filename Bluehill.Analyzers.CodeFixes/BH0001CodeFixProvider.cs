@@ -11,17 +11,20 @@ public sealed class BH0001CodeFixProvider : CodeFixProvider {
         var diagnostic = context.Diagnostics.Single(d => d.Id == "BH0001");
         var diagnosticSpan = diagnostic.Location.SourceSpan;
         var root = await context.Document.GetSyntaxRootAsync(context.CancellationToken).ConfigureAwait(false);
-        var declaration = root!.FindToken(diagnosticSpan.Start).Parent!.AncestorsAndSelf().OfType<TypeDeclarationSyntax>().First();
+
+        var declaration = root!.FindToken(diagnosticSpan.Start).Parent!.AncestorsAndSelf().OfType<TypeDeclarationSyntax>()
+            .First();
+
         var action = CodeAction.Create(
             CodeFixResources.BH0001CodeFixTitle,
-            _ => makeSealedAsync(context.Document, declaration, root),
+            _ => MakeSealedAsync(context.Document, declaration, root),
             nameof(CodeFixResources.BH0001CodeFixTitle));
 
         // Register a code action that will invoke the fix.
         context.RegisterCodeFix(action, diagnostic);
     }
 
-    private static Task<Document> makeSealedAsync(Document document, TypeDeclarationSyntax typeDecl, SyntaxNode root) {
+    private static Task<Document> MakeSealedAsync(Document document, TypeDeclarationSyntax typeDecl, SyntaxNode root) {
         var newModifier = typeDecl.Modifiers.Add(SyntaxFactory.Token(SyntaxKind.SealedKeyword));
 
         return Task.FromResult(document.WithSyntaxRoot(root.ReplaceNode(typeDecl, typeDecl.WithModifiers(newModifier))));

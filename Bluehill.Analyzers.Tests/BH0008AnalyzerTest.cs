@@ -13,8 +13,7 @@ public sealed class BH0008AnalyzerTest {
                 _ = obj is [|not not|] null;
             }
         }
-        """
-        )]
+        """)]
     [InlineData(
         """
         public class TestClass {
@@ -22,8 +21,7 @@ public sealed class BH0008AnalyzerTest {
                 _ = obj is [|not not not|] null;
             }
         }
-        """
-        )]
+        """)]
     [InlineData(
         """
         public class TestClass {
@@ -37,8 +35,7 @@ public sealed class BH0008AnalyzerTest {
             Two,
             Three
         }
-        """
-        )]
+        """)]
     [InlineData(
         """
         public class TestClass {
@@ -52,8 +49,7 @@ public sealed class BH0008AnalyzerTest {
             Two,
             Three
         }
-        """
-        )]
+        """)]
     [InlineData(
         """
         public class TestClass {
@@ -67,8 +63,7 @@ public sealed class BH0008AnalyzerTest {
         namespace System.Runtime.CompilerServices {
             public sealed class IsExternalInit;
         }
-        """
-        )]
+        """)]
     [InlineData(
         """
         public class TestClass {
@@ -82,8 +77,7 @@ public sealed class BH0008AnalyzerTest {
         namespace System.Runtime.CompilerServices {
             public sealed class IsExternalInit;
         }
-        """
-        )]
+        """)]
     [InlineData(
         """
         public class TestClass {
@@ -91,8 +85,7 @@ public sealed class BH0008AnalyzerTest {
                 _ = str is [|not not|] [ 'C', '#' ];
             }
         }
-        """
-        )]
+        """)]
     [InlineData(
         """
         public class TestClass {
@@ -100,7 +93,6 @@ public sealed class BH0008AnalyzerTest {
                 _ = str is [|not not not|] [ 'C', '#' ];
             }
         }
-        """
-        )]
+        """)]
     public Task Test(string source) => Verify.VerifyAnalyzerAsync(source);
 }

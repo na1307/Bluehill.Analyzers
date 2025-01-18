@@ -3,36 +3,45 @@
 [DiagnosticAnalyzer(LanguageNames.CSharp)]
 public sealed class BH0001TypesShouldBeSealedAnalyzer : BHAnalyzer {
     public const string DiagnosticId = "BH0001";
-    private const string category = "Design";
-    private static readonly LocalizableString title =
-        new LocalizableResourceString(nameof(Resources.BH0001AnalyzerTitle), Resources.ResourceManager, typeof(Resources));
-    private static readonly LocalizableString messageFormat =
-        new LocalizableResourceString(nameof(Resources.BH0001AnalyzerMessageFormat), Resources.ResourceManager, typeof(Resources));
-    private static readonly LocalizableString description =
-        new LocalizableResourceString(nameof(Resources.BH0001AnalyzerDescription), Resources.ResourceManager, typeof(Resources));
-    private static readonly DiagnosticDescriptor rule =
-        new(DiagnosticId, title, messageFormat, category, DiagnosticSeverity.Warning, true, description, "https://na1307.github.io/Bluehill.Analyzers/BH0001");
+    private const string Category = "Design";
 
-    public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics => [rule];
+    private static readonly LocalizableString Title =
+        new LocalizableResourceString(nameof(Resources.BH0001AnalyzerTitle), Resources.ResourceManager, typeof(Resources));
+
+    private static readonly LocalizableString MessageFormat =
+        new LocalizableResourceString(nameof(Resources.BH0001AnalyzerMessageFormat), Resources.ResourceManager,
+            typeof(Resources));
+
+    private static readonly LocalizableString Description =
+        new LocalizableResourceString(nameof(Resources.BH0001AnalyzerDescription), Resources.ResourceManager,
+            typeof(Resources));
+
+    private static readonly DiagnosticDescriptor Rule =
+        new(DiagnosticId, Title, MessageFormat, Category, DiagnosticSeverity.Warning, true, Description,
+            "https://na1307.github.io/Bluehill.Analyzers/BH0001");
+
+    public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics => [Rule];
 
     public override void Initialize(AnalysisContext context) {
         base.Initialize(context);
 
         // Register compilation start action
-        context.RegisterCompilationStartAction(compilationStartAction);
+        context.RegisterCompilationStartAction(CompilationStartAction);
     }
 
-    private static void compilationStartAction(CompilationStartAnalysisContext context) {
+    private static void CompilationStartAction(CompilationStartAnalysisContext context) {
         // Get all named types and their base types
-        var typeAndBase = context.Compilation.GetSymbolsWithName(_ => true, SymbolFilter.Type, context.CancellationToken).Cast<INamedTypeSymbol>()
+        var typeAndBase = context.Compilation.GetSymbolsWithName(_ => true, SymbolFilter.Type, context.CancellationToken)
+            .Cast<INamedTypeSymbol>()
             .Select(symbol => new KeyValuePair<INamedTypeSymbol, INamedTypeSymbol?>(symbol, symbol.BaseType))
             .ToImmutableDictionary(SymbolEqualityComparer.Default);
 
         // Register symbol action
-        context.RegisterSymbolAction(context => symbolAction(context, typeAndBase), SymbolKind.NamedType);
+        context.RegisterSymbolAction(ac => SymbolAction(ac, typeAndBase), SymbolKind.NamedType);
     }
 
-    private static void symbolAction(SymbolAnalysisContext context, ImmutableDictionary<INamedTypeSymbol, INamedTypeSymbol?> typeAndBase) {
+    private static void SymbolAction(SymbolAnalysisContext context,
+        ImmutableDictionary<INamedTypeSymbol, INamedTypeSymbol?> typeAndBase) {
         // Get named type symbol
         var namedTypeSymbol = (INamedTypeSymbol)context.Symbol;
 
@@ -73,11 +82,11 @@ public sealed class BH0001TypesShouldBeSealedAnalyzer : BHAnalyzer {
 
         // Check is there are derived classes
         if (!typeAndBase.FirstOrDefault(ts => SymbolEqualityComparer.Default.Equals(namedTypeSymbol, ts.Value))
-            .Equals(default(KeyValuePair<INamedTypeSymbol, INamedTypeSymbol?>))) {
+                .Equals(default(KeyValuePair<INamedTypeSymbol, INamedTypeSymbol?>))) {
             return;
         }
 
         // Report diagnostic
-        context.ReportDiagnostic(rule, namedTypeSymbol.Locations[0], namedTypeSymbol.Name);
+        context.ReportDiagnostic(Rule, namedTypeSymbol.Locations[0], namedTypeSymbol.Name);
     }
 }

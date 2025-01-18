@@ -26,5 +26,6 @@
   <ItemGroup>
     <GlobalPackageReference Include="Roslynator.Analyzers" Version="4.12.10" />
     <GlobalPackageReference Include="Roslynator.Formatting.Analyzers" Version="4.12.10" />
+    <GlobalPackageReference Include="StyleCop.Analyzers" Version="1.2.0-beta.556" />
   </ItemGroup>
 </Project>

@@ -22,6 +22,18 @@ public sealed class BH0001AnalyzerTest {
         """)]
     [InlineData(
         """
+        public class TestClass;
+        public class TestClass2 : TestClass;
+        public class [|TestClass3|] : TestClass2;
+        """)]
+    [InlineData(
+        """
+        public class TestClass;
+        public class TestClass2 : TestClass;
+        public sealed class TestClass3 : TestClass2;
+        """)]
+    [InlineData(
+        """
         public class [|TestClass|] {
             public class [|NestedClass|];
         }
@@ -56,6 +68,22 @@ public sealed class BH0001AnalyzerTest {
         public sealed class TestClass {
             public class NestedClass;
             public sealed class NestedClass2 : NestedClass;
+        }
+        """)]
+    [InlineData(
+        """
+        public sealed class TestClass {
+            public class NestedClass;
+            public class NestedClass2 : NestedClass;
+            public class [|NestedClass3|] : NestedClass2;
+        }
+        """)]
+    [InlineData(
+        """
+        public sealed class TestClass {
+            public class NestedClass;
+            public class NestedClass2 : NestedClass;
+            public sealed class NestedClass3 : NestedClass2;
         }
         """)]
     [InlineData(

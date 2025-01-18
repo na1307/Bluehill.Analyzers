@@ -81,8 +81,7 @@ public sealed class BH0001TypesShouldBeSealedAnalyzer : BHAnalyzer {
         }
 
         // Check is there are derived classes
-        if (!typeAndBase.FirstOrDefault(ts => SymbolEqualityComparer.Default.Equals(namedTypeSymbol, ts.Value))
-                .Equals(default(KeyValuePair<INamedTypeSymbol, INamedTypeSymbol?>))) {
+        if (typeAndBase.Any(ts => SymbolEqualityComparer.Default.Equals(namedTypeSymbol, ts.Value))) {
             return;
         }
 

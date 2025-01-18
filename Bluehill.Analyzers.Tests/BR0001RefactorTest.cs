@@ -95,5 +95,6 @@ public sealed class BR0001RefactorTest {
             TheEnumValue
         }
         """)]
-    public Task Test(string source, string fixedSource) => Verify.VerifyRefactoringAsync(source, fixedSource);
+    public Task Test(string source, string fixedSource) =>
+        Verify.VerifyRefactoringAsync(source.ReplaceLineEndings(), fixedSource.ReplaceLineEndings());
 }

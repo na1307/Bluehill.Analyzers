@@ -249,5 +249,5 @@ public sealed class BH0004ToBH0006AnalyzerTest {
             public XmlSchema? Test() => {|BH0006:((IXmlSerializable)this).GetSchema()|};
         }
         """)]
-    public Task Test(string source) => Verify.VerifyAnalyzerAsync(source);
+    public Task Test(string source) => Verify.VerifyAnalyzerAsync(source.ReplaceLineEndings());
 }

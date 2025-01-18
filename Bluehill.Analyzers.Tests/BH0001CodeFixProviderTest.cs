@@ -69,5 +69,6 @@ public sealed class BH0001CodeFixProviderTest {
             public sealed class NestedClass2 : NestedClass;
         }
         """)]
-    public Task Test(string source, string fixedSource) => Verify.VerifyCodeFixAsync(source, fixedSource);
+    public Task Test(string source, string fixedSource)
+        => Verify.VerifyCodeFixAsync(source.ReplaceLineEndings(), fixedSource.ReplaceLineEndings());
 }

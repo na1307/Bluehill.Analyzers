@@ -178,5 +178,6 @@ public sealed class BH0008CodeFixProviderTest {
             }
         }
         """)]
-    public Task Test(string source, string fixedSource) => Verify.VerifyCodeFixAsync(source, fixedSource);
+    public Task Test(string source, string fixedSource) =>
+        Verify.VerifyCodeFixAsync(source.ReplaceLineEndings(), fixedSource.ReplaceLineEndings());
 }

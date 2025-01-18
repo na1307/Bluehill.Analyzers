@@ -114,5 +114,5 @@ public sealed class BH0001AnalyzerTest {
         """
         public delegate void TestDelegate();
         """)]
-    public Task Test(string source) => Verify.VerifyAnalyzerAsync(source);
+    public Task Test(string source) => Verify.VerifyAnalyzerAsync(source.ReplaceLineEndings());
 }

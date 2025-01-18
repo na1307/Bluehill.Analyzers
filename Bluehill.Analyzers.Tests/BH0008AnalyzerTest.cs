@@ -94,5 +94,5 @@ public sealed class BH0008AnalyzerTest {
             }
         }
         """)]
-    public Task Test(string source) => Verify.VerifyAnalyzerAsync(source);
+    public Task Test(string source) => Verify.VerifyAnalyzerAsync(source.ReplaceLineEndings());
 }

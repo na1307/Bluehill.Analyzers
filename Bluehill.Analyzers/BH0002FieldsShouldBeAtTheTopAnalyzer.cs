@@ -17,7 +17,8 @@ public sealed class BH0002FieldsShouldBeAtTheTopAnalyzer : BHAnalyzer {
         new(nameof(Resources.BH0002AnalyzerDescription), Resources.ResourceManager, typeof(Resources));
 
     private static readonly DiagnosticDescriptor Rule =
-        new(DiagnosticId, Title, MessageFormat, Category, DiagnosticSeverity.Warning, true, Description, $"{BaseUrl}BH0002");
+        new(DiagnosticId, Title, MessageFormat, Category, DiagnosticSeverity.Warning, false, Description,
+            $"{BaseUrl}BH0002");
 
     public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics => [Rule];
 

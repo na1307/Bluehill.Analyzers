@@ -5,20 +5,17 @@ public sealed class BH0003ProhibitPCPReassignmentAnalyzer : BHAnalyzer {
     public const string DiagnosticId = "BH0003";
     private const string Category = "Design";
 
-    private static readonly LocalizableString Title =
-        new LocalizableResourceString(nameof(Resources.BH0003AnalyzerTitle), Resources.ResourceManager, typeof(Resources));
+    private static readonly LocalizableResourceString Title =
+        new(nameof(Resources.BH0003AnalyzerTitle), Resources.ResourceManager, typeof(Resources));
 
-    private static readonly LocalizableString MessageFormat =
-        new LocalizableResourceString(nameof(Resources.BH0003AnalyzerMessageFormat), Resources.ResourceManager,
-            typeof(Resources));
+    private static readonly LocalizableResourceString MessageFormat =
+        new(nameof(Resources.BH0003AnalyzerMessageFormat), Resources.ResourceManager, typeof(Resources));
 
-    private static readonly LocalizableString Description =
-        new LocalizableResourceString(nameof(Resources.BH0003AnalyzerDescription), Resources.ResourceManager,
-            typeof(Resources));
+    private static readonly LocalizableResourceString Description =
+        new(nameof(Resources.BH0003AnalyzerDescription), Resources.ResourceManager, typeof(Resources));
 
     private static readonly DiagnosticDescriptor Rule =
-        new(DiagnosticId, Title, MessageFormat, Category, DiagnosticSeverity.Error, true, Description,
-            "https://na1307.github.io/Bluehill.Analyzers/BH0003");
+        new(DiagnosticId, Title, MessageFormat, Category, DiagnosticSeverity.Error, true, Description, $"{BaseUrl}BH0003");
 
     public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics => [Rule];
 

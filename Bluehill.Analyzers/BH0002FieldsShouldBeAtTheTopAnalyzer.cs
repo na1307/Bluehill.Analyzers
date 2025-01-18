@@ -1,25 +1,23 @@
-﻿namespace Bluehill.Analyzers;
+﻿using System.Diagnostics.CodeAnalysis;
+
+namespace Bluehill.Analyzers;
 
 [DiagnosticAnalyzer(LanguageNames.CSharp)]
 public sealed class BH0002FieldsShouldBeAtTheTopAnalyzer : BHAnalyzer {
     public const string DiagnosticId = "BH0002";
     private const string Category = "Style";
 
-    private static readonly LocalizableString Title =
-        new LocalizableResourceString(nameof(Resources.BH0002AnalyzerTitle), Resources.ResourceManager, typeof(Resources));
+    private static readonly LocalizableResourceString Title =
+        new(nameof(Resources.BH0002AnalyzerTitle), Resources.ResourceManager, typeof(Resources));
 
-    private static readonly LocalizableString MessageFormat =
-        new LocalizableResourceString(nameof(Resources.BH0002AnalyzerMessageFormat),
-            Resources.ResourceManager,
-            typeof(Resources));
+    private static readonly LocalizableResourceString MessageFormat =
+        new(nameof(Resources.BH0002AnalyzerMessageFormat), Resources.ResourceManager, typeof(Resources));
 
-    private static readonly LocalizableString Description =
-        new LocalizableResourceString(nameof(Resources.BH0002AnalyzerDescription), Resources.ResourceManager,
-            typeof(Resources));
+    private static readonly LocalizableResourceString Description =
+        new(nameof(Resources.BH0002AnalyzerDescription), Resources.ResourceManager, typeof(Resources));
 
     private static readonly DiagnosticDescriptor Rule =
-        new(DiagnosticId, Title, MessageFormat, Category, DiagnosticSeverity.Warning, true, Description,
-            "https://na1307.github.io/Bluehill.Analyzers/BH0002");
+        new(DiagnosticId, Title, MessageFormat, Category, DiagnosticSeverity.Warning, true, Description, $"{BaseUrl}BH0002");
 
     public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics => [Rule];
 
@@ -55,7 +53,6 @@ public sealed class BH0002FieldsShouldBeAtTheTopAnalyzer : BHAnalyzer {
             }
 
             var members = type.GetMembers().Where(m =>
-#pragma warning disable SA1515
                 // Not for fields
                 m.Kind != SymbolKind.Field
                 // Remove implicitly declared
@@ -63,7 +60,6 @@ public sealed class BH0002FieldsShouldBeAtTheTopAnalyzer : BHAnalyzer {
                 // Remove Primary constructor
                 && !m.DeclaringSyntaxReferences.Any(sr =>
                     sr.GetSyntax(context.CancellationToken) is ClassDeclarationSyntax or StructDeclarationSyntax)).ToArray();
-#pragma warning restore SA1515
             var location = fieldSymbol.Locations[0];
 
             // Location check

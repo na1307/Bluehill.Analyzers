@@ -5,20 +5,17 @@ public sealed class BH0001TypesShouldBeSealedAnalyzer : BHAnalyzer {
     public const string DiagnosticId = "BH0001";
     private const string Category = "Design";
 
-    private static readonly LocalizableString Title =
-        new LocalizableResourceString(nameof(Resources.BH0001AnalyzerTitle), Resources.ResourceManager, typeof(Resources));
+    private static readonly LocalizableResourceString Title =
+        new(nameof(Resources.BH0001AnalyzerTitle), Resources.ResourceManager, typeof(Resources));
 
-    private static readonly LocalizableString MessageFormat =
-        new LocalizableResourceString(nameof(Resources.BH0001AnalyzerMessageFormat), Resources.ResourceManager,
-            typeof(Resources));
+    private static readonly LocalizableResourceString MessageFormat =
+        new(nameof(Resources.BH0001AnalyzerMessageFormat), Resources.ResourceManager, typeof(Resources));
 
-    private static readonly LocalizableString Description =
-        new LocalizableResourceString(nameof(Resources.BH0001AnalyzerDescription), Resources.ResourceManager,
-            typeof(Resources));
+    private static readonly LocalizableResourceString Description =
+        new(nameof(Resources.BH0001AnalyzerDescription), Resources.ResourceManager, typeof(Resources));
 
     private static readonly DiagnosticDescriptor Rule =
-        new(DiagnosticId, Title, MessageFormat, Category, DiagnosticSeverity.Warning, true, Description,
-            "https://na1307.github.io/Bluehill.Analyzers/BH0001");
+        new(DiagnosticId, Title, MessageFormat, Category, DiagnosticSeverity.Warning, true, Description, $"{BaseUrl}BH0001");
 
     public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics => [Rule];
 
@@ -40,7 +37,8 @@ public sealed class BH0001TypesShouldBeSealedAnalyzer : BHAnalyzer {
         context.RegisterSymbolAction(ac => SymbolAction(ac, typeAndBase), SymbolKind.NamedType);
     }
 
-    private static void SymbolAction(SymbolAnalysisContext context,
+    private static void SymbolAction(
+        SymbolAnalysisContext context,
         ImmutableDictionary<INamedTypeSymbol, INamedTypeSymbol?> typeAndBase) {
         // Get named type symbol
         var namedTypeSymbol = (INamedTypeSymbol)context.Symbol;

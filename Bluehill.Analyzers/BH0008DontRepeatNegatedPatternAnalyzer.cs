@@ -7,20 +7,17 @@ public sealed class BH0008DontRepeatNegatedPatternAnalyzer : BHAnalyzer {
     public const string DiagnosticId = "BH0008";
     private const string Category = "Design";
 
-    private static readonly LocalizableString Title =
-        new LocalizableResourceString(nameof(Resources.BH0008AnalyzerTitle), Resources.ResourceManager, typeof(Resources));
+    private static readonly LocalizableResourceString Title =
+        new(nameof(Resources.BH0008AnalyzerTitle), Resources.ResourceManager, typeof(Resources));
 
-    private static readonly LocalizableString MessageFormat =
-        new LocalizableResourceString(nameof(Resources.BH0008AnalyzerMessageFormat), Resources.ResourceManager,
-            typeof(Resources));
+    private static readonly LocalizableResourceString MessageFormat =
+        new(nameof(Resources.BH0008AnalyzerMessageFormat), Resources.ResourceManager, typeof(Resources));
 
-    private static readonly LocalizableString Description =
-        new LocalizableResourceString(nameof(Resources.BH0008AnalyzerDescription), Resources.ResourceManager,
-            typeof(Resources));
+    private static readonly LocalizableResourceString Description =
+        new(nameof(Resources.BH0008AnalyzerDescription), Resources.ResourceManager, typeof(Resources));
 
     private static readonly DiagnosticDescriptor Rule =
-        new(DiagnosticId, Title, MessageFormat, Category, DiagnosticSeverity.Warning, true, Description,
-            "https://na1307.github.io/Bluehill.Analyzers/BH0008");
+        new(DiagnosticId, Title, MessageFormat, Category, DiagnosticSeverity.Warning, true, Description, $"{BaseUrl}BH0008");
 
     public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics => [Rule];
 

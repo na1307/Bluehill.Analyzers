@@ -65,7 +65,7 @@ public sealed class BH0008CodeFixProviderTest {
     //    }
     //    """
     //    )]
-#pragma warning restore SA1005
+#pragma warning restore SA1005, S125
     [InlineData(
         """
         public class TestClass {

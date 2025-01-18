@@ -12,7 +12,7 @@ public sealed class BH0005CodeFixProvider : CodeFixProvider {
         var diagnosticSpan = diagnostic.Location.SourceSpan;
         var root = await context.Document.GetSyntaxRootAsync(context.CancellationToken).ConfigureAwait(false);
         var node = root!.FindToken(diagnosticSpan.Start).Parent!;
-#pragma warning disable SA1118
+
         var action = CodeAction.Create(CodeFixResources.BH0005CodeFixTitle, node switch {
             MethodDeclarationSyntax methodDeclaration =>
                 _ => ProcessAbstractAsync(context.Document, methodDeclaration, root),
@@ -20,7 +20,6 @@ public sealed class BH0005CodeFixProvider : CodeFixProvider {
             ArrowExpressionClauseSyntax arrow => _ => ProcessArrowAsync(context.Document, arrow, root),
             _ => throw new InvalidOperationException("Something went wrong"),
         }, nameof(CodeFixResources.BH0005CodeFixTitle));
-#pragma warning restore SA1118
 
         // Register a code action that will invoke the fix.
         context.RegisterCodeFix(action, diagnostic);

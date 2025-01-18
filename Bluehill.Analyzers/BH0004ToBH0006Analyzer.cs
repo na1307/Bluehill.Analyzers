@@ -6,62 +6,52 @@ public sealed class BH0004ToBH0006Analyzer : BHAnalyzer {
     public const string DiagnosticIdBH0004 = "BH0004";
     private const string CategoryBH0004 = "Usage";
 
-    private static readonly LocalizableString TitleBH0004 =
-        new LocalizableResourceString(nameof(Resources.BH0004AnalyzerTitle), Resources.ResourceManager, typeof(Resources));
+    private static readonly LocalizableResourceString TitleBH0004 =
+        new(nameof(Resources.BH0004AnalyzerTitle), Resources.ResourceManager, typeof(Resources));
 
-    private static readonly LocalizableString MessageFormatBH0004 =
-        new LocalizableResourceString(nameof(Resources.BH0004AnalyzerMessageFormat), Resources.ResourceManager,
-            typeof(Resources));
+    private static readonly LocalizableResourceString MessageFormatBH0004 =
+        new(nameof(Resources.BH0004AnalyzerMessageFormat), Resources.ResourceManager, typeof(Resources));
 
-    private static readonly LocalizableString DescriptionBH0004 =
-        new LocalizableResourceString(nameof(Resources.BH0004AnalyzerDescription), Resources.ResourceManager,
-            typeof(Resources));
+    private static readonly LocalizableResourceString DescriptionBH0004 =
+        new(nameof(Resources.BH0004AnalyzerDescription), Resources.ResourceManager, typeof(Resources));
 
     private static readonly DiagnosticDescriptor RuleBH0004 =
         new(DiagnosticIdBH0004, TitleBH0004, MessageFormatBH0004, CategoryBH0004, DiagnosticSeverity.Error, true,
-            DescriptionBH0004, "https://na1307.github.io/Bluehill.Analyzers/BH0004");
+            DescriptionBH0004, $"{BaseUrl}BH0004");
 
     // BH0005
-#pragma warning disable SA1202
     public const string DiagnosticIdBH0005 = "BH0005";
-#pragma warning restore SA1202
     private const string CategoryBH0005 = "Usage";
 
-    private static readonly LocalizableString TitleBH0005 =
-        new LocalizableResourceString(nameof(Resources.BH0005AnalyzerTitle), Resources.ResourceManager, typeof(Resources));
+    private static readonly LocalizableResourceString TitleBH0005 =
+        new(nameof(Resources.BH0005AnalyzerTitle), Resources.ResourceManager, typeof(Resources));
 
-    private static readonly LocalizableString MessageFormatBH0005 =
-        new LocalizableResourceString(nameof(Resources.BH0005AnalyzerMessageFormat), Resources.ResourceManager,
-            typeof(Resources));
+    private static readonly LocalizableResourceString MessageFormatBH0005 =
+        new(nameof(Resources.BH0005AnalyzerMessageFormat), Resources.ResourceManager, typeof(Resources));
 
-    private static readonly LocalizableString DescriptionBH0005 =
-        new LocalizableResourceString(nameof(Resources.BH0005AnalyzerDescription), Resources.ResourceManager,
-            typeof(Resources));
+    private static readonly LocalizableResourceString DescriptionBH0005 =
+        new(nameof(Resources.BH0005AnalyzerDescription), Resources.ResourceManager, typeof(Resources));
 
     private static readonly DiagnosticDescriptor RuleBH0005 =
         new(DiagnosticIdBH0005, TitleBH0005, MessageFormatBH0005, CategoryBH0005, DiagnosticSeverity.Error, true,
-            DescriptionBH0005, "https://na1307.github.io/Bluehill.Analyzers/BH0005");
+            DescriptionBH0005, $"{BaseUrl}BH0005");
 
     // BH0006
-#pragma warning disable SA1202
     public const string DiagnosticIdBH0006 = "BH0006";
-#pragma warning restore SA1202
     private const string CategoryBH0006 = "Usage";
 
-    private static readonly LocalizableString TitleBH0006 =
-        new LocalizableResourceString(nameof(Resources.BH0006AnalyzerTitle), Resources.ResourceManager, typeof(Resources));
+    private static readonly LocalizableResourceString TitleBH0006 =
+        new(nameof(Resources.BH0006AnalyzerTitle), Resources.ResourceManager, typeof(Resources));
 
-    private static readonly LocalizableString MessageFormatBH0006 =
-        new LocalizableResourceString(nameof(Resources.BH0006AnalyzerMessageFormat), Resources.ResourceManager,
-            typeof(Resources));
+    private static readonly LocalizableResourceString MessageFormatBH0006 =
+        new(nameof(Resources.BH0006AnalyzerMessageFormat), Resources.ResourceManager, typeof(Resources));
 
-    private static readonly LocalizableString DescriptionBH0006 =
-        new LocalizableResourceString(nameof(Resources.BH0006AnalyzerDescription), Resources.ResourceManager,
-            typeof(Resources));
+    private static readonly LocalizableResourceString DescriptionBH0006 =
+        new(nameof(Resources.BH0006AnalyzerDescription), Resources.ResourceManager, typeof(Resources));
 
     private static readonly DiagnosticDescriptor RuleBH0006 =
         new(DiagnosticIdBH0006, TitleBH0006, MessageFormatBH0006, CategoryBH0006, DiagnosticSeverity.Error, true,
-            DescriptionBH0006, "https://na1307.github.io/Bluehill.Analyzers/BH0006");
+            DescriptionBH0006, $"{BaseUrl}BH0006");
 
     // Supported diagnostics
     public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics => [RuleBH0004, RuleBH0005, RuleBH0006];

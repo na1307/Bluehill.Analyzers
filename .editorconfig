@@ -981,8 +981,6 @@ dotnet_diagnostic.rcs1229.severity = none
 
 ## Settings ##
 
-stylecop.readability.allowBuiltInTypeAliases = true
-
 stylecop.ordering.systemUsingDirectivesFirst = false
 stylecop.ordering.usingDirectivesPlacement = outsideNamespace
 stylecop.ordering.blankLinesBetweenUsingGroups = omit
@@ -1297,9 +1295,6 @@ dotnet_diagnostic.SA1137.severity = none
 
 # Refer to tuple fields by name
 dotnet_diagnostic.SA1142.severity = none
-
-# Using directives should be placed correctly
-dotnet_diagnostic.SA1200.severity = none
 
 # Using directives should be placed correctly
 dotnet_diagnostic.SA1200.severity = none

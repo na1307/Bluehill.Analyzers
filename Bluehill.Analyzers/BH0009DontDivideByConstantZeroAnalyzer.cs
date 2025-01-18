@@ -5,20 +5,17 @@ public sealed class BH0009DontDivideByConstantZeroAnalyzer : BHAnalyzer {
     public const string DiagnosticId = "BH0009";
     private const string Category = "Reliability";
 
-    private static readonly LocalizableString Title =
-        new LocalizableResourceString(nameof(Resources.BH0009AnalyzerTitle), Resources.ResourceManager, typeof(Resources));
+    private static readonly LocalizableResourceString Title =
+        new(nameof(Resources.BH0009AnalyzerTitle), Resources.ResourceManager, typeof(Resources));
 
-    private static readonly LocalizableString MessageFormat =
-        new LocalizableResourceString(nameof(Resources.BH0009AnalyzerMessageFormat), Resources.ResourceManager,
-            typeof(Resources));
+    private static readonly LocalizableResourceString MessageFormat =
+        new(nameof(Resources.BH0009AnalyzerMessageFormat), Resources.ResourceManager, typeof(Resources));
 
-    private static readonly LocalizableString Description =
-        new LocalizableResourceString(nameof(Resources.BH0009AnalyzerDescription), Resources.ResourceManager,
-            typeof(Resources));
+    private static readonly LocalizableResourceString Description =
+        new(nameof(Resources.BH0009AnalyzerDescription), Resources.ResourceManager, typeof(Resources));
 
     private static readonly DiagnosticDescriptor Rule =
-        new(DiagnosticId, Title, MessageFormat, Category, DiagnosticSeverity.Error, true, Description,
-            "https://na1307.github.io/Bluehill.Analyzers/BH0009");
+        new(DiagnosticId, Title, MessageFormat, Category, DiagnosticSeverity.Error, true, Description, $"{BaseUrl}BH0009");
 
     public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics => [Rule];
 

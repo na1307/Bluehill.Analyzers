@@ -1,6 +1,6 @@
-﻿using Verify =
-    Microsoft.CodeAnalysis.CSharp.Testing.CSharpAnalyzerVerifier<Bluehill.Analyzers.BH0009DontDivideByConstantZeroAnalyzer,
-        Microsoft.CodeAnalysis.Testing.DefaultVerifier>;
+﻿using Verify = Microsoft.CodeAnalysis.CSharp.Testing.CSharpAnalyzerVerifier<
+    Bluehill.Analyzers.BH0009DontDivideByConstantZeroAnalyzer,
+    Microsoft.CodeAnalysis.Testing.DefaultVerifier>;
 
 namespace Bluehill.Analyzers.Tests;
 

@@ -1,10 +1,10 @@
-﻿using Verify =
-    Microsoft.CodeAnalysis.CSharp.Testing.CSharpCodeRefactoringVerifier<Bluehill.Analyzers.BR0001,
-        Microsoft.CodeAnalysis.Testing.DefaultVerifier>;
+﻿using Verify = Microsoft.CodeAnalysis.CSharp.Testing.CSharpCodeRefactoringVerifier<
+    Bluehill.Analyzers.BR0001ConvertFromSnakeCaseToPascalCaseRefactor,
+    Microsoft.CodeAnalysis.Testing.DefaultVerifier>;
 
 namespace Bluehill.Analyzers.Tests;
 
-public sealed class BR0001Test {
+public sealed class BR0001RefactorTest {
     [Theory]
     [InlineData(
         """

@@ -1,6 +1,7 @@
-using Verify =
-    Microsoft.CodeAnalysis.CSharp.Testing.CSharpCodeFixVerifier<Bluehill.Analyzers.BH0001TypesShouldBeSealedAnalyzer,
-        Bluehill.Analyzers.BH0001CodeFixProvider, Microsoft.CodeAnalysis.Testing.DefaultVerifier>;
+using Verify = Microsoft.CodeAnalysis.CSharp.Testing.CSharpCodeFixVerifier<
+    Bluehill.Analyzers.BH0001TypesShouldBeSealedAnalyzer,
+    Bluehill.Analyzers.BH0001CodeFixProvider,
+    Microsoft.CodeAnalysis.Testing.DefaultVerifier>;
 
 namespace Bluehill.Analyzers.Tests;
 

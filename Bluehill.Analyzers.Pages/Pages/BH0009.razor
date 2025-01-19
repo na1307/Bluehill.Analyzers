@@ -1,15 +1,19 @@
 @page "/BH0009"
 
-<h1>BH0009: Integers should never be divided by the constant 0</h1>
+<h1>BH0009: Integers and Decimal should never be divided by the constant 0</h1>
 
-<p>Integers should never be divided by the constant 0. This may cause a DividedByZeroException. NOTE: This rule supplements CS0020.</p>
+<p>Integers and Decimal should never be divided by the constant 0. This may cause a DividedByZeroException. NOTE: This rule supplements CS0020.</p>
 
 <h2>Code with violation</h2>
 
 <CodeHighlight>
     public class TestClass {
-        public int TestMethod(int value) {
-            return int / 0;
+        public int TestMethod1(int value) {
+            return value / 0;
+        }
+
+        public int TestMethod2(decimal value) {
+            return value / 0m;
         }
     }
 </CodeHighlight>

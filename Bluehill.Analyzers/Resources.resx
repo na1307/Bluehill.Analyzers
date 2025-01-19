@@ -196,12 +196,12 @@
     <value>Don't repeat negative patterns</value>
   </data>
   <data name="BH0009AnalyzerDescription" xml:space="preserve">
-    <value>Integers should never be divided by the constant 0. This may cause a DividedByZeroException.</value>
+    <value>Integers and Decimal should never be divided by the constant 0. This may cause a DividedByZeroException.</value>
   </data>
   <data name="BH0009AnalyzerMessageFormat" xml:space="preserve">
     <value>Dividing by constant 0</value>
   </data>
   <data name="BH0009AnalyzerTitle" xml:space="preserve">
-    <value>Integers should never be divided by the constant 0</value>
+    <value>Integers and Decimal should never be divided by the constant 0</value>
   </data>
 </root>

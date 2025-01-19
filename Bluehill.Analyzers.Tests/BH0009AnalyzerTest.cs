@@ -134,5 +134,21 @@ public sealed class BH0009AnalyzerTest {
             }
         }
         """)]
+    [InlineData(
+        """
+        public class TestClass {
+            public void TestMethod(decimal d) {
+                _ = [|d / 0.0m|];
+            }
+        }
+        """)]
+    [InlineData(
+        """
+        public class TestClass {
+            public void TestMethod(decimal d) {
+                _ = [|d % 0.0m|];
+            }
+        }
+        """)]
     public Task Test(string source) => Verify.VerifyAnalyzerAsync(source.ReplaceLineEndings());
 }

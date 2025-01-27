@@ -14,13 +14,13 @@ public sealed class BH0008CodeFixProvider : CodeFixProvider {
         var node = (UnaryPatternSyntax)root!.FindToken(diagnosticSpan.Start).Parent!;
 
         // Register a code action that will invoke the fix.
-        context.RegisterCodeFix(
-            CodeAction.Create(CodeFixResources.BH0008CodeFixTitle,
-                _ => RemoveRepeatedNegatedPatterns(context.Document, node, root),
-                nameof(CodeFixResources.BH0008CodeFixTitle)), diagnostic);
+        context.RegisterCodeFix(CodeAction.Create(CodeFixResources.BH0008CodeFixTitle,
+            _ => RemoveRepeatedNegatedPatterns(context.Document, node, root), nameof(CodeFixResources.BH0008CodeFixTitle)), diagnostic);
     }
 
-    private static Task<Document> RemoveRepeatedNegatedPatterns(Document document, UnaryPatternSyntax notPattern,
+    private static Task<Document> RemoveRepeatedNegatedPatterns(
+        Document document,
+        UnaryPatternSyntax notPattern,
         SyntaxNode root) {
         var parent = (ExpressionOrPatternSyntax)notPattern.Parent!;
         var notPatterns = notPattern.DescendantNodesAndSelf().OfType<UnaryPatternSyntax>().ToArray();

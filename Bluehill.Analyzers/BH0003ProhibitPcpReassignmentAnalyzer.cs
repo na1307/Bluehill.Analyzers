@@ -1,21 +1,21 @@
 ﻿namespace Bluehill.Analyzers;
 
 [DiagnosticAnalyzer(LanguageNames.CSharp)]
-public sealed class BH0003ProhibitPCPReassignmentAnalyzer : BHAnalyzer {
+public sealed class BH0003ProhibitPcpReassignmentAnalyzer : BHAnalyzer {
     public const string DiagnosticId = "BH0003";
     private const string Category = "Design";
 
-    private static readonly LocalizableResourceString Title =
-        new(nameof(Resources.BH0003AnalyzerTitle), Resources.ResourceManager, typeof(Resources));
+    private static readonly LocalizableResourceString Title = new(nameof(Resources.BH0003AnalyzerTitle), Resources.ResourceManager,
+        typeof(Resources));
 
-    private static readonly LocalizableResourceString MessageFormat =
-        new(nameof(Resources.BH0003AnalyzerMessageFormat), Resources.ResourceManager, typeof(Resources));
+    private static readonly LocalizableResourceString MessageFormat = new(nameof(Resources.BH0003AnalyzerMessageFormat), Resources.ResourceManager,
+        typeof(Resources));
 
-    private static readonly LocalizableResourceString Description =
-        new(nameof(Resources.BH0003AnalyzerDescription), Resources.ResourceManager, typeof(Resources));
+    private static readonly LocalizableResourceString Description = new(nameof(Resources.BH0003AnalyzerDescription), Resources.ResourceManager,
+        typeof(Resources));
 
-    private static readonly DiagnosticDescriptor Rule =
-        new(DiagnosticId, Title, MessageFormat, Category, DiagnosticSeverity.Error, true, Description, $"{BaseUrl}BH0003");
+    private static readonly DiagnosticDescriptor Rule = new(DiagnosticId, Title, MessageFormat, Category, DiagnosticSeverity.Error, true, Description,
+        $"{BaseUrl}BH0003");
 
     public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics => [Rule];
 
@@ -80,7 +80,6 @@ public sealed class BH0003ProhibitPCPReassignmentAnalyzer : BHAnalyzer {
         }
 
         // Report the diagnostic: reassigning primary constructor parameter is not allowed.
-        context.ReportDiagnostic(Diagnostic.Create(Rule, target.Syntax.GetLocation(),
-            ((IParameterReferenceOperation)target).Parameter.Name));
+        context.ReportDiagnostic(Diagnostic.Create(Rule, target.Syntax.GetLocation(), parameterRef.Parameter.Name));
     }
 }

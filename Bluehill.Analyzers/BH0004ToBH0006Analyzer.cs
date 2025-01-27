@@ -6,52 +6,49 @@ public sealed class BH0004ToBH0006Analyzer : BHAnalyzer {
     public const string DiagnosticIdBH0004 = "BH0004";
     private const string CategoryBH0004 = "Usage";
 
-    private static readonly LocalizableResourceString TitleBH0004 =
-        new(nameof(Resources.BH0004AnalyzerTitle), Resources.ResourceManager, typeof(Resources));
+    private static readonly LocalizableResourceString TitleBH0004 = new(nameof(Resources.BH0004AnalyzerTitle), Resources.ResourceManager,
+        typeof(Resources));
 
-    private static readonly LocalizableResourceString MessageFormatBH0004 =
-        new(nameof(Resources.BH0004AnalyzerMessageFormat), Resources.ResourceManager, typeof(Resources));
+    private static readonly LocalizableResourceString MessageFormatBH0004 = new(nameof(Resources.BH0004AnalyzerMessageFormat),
+        Resources.ResourceManager, typeof(Resources));
 
-    private static readonly LocalizableResourceString DescriptionBH0004 =
-        new(nameof(Resources.BH0004AnalyzerDescription), Resources.ResourceManager, typeof(Resources));
+    private static readonly LocalizableResourceString DescriptionBH0004 = new(nameof(Resources.BH0004AnalyzerDescription),
+        Resources.ResourceManager, typeof(Resources));
 
-    private static readonly DiagnosticDescriptor RuleBH0004 =
-        new(DiagnosticIdBH0004, TitleBH0004, MessageFormatBH0004, CategoryBH0004, DiagnosticSeverity.Error, true,
-            DescriptionBH0004, $"{BaseUrl}BH0004");
+    private static readonly DiagnosticDescriptor RuleBH0004 = new(DiagnosticIdBH0004, TitleBH0004, MessageFormatBH0004, CategoryBH0004,
+        DiagnosticSeverity.Error, true, DescriptionBH0004, $"{BaseUrl}BH0004");
 
     // BH0005
     public const string DiagnosticIdBH0005 = "BH0005";
     private const string CategoryBH0005 = "Usage";
 
-    private static readonly LocalizableResourceString TitleBH0005 =
-        new(nameof(Resources.BH0005AnalyzerTitle), Resources.ResourceManager, typeof(Resources));
+    private static readonly LocalizableResourceString TitleBH0005 = new(nameof(Resources.BH0005AnalyzerTitle), Resources.ResourceManager,
+        typeof(Resources));
 
-    private static readonly LocalizableResourceString MessageFormatBH0005 =
-        new(nameof(Resources.BH0005AnalyzerMessageFormat), Resources.ResourceManager, typeof(Resources));
+    private static readonly LocalizableResourceString MessageFormatBH0005 = new(nameof(Resources.BH0005AnalyzerMessageFormat),
+        Resources.ResourceManager, typeof(Resources));
 
-    private static readonly LocalizableResourceString DescriptionBH0005 =
-        new(nameof(Resources.BH0005AnalyzerDescription), Resources.ResourceManager, typeof(Resources));
+    private static readonly LocalizableResourceString DescriptionBH0005 = new(nameof(Resources.BH0005AnalyzerDescription),
+        Resources.ResourceManager, typeof(Resources));
 
-    private static readonly DiagnosticDescriptor RuleBH0005 =
-        new(DiagnosticIdBH0005, TitleBH0005, MessageFormatBH0005, CategoryBH0005, DiagnosticSeverity.Error, true,
-            DescriptionBH0005, $"{BaseUrl}BH0005");
+    private static readonly DiagnosticDescriptor RuleBH0005 = new(DiagnosticIdBH0005, TitleBH0005, MessageFormatBH0005, CategoryBH0005,
+        DiagnosticSeverity.Error, true, DescriptionBH0005, $"{BaseUrl}BH0005");
 
     // BH0006
     public const string DiagnosticIdBH0006 = "BH0006";
     private const string CategoryBH0006 = "Usage";
 
-    private static readonly LocalizableResourceString TitleBH0006 =
-        new(nameof(Resources.BH0006AnalyzerTitle), Resources.ResourceManager, typeof(Resources));
+    private static readonly LocalizableResourceString TitleBH0006 = new(nameof(Resources.BH0006AnalyzerTitle), Resources.ResourceManager,
+        typeof(Resources));
 
-    private static readonly LocalizableResourceString MessageFormatBH0006 =
-        new(nameof(Resources.BH0006AnalyzerMessageFormat), Resources.ResourceManager, typeof(Resources));
+    private static readonly LocalizableResourceString MessageFormatBH0006 = new(nameof(Resources.BH0006AnalyzerMessageFormat),
+        Resources.ResourceManager, typeof(Resources));
 
-    private static readonly LocalizableResourceString DescriptionBH0006 =
-        new(nameof(Resources.BH0006AnalyzerDescription), Resources.ResourceManager, typeof(Resources));
+    private static readonly LocalizableResourceString DescriptionBH0006 = new(nameof(Resources.BH0006AnalyzerDescription),
+        Resources.ResourceManager, typeof(Resources));
 
-    private static readonly DiagnosticDescriptor RuleBH0006 =
-        new(DiagnosticIdBH0006, TitleBH0006, MessageFormatBH0006, CategoryBH0006, DiagnosticSeverity.Error, true,
-            DescriptionBH0006, $"{BaseUrl}BH0006");
+    private static readonly DiagnosticDescriptor RuleBH0006 = new(DiagnosticIdBH0006, TitleBH0006, MessageFormatBH0006, CategoryBH0006,
+        DiagnosticSeverity.Error, true, DescriptionBH0006, $"{BaseUrl}BH0006");
 
     // Supported diagnostics
     public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics => [RuleBH0004, RuleBH0005, RuleBH0006];
@@ -84,8 +81,8 @@ public sealed class BH0004ToBH0006Analyzer : BHAnalyzer {
         var model = context.SemanticModel;
         var methodDeclaration = (MethodDeclarationSyntax)context.Node;
 
-        var methodSymbol = model.GetDeclaredSymbol(methodDeclaration, context.CancellationToken) ??
-                           throw new InvalidOperationException("Something went wrong");
+        var methodSymbol = model.GetDeclaredSymbol(methodDeclaration, context.CancellationToken)
+            ?? throw new InvalidOperationException("Something went wrong");
 
         // Check if the method is GetSchema from IXmlSerializable
         if (IsGetSchema(methodSymbol, ixs)) {
@@ -96,9 +93,8 @@ public sealed class BH0004ToBH0006Analyzer : BHAnalyzer {
 
             // Report BH0005 if the method is abstract or its return value is not null
             if (methodSymbol.IsAbstract || IsReturnValueNotNull(methodDeclaration, model)) {
-                var location =
-                    methodDeclaration.DescendantNodes().FirstOrDefault(n => n is BlockSyntax or ArrowExpressionClauseSyntax)
-                        ?.GetLocation() ?? methodDeclaration.GetLocation();
+                var location = methodDeclaration.DescendantNodes()
+                    .FirstOrDefault(n => n is BlockSyntax or ArrowExpressionClauseSyntax)?.GetLocation() ?? methodDeclaration.GetLocation();
 
                 context.ReportDiagnostic(RuleBH0005, location);
             }
@@ -126,8 +122,8 @@ public sealed class BH0004ToBH0006Analyzer : BHAnalyzer {
     }
 
     // Check if the return value of the method is not null
-    private static bool IsReturnValueNotNull(MethodDeclarationSyntax methodDeclaration, SemanticModel model) =>
-        methodDeclaration.DescendantNodes()
+    private static bool IsReturnValueNotNull(MethodDeclarationSyntax methodDeclaration, SemanticModel model)
+        => methodDeclaration.DescendantNodes()
             .Select(s => s switch {
                 ReturnStatementSyntax statement => statement.Expression,
                 ArrowExpressionClauseSyntax arrowExpressionClause => arrowExpressionClause.Expression,

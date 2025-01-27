@@ -15,9 +15,7 @@ public sealed class BH0001CodeFixProvider : CodeFixProvider {
         var declaration = root!.FindToken(diagnosticSpan.Start).Parent!.AncestorsAndSelf().OfType<TypeDeclarationSyntax>()
             .First();
 
-        var action = CodeAction.Create(
-            CodeFixResources.BH0001CodeFixTitle,
-            _ => MakeSealedAsync(context.Document, declaration, root),
+        var action = CodeAction.Create(CodeFixResources.BH0001CodeFixTitle, _ => MakeSealedAsync(context.Document, declaration, root),
             nameof(CodeFixResources.BH0001CodeFixTitle));
 
         // Register a code action that will invoke the fix.

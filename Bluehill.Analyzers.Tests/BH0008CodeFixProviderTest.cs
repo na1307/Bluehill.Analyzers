@@ -7,14 +7,13 @@ namespace Bluehill.Analyzers.Tests;
 
 public sealed class BH0008CodeFixProviderTest {
     [Theory]
-    [InlineData(
-        """
-        public class TestClass {
-            public void TestMethod(object? obj) {
-                _ = obj is [|not not|] null;
-            }
-        }
-        """,
+    [InlineData("""
+                public class TestClass {
+                    public void TestMethod(object? obj) {
+                        _ = obj is [|not not|] null;
+                    }
+                }
+                """,
         """
         public class TestClass {
             public void TestMethod(object? obj) {
@@ -22,14 +21,13 @@ public sealed class BH0008CodeFixProviderTest {
             }
         }
         """)]
-    [InlineData(
-        """
-        public class TestClass {
-            public void TestMethod(object? obj) {
-                _ = obj is [|not not not|] null;
-            }
-        }
-        """,
+    [InlineData("""
+                public class TestClass {
+                    public void TestMethod(object? obj) {
+                        _ = obj is [|not not not|] null;
+                    }
+                }
+                """,
         """
         public class TestClass {
             public void TestMethod(object? obj) {
@@ -38,6 +36,7 @@ public sealed class BH0008CodeFixProviderTest {
         }
         """)]
 #pragma warning disable SA1005, S125
+
     // https://github.com/dotnet/roslyn-sdk/issues/1202
     //[InlineData(
     //    """
@@ -67,20 +66,19 @@ public sealed class BH0008CodeFixProviderTest {
     //    """
     //    )]
 #pragma warning restore SA1005, S125
-    [InlineData(
-        """
-        public class TestClass {
-            public void TestMethod(TestEnum te) {
-                _ = te is [|not not not|] TestEnum.One;
-            }
-        }
+    [InlineData("""
+                public class TestClass {
+                    public void TestMethod(TestEnum te) {
+                        _ = te is [|not not not|] TestEnum.One;
+                    }
+                }
 
-        public enum TestEnum {
-            One,
-            Two,
-            Three
-        }
-        """,
+                public enum TestEnum {
+                    One,
+                    Two,
+                    Three
+                }
+                """,
         """
         public class TestClass {
             public void TestMethod(TestEnum te) {
@@ -94,20 +92,19 @@ public sealed class BH0008CodeFixProviderTest {
             Three
         }
         """)]
-    [InlineData(
-        """
-        public class TestClass {
-            public void TestMethod(TestRecord tr) {
-                _ = tr is [|not not|] { Id: 0 };
-            }
-        }
+    [InlineData("""
+                public class TestClass {
+                    public void TestMethod(TestRecord tr) {
+                        _ = tr is [|not not|] { Id: 0 };
+                    }
+                }
 
-        public readonly record struct TestRecord(int Id, string Name);
+                public readonly record struct TestRecord(int Id, string Name);
 
-        namespace System.Runtime.CompilerServices {
-            public sealed class IsExternalInit;
-        }
-        """,
+                namespace System.Runtime.CompilerServices {
+                    public sealed class IsExternalInit;
+                }
+                """,
         """
         public class TestClass {
             public void TestMethod(TestRecord tr) {
@@ -121,20 +118,19 @@ public sealed class BH0008CodeFixProviderTest {
             public sealed class IsExternalInit;
         }
         """)]
-    [InlineData(
-        """
-        public class TestClass {
-            public void TestMethod(TestRecord tr) {
-                _ = tr is [|not not not|] { Id: 0 };
-            }
-        }
+    [InlineData("""
+                public class TestClass {
+                    public void TestMethod(TestRecord tr) {
+                        _ = tr is [|not not not|] { Id: 0 };
+                    }
+                }
 
-        public readonly record struct TestRecord(int Id, string Name);
+                public readonly record struct TestRecord(int Id, string Name);
 
-        namespace System.Runtime.CompilerServices {
-            public sealed class IsExternalInit;
-        }
-        """,
+                namespace System.Runtime.CompilerServices {
+                    public sealed class IsExternalInit;
+                }
+                """,
         """
         public class TestClass {
             public void TestMethod(TestRecord tr) {
@@ -148,14 +144,13 @@ public sealed class BH0008CodeFixProviderTest {
             public sealed class IsExternalInit;
         }
         """)]
-    [InlineData(
-        """
-        public class TestClass {
-            public void TestMethod(string str) {
-                _ = str is [|not not|] [ 'C', '#' ];
-            }
-        }
-        """,
+    [InlineData("""
+                public class TestClass {
+                    public void TestMethod(string str) {
+                        _ = str is [|not not|] [ 'C', '#' ];
+                    }
+                }
+                """,
         """
         public class TestClass {
             public void TestMethod(string str) {
@@ -163,14 +158,13 @@ public sealed class BH0008CodeFixProviderTest {
             }
         }
         """)]
-    [InlineData(
-        """
-        public class TestClass {
-            public void TestMethod(string str) {
-                _ = str is [|not not not|] [ 'C', '#' ];
-            }
-        }
-        """,
+    [InlineData("""
+                public class TestClass {
+                    public void TestMethod(string str) {
+                        _ = str is [|not not not|] [ 'C', '#' ];
+                    }
+                }
+                """,
         """
         public class TestClass {
             public void TestMethod(string str) {
@@ -178,6 +172,5 @@ public sealed class BH0008CodeFixProviderTest {
             }
         }
         """)]
-    public Task Test(string source, string fixedSource) =>
-        Verify.VerifyCodeFixAsync(source.ReplaceLineEndings(), fixedSource.ReplaceLineEndings());
+    public Task Test(string source, string fixedSource) => Verify.VerifyCodeFixAsync(source.ReplaceLineEndings(), fixedSource.ReplaceLineEndings());
 }

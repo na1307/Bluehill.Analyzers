@@ -5,17 +5,17 @@ public sealed class BH0007PreferLockAnalyzer : BHAnalyzer {
     public const string DiagnosticId = "BH0007";
     private const string Category = "Performance";
 
-    private static readonly LocalizableResourceString Title =
-        new(nameof(Resources.BH0007AnalyzerTitle), Resources.ResourceManager, typeof(Resources));
+    private static readonly LocalizableResourceString Title = new(nameof(Resources.BH0007AnalyzerTitle), Resources.ResourceManager,
+        typeof(Resources));
 
-    private static readonly LocalizableResourceString MessageFormat =
-        new(nameof(Resources.BH0007AnalyzerMessageFormat), Resources.ResourceManager, typeof(Resources));
+    private static readonly LocalizableResourceString MessageFormat = new(nameof(Resources.BH0007AnalyzerMessageFormat), Resources.ResourceManager,
+        typeof(Resources));
 
-    private static readonly LocalizableResourceString Description =
-        new(nameof(Resources.BH0007AnalyzerDescription), Resources.ResourceManager, typeof(Resources));
+    private static readonly LocalizableResourceString Description = new(nameof(Resources.BH0007AnalyzerDescription), Resources.ResourceManager,
+        typeof(Resources));
 
-    private static readonly DiagnosticDescriptor Rule =
-        new(DiagnosticId, Title, MessageFormat, Category, DiagnosticSeverity.Warning, true, Description, $"{BaseUrl}BH0007");
+    private static readonly DiagnosticDescriptor Rule = new(DiagnosticId, Title, MessageFormat, Category, DiagnosticSeverity.Warning, true,
+        Description, $"{BaseUrl}BH0007");
 
     public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics => [Rule];
 

@@ -25,7 +25,9 @@ public sealed class BH0005CodeFixProvider : CodeFixProvider {
         context.RegisterCodeFix(action, diagnostic);
     }
 
-    private static Task<Document> ProcessAbstractAsync(Document document, MethodDeclarationSyntax methodDeclaration,
+    private static Task<Document> ProcessAbstractAsync(
+        Document document,
+        MethodDeclarationSyntax methodDeclaration,
         SyntaxNode root) {
         // Remove `abstract` modifier
         var modifiers = methodDeclaration.Modifiers;

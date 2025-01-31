@@ -19,12 +19,9 @@ public sealed class BH0001TypesShouldBeSealedAnalyzer : BHAnalyzer {
 
     public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics => [Rule];
 
-    public override void Initialize(AnalysisContext context) {
-        base.Initialize(context);
-
+    protected override void RegisterActions(AnalysisContext context) =>
         // Register compilation start action
         context.RegisterCompilationStartAction(CompilationStartAction);
-    }
 
     private static void CompilationStartAction(CompilationStartAnalysisContext context) {
         // Get all named types and their base types
@@ -57,7 +54,7 @@ public sealed class BH0001TypesShouldBeSealedAnalyzer : BHAnalyzer {
             return;
         }
 
-        // Skip implicitily declared
+        // Skip implicitly declared
         if (namedTypeSymbol.IsImplicitlyDeclared) {
             return;
         }

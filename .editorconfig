@@ -1095,9 +1095,6 @@ dotnet_diagnostic.sa1512.severity = error
 # Element documentation header should be preceded by blank line
 dotnet_diagnostic.sa1514.severity = error
 
-# Single-line comment should be preceded by blank line
-dotnet_diagnostic.sa1515.severity = error
-
 # Elements should be separated by blank line
 dotnet_diagnostic.sa1516.severity = error
 
@@ -1336,6 +1333,9 @@ dotnet_diagnostic.sa1503.severity = none
 
 # Closing brace should be followed by blank line
 dotnet_diagnostic.sa1513.severity = none
+
+# Single-line comment should be preceded by blank line
+dotnet_diagnostic.sa1515.severity = none
 
 # Braces should not be omitted from multi-line child statement
 dotnet_diagnostic.sa1519.severity = none
@@ -1663,7 +1663,7 @@ resharper_blank_lines_before_control_transfer_statements = 0
 resharper_blank_lines_before_first_module_member_in_nested_module = 0
 resharper_blank_lines_before_first_module_member_in_top_level_module = 1
 resharper_blank_lines_before_multiline_statements = 1
-resharper_blank_lines_before_single_line_comment = 1
+resharper_blank_lines_before_single_line_comment = 0
 resharper_blank_lines_between_using_groups = 0
 resharper_blank_lines_inside_namespace = 0
 resharper_blank_lines_inside_region = 1

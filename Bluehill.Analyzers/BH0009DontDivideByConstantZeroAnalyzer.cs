@@ -19,12 +19,9 @@ public sealed class BH0009DontDivideByConstantZeroAnalyzer : BHAnalyzer {
 
     public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics => [Rule];
 
-    public override void Initialize(AnalysisContext context) {
-        base.Initialize(context);
-
+    protected override void RegisterActions(AnalysisContext context) =>
         // Register operation action
         context.RegisterOperationAction(BinaryOperationAction, OperationKind.Binary);
-    }
 
     private static void BinaryOperationAction(OperationAnalysisContext context) {
         var operation = (IBinaryOperation)context.Operation;
@@ -65,9 +62,13 @@ public sealed class BH0009DontDivideByConstantZeroAnalyzer : BHAnalyzer {
             or SpecialType.System_Decimal;
 
     private static bool IsZero(object? value)
-        => value is byte and 0 or sbyte and 0
-            or short and 0 or ushort and 0
-            or int and 0 or uint and 0
-            or long and 0 or ulong and 0
-            or decimal and 0.0m;
+        // ReSharper disable MergeAndPattern
+        // ReSharper disable RedundantPatternParentheses
+        => value is (byte and 0) or (sbyte and 0)
+            or (short and 0) or (ushort and 0)
+            or (int and 0) or (uint and 0u)
+            or (long and 0L) or (ulong and 0ul)
+            or (decimal and 0.0m);
+    // ReSharper restore RedundantPatternParentheses
+    // ReSharper restore MergeAndPattern
 }

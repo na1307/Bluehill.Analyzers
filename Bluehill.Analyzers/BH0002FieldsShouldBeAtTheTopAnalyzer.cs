@@ -19,12 +19,9 @@ public sealed class BH0002FieldsShouldBeAtTheTopAnalyzer : BHAnalyzer {
 
     public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics => [Rule];
 
-    public override void Initialize(AnalysisContext context) {
-        base.Initialize(context);
-
+    protected override void RegisterActions(AnalysisContext context) =>
         // Register semantic model action
         context.RegisterSemanticModelAction(SemanticModelAction);
-    }
 
     private static void SemanticModelAction(SemanticModelAnalysisContext context) {
         var token = context.CancellationToken;
@@ -51,7 +48,6 @@ public sealed class BH0002FieldsShouldBeAtTheTopAnalyzer : BHAnalyzer {
             }
 
             var members = type.GetMembers().Where(m =>
-
                 // Not for fields
                 m.Kind != SymbolKind.Field
 

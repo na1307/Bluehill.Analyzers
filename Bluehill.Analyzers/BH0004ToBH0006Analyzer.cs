@@ -54,12 +54,9 @@ public sealed class BH0004ToBH0006Analyzer : BHAnalyzer {
     public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics => [RuleBH0004, RuleBH0005, RuleBH0006];
 
     // Initialize the analyzer
-    public override void Initialize(AnalysisContext context) {
-        base.Initialize(context);
-
+    protected override void RegisterActions(AnalysisContext context) =>
         // Register compilation start action
         context.RegisterCompilationStartAction(Register);
-    }
 
     // Register actions to be performed at the start of compilation
     private static void Register(CompilationStartAnalysisContext context) {
@@ -85,19 +82,21 @@ public sealed class BH0004ToBH0006Analyzer : BHAnalyzer {
             ?? throw new InvalidOperationException("Something went wrong");
 
         // Check if the method is GetSchema from IXmlSerializable
-        if (IsGetSchema(methodSymbol, ixs)) {
-            // Report BH0004 if the method does not explicitly implement IXmlSerializable.GetSchema
-            if (!methodSymbol.ExplicitInterfaceImplementations.Any(i => SymbolEqualityComparer.Default.Equals(i, ixsgs))) {
-                context.ReportDiagnostic(RuleBH0004, methodSymbol.Locations[0]);
-            }
+        if (!IsGetSchema(methodSymbol, ixs)) {
+            return;
+        }
 
-            // Report BH0005 if the method is abstract or its return value is not null
-            if (methodSymbol.IsAbstract || IsReturnValueNotNull(methodDeclaration, model)) {
-                var location = methodDeclaration.DescendantNodes()
-                    .FirstOrDefault(n => n is BlockSyntax or ArrowExpressionClauseSyntax)?.GetLocation() ?? methodDeclaration.GetLocation();
+        // Report BH0004 if the method does not explicitly implement IXmlSerializable.GetSchema
+        if (!methodSymbol.ExplicitInterfaceImplementations.Any(i => SymbolEqualityComparer.Default.Equals(i, ixsgs))) {
+            context.ReportDiagnostic(RuleBH0004, methodSymbol.Locations[0]);
+        }
 
-                context.ReportDiagnostic(RuleBH0005, location);
-            }
+        // Report BH0005 if the method is abstract or its return value is not null
+        if (methodSymbol.IsAbstract || IsReturnValueNotNull(methodDeclaration, model)) {
+            var location = methodDeclaration.DescendantNodes()
+                .FirstOrDefault(n => n is BlockSyntax or ArrowExpressionClauseSyntax)?.GetLocation() ?? methodDeclaration.GetLocation();
+
+            context.ReportDiagnostic(RuleBH0005, location);
         }
     }
 

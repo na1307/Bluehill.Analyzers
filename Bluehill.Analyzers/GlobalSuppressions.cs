@@ -14,7 +14,7 @@ using System.Diagnostics.CodeAnalysis;
     Justification = "<보류 중>", Scope = "type", Target = "~T:Bluehill.Analyzers.BH0003ProhibitPCPReassignmentAnalyzer")]
 [assembly: SuppressMessage("Major Code Smell", "S125:Sections of code should not be commented out",
     Justification = "False Positive", Scope = "member", Target =
-        "~M:Bluehill.Analyzers.BH0003ProhibitPcpReassignmentAnalyzer.Initialize(Microsoft.CodeAnalysis.Diagnostics.AnalysisContext)")]
+        "~M:Bluehill.Analyzers.BH0003ProhibitPcpReassignmentAnalyzer.RegisterActions(Microsoft.CodeAnalysis.Diagnostics.AnalysisContext)")]
 [assembly: SuppressMessage("StyleCop.CSharp.OrderingRules", "SA1202:Elements should be ordered by access",
     Justification = "<보류 중>", Scope = "member", Target = "~F:Bluehill.Analyzers.BH0004ToBH0006Analyzer.DiagnosticIdBH0005")]
 [assembly: SuppressMessage("StyleCop.CSharp.OrderingRules", "SA1202:Elements should be ordered by access",

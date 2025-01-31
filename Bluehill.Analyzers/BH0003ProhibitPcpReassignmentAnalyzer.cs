@@ -19,9 +19,7 @@ public sealed class BH0003ProhibitPcpReassignmentAnalyzer : BHAnalyzer {
 
     public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics => [Rule];
 
-    public override void Initialize(AnalysisContext context) {
-        base.Initialize(context);
-
+    protected override void RegisterActions(AnalysisContext context) {
         // Register for different kinds of assignment operations
         context.RegisterOperationAction(AnalyzeAssignment, OperationKind.SimpleAssignment);
         context.RegisterOperationAction(AnalyzeAssignment, OperationKind.CompoundAssignment);
@@ -34,7 +32,7 @@ public sealed class BH0003ProhibitPcpReassignmentAnalyzer : BHAnalyzer {
     }
 
     private static void AnalyzeAssignment(OperationAnalysisContext context) {
-        // All of the following are IAssignmentOperation: =, +=, ??=, etc.
+        // All the following are IAssignmentOperation: =, +=, ??=, etc.
         var operation = (IAssignmentOperation)context.Operation;
         var target = operation.Target;
 

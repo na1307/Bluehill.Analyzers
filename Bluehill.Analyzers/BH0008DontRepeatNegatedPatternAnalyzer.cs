@@ -21,9 +21,9 @@ public sealed class BH0008DontRepeatNegatedPatternAnalyzer : BHAnalyzer {
 
     public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics => [Rule];
 
-    protected override void RegisterActions(AnalysisContext context) =>
+    protected override void RegisterActions(AnalysisContext context)
         // Register syntax node action
-        context.RegisterSyntaxNodeAction(AnalyzeNotPattern, SyntaxKind.NotPattern);
+        => context.RegisterSyntaxNodeAction(AnalyzeNotPattern, SyntaxKind.NotPattern);
 
     private static void AnalyzeNotPattern(SyntaxNodeAnalysisContext context) {
         var syntax = (UnaryPatternSyntax)context.Node;

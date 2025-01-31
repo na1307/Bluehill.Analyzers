@@ -19,9 +19,9 @@ public sealed class BH0002FieldsShouldBeAtTheTopAnalyzer : BHAnalyzer {
 
     public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics => [Rule];
 
-    protected override void RegisterActions(AnalysisContext context) =>
+    protected override void RegisterActions(AnalysisContext context)
         // Register semantic model action
-        context.RegisterSemanticModelAction(SemanticModelAction);
+        => context.RegisterSemanticModelAction(SemanticModelAction);
 
     private static void SemanticModelAction(SemanticModelAnalysisContext context) {
         var token = context.CancellationToken;

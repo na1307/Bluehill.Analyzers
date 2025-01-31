@@ -54,9 +54,9 @@ public sealed class BH0004ToBH0006Analyzer : BHAnalyzer {
     public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics => [RuleBH0004, RuleBH0005, RuleBH0006];
 
     // Initialize the analyzer
-    protected override void RegisterActions(AnalysisContext context) =>
+    protected override void RegisterActions(AnalysisContext context)
         // Register compilation start action
-        context.RegisterCompilationStartAction(Register);
+        => context.RegisterCompilationStartAction(Register);
 
     // Register actions to be performed at the start of compilation
     private static void Register(CompilationStartAnalysisContext context) {

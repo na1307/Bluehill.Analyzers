@@ -19,9 +19,9 @@ public sealed class BH0007PreferLockAnalyzer : BHAnalyzer {
 
     public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics => [Rule];
 
-    protected override void RegisterActions(AnalysisContext context) =>
+    protected override void RegisterActions(AnalysisContext context)
         // Register compilation start action
-        context.RegisterCompilationStartAction(CompilationStartAction);
+        => context.RegisterCompilationStartAction(CompilationStartAction);
 
     private static void CompilationStartAction(CompilationStartAnalysisContext context) {
         var lockType = context.Compilation.GetTypeByMetadataName("System.Threading.Lock");

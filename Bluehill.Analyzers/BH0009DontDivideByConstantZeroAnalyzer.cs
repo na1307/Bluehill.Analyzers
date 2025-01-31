@@ -19,9 +19,9 @@ public sealed class BH0009DontDivideByConstantZeroAnalyzer : BHAnalyzer {
 
     public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics => [Rule];
 
-    protected override void RegisterActions(AnalysisContext context) =>
+    protected override void RegisterActions(AnalysisContext context)
         // Register operation action
-        context.RegisterOperationAction(BinaryOperationAction, OperationKind.Binary);
+        => context.RegisterOperationAction(BinaryOperationAction, OperationKind.Binary);
 
     private static void BinaryOperationAction(OperationAnalysisContext context) {
         var operation = (IBinaryOperation)context.Operation;

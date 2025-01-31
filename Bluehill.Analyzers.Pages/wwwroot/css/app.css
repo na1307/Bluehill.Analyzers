@@ -37,6 +37,7 @@ a, .btn-link {
 }
 
 #blazor-error-ui {
+    /* ReSharper disable once CssNotResolved */
     color-scheme: light only;
     background: lightyellow;
     bottom: 0;

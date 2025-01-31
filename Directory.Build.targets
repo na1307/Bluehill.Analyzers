@@ -1,0 +1,8 @@
+<Project>
+  <PropertyGroup Condition="'$(Description)' == ''">
+    <Description>$(AssemblyTitle)</Description>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(GeneratePackageOnBuild)' != 'true'">
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+</Project>

@@ -19,9 +19,9 @@ public sealed class BH0001TypesShouldBeSealedAnalyzer : BHAnalyzer {
 
     public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics => [Rule];
 
-    protected override void RegisterActions(AnalysisContext context) =>
+    protected override void RegisterActions(AnalysisContext context)
         // Register compilation start action
-        context.RegisterCompilationStartAction(CompilationStartAction);
+        => context.RegisterCompilationStartAction(CompilationStartAction);
 
     private static void CompilationStartAction(CompilationStartAnalysisContext context) {
         // Get all named types and their base types

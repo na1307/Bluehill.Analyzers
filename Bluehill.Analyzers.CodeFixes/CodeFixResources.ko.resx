@@ -127,4 +127,10 @@
   <data name="BH0008CodeFixTitle" xml:space="preserve">
     <value>패턴 부정 단순화</value>
   </data>
+  <data name="BH0010CodeFixTitle" xml:space="preserve">
+    <value>패턴 매칭 사용</value>
+  </data>
+  <data name="BH0011CodeFixTitle" xml:space="preserve">
+    <value>SequenceEqual 사용</value>
+  </data>
 </root>

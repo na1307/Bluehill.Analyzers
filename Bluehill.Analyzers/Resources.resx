@@ -204,4 +204,22 @@
   <data name="BH0009AnalyzerTitle" xml:space="preserve">
     <value>Integers and Decimal should never be divided by the constant 0</value>
   </data>
+  <data name="BH0010AnalyzerDescription" xml:space="preserve">
+    <value>When comparing Span and a constant, you should use pattern matching instead of the equality/inequality operators, unless you want to directly compare what the Spans actually point to.</value>
+  </data>
+  <data name="BH0010AnalyzerMessageFormat" xml:space="preserve">
+    <value>Unless you want to directly compare what the span actually points to, use pattern matching instead</value>
+  </data>
+  <data name="BH0010AnalyzerTitle" xml:space="preserve">
+    <value>Use pattern matching when comparing Span and a constant</value>
+  </data>
+  <data name="BH0011AnalyzerDescription" xml:space="preserve">
+    <value>When comparing Span and a non-constant, you should use SequenceEqual method instead of the equality/inequality operators, unless you want to directly compare what the Spans actually point to.</value>
+  </data>
+  <data name="BH0011AnalyzerMessageFormat" xml:space="preserve">
+    <value>Unless you want to directly compare what the span actually points to, use SequenceEqual instead</value>
+  </data>
+  <data name="BH0011AnalyzerTitle" xml:space="preserve">
+    <value>Use SequenceEqual when comparing Span and a non-constant</value>
+  </data>
 </root>

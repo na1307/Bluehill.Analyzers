@@ -86,5 +86,23 @@ namespace Bluehill.Analyzers {
                 return ResourceManager.GetString("BH0008CodeFixTitle", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Use pattern matching과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string BH0010CodeFixTitle {
+            get {
+                return ResourceManager.GetString("BH0010CodeFixTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Use SequenceEqual과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string BH0011CodeFixTitle {
+            get {
+                return ResourceManager.GetString("BH0011CodeFixTitle", resourceCulture);
+            }
+        }
     }
 }

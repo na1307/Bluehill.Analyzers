@@ -127,4 +127,10 @@
   <data name="BH0008CodeFixTitle" xml:space="preserve">
     <value>Simplify pattern negation</value>
   </data>
+  <data name="BH0010CodeFixTitle" xml:space="preserve">
+    <value>Use pattern matching</value>
+  </data>
+  <data name="BH0011CodeFixTitle" xml:space="preserve">
+    <value>Use SequenceEqual</value>
+  </data>
 </root>

@@ -8,7 +8,7 @@ public sealed class BH0008CodeFixProvider : CodeFixProvider {
     public override FixAllProvider GetFixAllProvider() => WellKnownFixAllProviders.BatchFixer;
 
     public override async Task RegisterCodeFixesAsync(CodeFixContext context) {
-        var diagnostic = context.Diagnostics.Single(d => d.Id == "BH0008");
+        var diagnostic = context.Diagnostics.Single(d => d.Id == BH0008DontRepeatNegatedPatternAnalyzer.DiagnosticId);
         var diagnosticSpan = diagnostic.Location.SourceSpan;
         var root = await context.Document.GetSyntaxRootAsync(context.CancellationToken).ConfigureAwait(false);
         var node = (UnaryPatternSyntax)root!.FindToken(diagnosticSpan.Start).Parent!;

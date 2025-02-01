@@ -14,3 +14,5 @@ using System.Diagnostics.CodeAnalysis;
     Justification = "<보류 중>", Scope = "member", Target = "~F:Bluehill.Analyzers.BH0004ToBH0006Analyzer.DiagnosticIdBH0005")]
 [assembly: SuppressMessage("StyleCop.CSharp.OrderingRules", "SA1202:Elements should be ordered by access",
     Justification = "<보류 중>", Scope = "member", Target = "~F:Bluehill.Analyzers.BH0004ToBH0006Analyzer.DiagnosticIdBH0006")]
+[assembly: SuppressMessage("StyleCop.CSharp.OrderingRules", "SA1202:Elements should be ordered by access",
+    Justification = "<보류 중>", Scope = "member", Target = "~F:Bluehill.Analyzers.BH0010ToBH0011Analyzer.DiagnosticIdBH0011")]

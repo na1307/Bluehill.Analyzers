@@ -204,4 +204,22 @@
   <data name="BH0009AnalyzerTitle" xml:space="preserve">
     <value>정수 또는 Decimal을 절대로 상수 0으로 나눠서는 안됨</value>
   </data>
+  <data name="BH0010AnalyzerDescription" xml:space="preserve">
+    <value>Span과 상수를 비교할 때는 Span이 실제로 가리키는 대상을 직접 비교하려는 경우가 아니면 동등/부등 연산자 대신 패턴 매칭을 사용해야 합니다.</value>
+  </data>
+  <data name="BH0010AnalyzerMessageFormat" xml:space="preserve">
+    <value>Span이 실제로 가리키는 대상을 직접 비교하려고 하지 않는 한, 대신 패턴 매칭을 사용하세요</value>
+  </data>
+  <data name="BH0010AnalyzerTitle" xml:space="preserve">
+    <value>Span과 상수를 비교할 때 패턴 매칭 사용</value>
+  </data>
+  <data name="BH0011AnalyzerDescription" xml:space="preserve">
+    <value>Span과 비상수를 비교할 때는 Span이 실제로 가리키는 대상을 직접 비교하려는 경우가 아니면 동등/부등 연산자 대신 SequenceEqual 메서드를 사용해야 합니다.</value>
+  </data>
+  <data name="BH0011AnalyzerMessageFormat" xml:space="preserve">
+    <value>Span이 실제로 가리키는 대상을 직접 비교하려고 하지 않는 한, 대신 SequenceEqual을 사용하세요</value>
+  </data>
+  <data name="BH0011AnalyzerTitle" xml:space="preserve">
+    <value>Span과 비상수를 비교할 때 SequenceEqual 사용</value>
+  </data>
 </root>

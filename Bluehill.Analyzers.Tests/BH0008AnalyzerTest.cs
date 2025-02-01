@@ -1,10 +1,6 @@
-﻿using Verify = Microsoft.CodeAnalysis.CSharp.Testing.CSharpAnalyzerVerifier<
-    Bluehill.Analyzers.BH0008DontRepeatNegatedPatternAnalyzer,
-    Microsoft.CodeAnalysis.Testing.DefaultVerifier>;
+﻿namespace Bluehill.Analyzers.Tests;
 
-namespace Bluehill.Analyzers.Tests;
-
-public sealed class BH0008AnalyzerTest {
+public sealed class BH0008AnalyzerTest : BHAnalyzerTest<BH0008DontRepeatNegatedPatternAnalyzer> {
     [Theory]
     [InlineData("""
                 public class TestClass {
@@ -86,5 +82,5 @@ public sealed class BH0008AnalyzerTest {
                     }
                 }
                 """)]
-    public Task Test(string source) => Verify.VerifyAnalyzerAsync(source.ReplaceLineEndings());
+    public Task Test(string source) => TestStatic(source);
 }

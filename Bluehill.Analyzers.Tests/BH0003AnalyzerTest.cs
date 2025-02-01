@@ -1,10 +1,6 @@
-﻿using Verify = Microsoft.CodeAnalysis.CSharp.Testing.CSharpAnalyzerVerifier<
-    Bluehill.Analyzers.BH0003ProhibitPcpReassignmentAnalyzer,
-    Microsoft.CodeAnalysis.Testing.DefaultVerifier>;
+﻿namespace Bluehill.Analyzers.Tests;
 
-namespace Bluehill.Analyzers.Tests;
-
-public sealed class BH0003AnalyzerTest {
+public sealed class BH0003AnalyzerTest : BHAnalyzerTest<BH0003ProhibitPcpReassignmentAnalyzer> {
     [Theory]
     [InlineData("""
                 public class TestClass(int i) {
@@ -62,5 +58,5 @@ public sealed class BH0003AnalyzerTest {
                     }
                 }
                 """)]
-    public Task Test(string source) => Verify.VerifyAnalyzerAsync(source.ReplaceLineEndings());
+    public Task Test(string source) => TestStatic(source);
 }

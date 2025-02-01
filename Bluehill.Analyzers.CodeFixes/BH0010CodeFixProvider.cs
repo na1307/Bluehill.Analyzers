@@ -22,38 +22,47 @@ public sealed class BH0010CodeFixProvider : CodeFixProvider {
     }
 
     private static Task<Document> UsePatternMatchingForComparingSpanAndConstant(Document document, BinaryExpressionSyntax binary, SyntaxNode root) {
-        var newRoot = binary.Right.Kind() switch {
-            SyntaxKind.StringLiteralExpression or SyntaxKind.CollectionExpression => ProcessStringLiteralAndCollection(binary, root),
-            SyntaxKind.ArrayCreationExpression => ProcessArrayCreation(binary, root),
-            SyntaxKind.ImplicitArrayCreationExpression => ProcessImplicitArrayCreation(binary, root),
+        var isPatternExpression = binary.Right.Kind() switch {
+            SyntaxKind.StringLiteralExpression => ProcessStringLiteral(binary),
+            SyntaxKind.CollectionExpression => ProcessCollection(binary),
+            SyntaxKind.ArrayCreationExpression => ProcessArrayCreation(binary),
+            SyntaxKind.ImplicitArrayCreationExpression => ProcessImplicitArrayCreation(binary),
             _ => throw new InvalidOperationException("Something went wrong")
         };
 
-        return Task.FromResult(document.WithSyntaxRoot(newRoot));
+        return Task.FromResult(document.WithSyntaxRoot(root.ReplaceNode(binary, isPatternExpression)));
     }
 
-    private static SyntaxNode ProcessStringLiteralAndCollection(BinaryExpressionSyntax binary, SyntaxNode root) {
+    private static IsPatternExpressionSyntax ProcessStringLiteral(BinaryExpressionSyntax binary) {
         var constantPattern = SyntaxFactory.ConstantPattern(binary.Right);
-        var isPatternExpression = SyntaxFactory.IsPatternExpression(binary.Left, constantPattern);
 
-        return root.ReplaceNode(binary, isPatternExpression);
+        return SyntaxFactory.IsPatternExpression(binary.Left, constantPattern);
     }
 
-    private static SyntaxNode ProcessArrayCreation(BinaryExpressionSyntax binary, SyntaxNode root) {
+    private static IsPatternExpressionSyntax ProcessCollection(BinaryExpressionSyntax binary) {
+        var c = (CollectionExpressionSyntax)binary.Right;
+
+        var listPattern = SyntaxFactory.ListPattern(c.Elements.Cast<ExpressionElementSyntax>()
+            .Select(e => SyntaxFactory.ConstantPattern(e.Expression)).Cast<PatternSyntax>().ToSeparatedSyntaxList());
+
+        return SyntaxFactory.IsPatternExpression(binary.Left, listPattern);
+    }
+
+    private static IsPatternExpressionSyntax ProcessArrayCreation(BinaryExpressionSyntax binary) {
         var ac = (ArrayCreationExpressionSyntax)binary.Right;
+
         var listPattern = SyntaxFactory.ListPattern(ac.Initializer?.Expressions.Select(SyntaxFactory.ConstantPattern).Cast<PatternSyntax>()
             .ToSeparatedSyntaxList() ?? []);
-        var isPatternExpression = SyntaxFactory.IsPatternExpression(binary.Left, listPattern);
 
-        return root.ReplaceNode(binary, isPatternExpression);
+        return SyntaxFactory.IsPatternExpression(binary.Left, listPattern);
     }
 
-    private static SyntaxNode ProcessImplicitArrayCreation(BinaryExpressionSyntax binary, SyntaxNode root) {
+    private static IsPatternExpressionSyntax ProcessImplicitArrayCreation(BinaryExpressionSyntax binary) {
         var iac = (ImplicitArrayCreationExpressionSyntax)binary.Right;
+
         var listPattern = SyntaxFactory.ListPattern(iac.Initializer.Expressions.Select(SyntaxFactory.ConstantPattern).Cast<PatternSyntax>()
             .ToSeparatedSyntaxList());
-        var isPatternExpression = SyntaxFactory.IsPatternExpression(binary.Left, listPattern);
 
-        return root.ReplaceNode(binary, isPatternExpression);
+        return SyntaxFactory.IsPatternExpression(binary.Left, listPattern);
     }
 }

@@ -1,11 +1,6 @@
-using Verify = Microsoft.CodeAnalysis.CSharp.Testing.CSharpCodeFixVerifier<
-    Bluehill.Analyzers.BH0004ToBH0006Analyzer,
-    Bluehill.Analyzers.BH0005CodeFixProvider,
-    Microsoft.CodeAnalysis.Testing.DefaultVerifier>;
-
 namespace Bluehill.Analyzers.Tests;
 
-public sealed class BH0005CodeFixProviderTest {
+public sealed class BH0005CodeFixProviderTest : BHCodeFixProviderTest<BH0004ToBH0006Analyzer, BH0005CodeFixProvider> {
     private const string FixedCodeNotExplicit =
         """
         using System;
@@ -144,5 +139,5 @@ public sealed class BH0005CodeFixProviderTest {
                 }
                 """,
         FixedCodeAbstract)]
-    public Task Test(string source, string fixedSource) => Verify.VerifyCodeFixAsync(source.ReplaceLineEndings(), fixedSource.ReplaceLineEndings());
+    public Task Test(string source, string fixedSource) => TestStatic(source, fixedSource);
 }

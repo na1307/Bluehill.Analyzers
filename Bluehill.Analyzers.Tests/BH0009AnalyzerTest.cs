@@ -1,10 +1,6 @@
-﻿using Verify = Microsoft.CodeAnalysis.CSharp.Testing.CSharpAnalyzerVerifier<
-    Bluehill.Analyzers.BH0009DontDivideByConstantZeroAnalyzer,
-    Microsoft.CodeAnalysis.Testing.DefaultVerifier>;
+﻿namespace Bluehill.Analyzers.Tests;
 
-namespace Bluehill.Analyzers.Tests;
-
-public sealed class BH0009AnalyzerTest {
+public sealed class BH0009AnalyzerTest : BHAnalyzerTest<BH0009DontDivideByConstantZeroAnalyzer> {
     [Theory]
     [InlineData("""
                 public class TestClass {
@@ -132,5 +128,5 @@ public sealed class BH0009AnalyzerTest {
                     }
                 }
                 """)]
-    public Task Test(string source) => Verify.VerifyAnalyzerAsync(source.ReplaceLineEndings());
+    public Task Test(string source) => TestStatic(source);
 }

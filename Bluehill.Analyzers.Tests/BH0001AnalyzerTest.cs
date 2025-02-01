@@ -1,10 +1,6 @@
-﻿using Verify = Microsoft.CodeAnalysis.CSharp.Testing.CSharpAnalyzerVerifier<
-    Bluehill.Analyzers.BH0001TypesShouldBeSealedAnalyzer,
-    Microsoft.CodeAnalysis.Testing.DefaultVerifier>;
+﻿namespace Bluehill.Analyzers.Tests;
 
-namespace Bluehill.Analyzers.Tests;
-
-public sealed class BH0001AnalyzerTest {
+public sealed class BH0001AnalyzerTest : BHAnalyzerTest<BH0001TypesShouldBeSealedAnalyzer> {
     [Theory]
     [InlineData("""
                 public class [|TestClass|];
@@ -94,5 +90,5 @@ public sealed class BH0001AnalyzerTest {
     [InlineData("""
                 public delegate void TestDelegate();
                 """)]
-    public Task Test(string source) => Verify.VerifyAnalyzerAsync(source.ReplaceLineEndings());
+    public Task Test(string source) => TestStatic(source);
 }

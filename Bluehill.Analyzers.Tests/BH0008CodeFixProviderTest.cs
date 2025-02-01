@@ -1,11 +1,6 @@
-using Verify = Microsoft.CodeAnalysis.CSharp.Testing.CSharpCodeFixVerifier<
-    Bluehill.Analyzers.BH0008DontRepeatNegatedPatternAnalyzer,
-    Bluehill.Analyzers.BH0008CodeFixProvider,
-    Microsoft.CodeAnalysis.Testing.DefaultVerifier>;
-
 namespace Bluehill.Analyzers.Tests;
 
-public sealed class BH0008CodeFixProviderTest {
+public sealed class BH0008CodeFixProviderTest : BHCodeFixProviderTest<BH0008DontRepeatNegatedPatternAnalyzer, BH0008CodeFixProvider> {
     [Theory]
     [InlineData("""
                 public class TestClass {
@@ -172,5 +167,5 @@ public sealed class BH0008CodeFixProviderTest {
             }
         }
         """)]
-    public Task Test(string source, string fixedSource) => Verify.VerifyCodeFixAsync(source.ReplaceLineEndings(), fixedSource.ReplaceLineEndings());
+    public Task Test(string source, string fixedSource) => TestStatic(source, fixedSource);
 }

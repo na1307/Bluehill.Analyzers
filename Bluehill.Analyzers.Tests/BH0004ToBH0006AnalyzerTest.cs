@@ -1,10 +1,6 @@
-﻿using Verify = Microsoft.CodeAnalysis.CSharp.Testing.CSharpAnalyzerVerifier<
-    Bluehill.Analyzers.BH0004ToBH0006Analyzer,
-    Microsoft.CodeAnalysis.Testing.DefaultVerifier>;
+﻿namespace Bluehill.Analyzers.Tests;
 
-namespace Bluehill.Analyzers.Tests;
-
-public sealed class BH0004ToBH0006AnalyzerTest {
+public sealed class BH0004ToBH0006AnalyzerTest : BHAnalyzerTest<BH0004ToBH0006Analyzer> {
     [Theory]
     [InlineData("""
                 using System;
@@ -232,5 +228,5 @@ public sealed class BH0004ToBH0006AnalyzerTest {
                     public XmlSchema? Test() => {|BH0006:((IXmlSerializable)this).GetSchema()|};
                 }
                 """)]
-    public Task Test(string source) => Verify.VerifyAnalyzerAsync(source.ReplaceLineEndings());
+    public Task Test(string source) => TestStatic(source);
 }

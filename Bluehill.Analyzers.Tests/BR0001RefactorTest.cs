@@ -1,10 +1,6 @@
-﻿using Verify = Microsoft.CodeAnalysis.CSharp.Testing.CSharpCodeRefactoringVerifier<
-    Bluehill.Analyzers.BR0001ConvertFromSnakeCaseToPascalCaseRefactor,
-    Microsoft.CodeAnalysis.Testing.DefaultVerifier>;
+﻿namespace Bluehill.Analyzers.Tests;
 
-namespace Bluehill.Analyzers.Tests;
-
-public sealed class BR0001RefactorTest {
+public sealed class BR0001RefactorTest : BRRefactorTest<BR0001ConvertFromSnakeCaseToPascalCaseRefactor> {
     [Theory]
     [InlineData("""
                 public class [|THE_TEST_CLASS|];
@@ -84,6 +80,5 @@ public sealed class BR0001RefactorTest {
             TheEnumValue
         }
         """)]
-    public Task Test(string source, string fixedSource)
-        => Verify.VerifyRefactoringAsync(source.ReplaceLineEndings(), fixedSource.ReplaceLineEndings());
+    public Task Test(string source, string fixedSource) => TestStatic(source, fixedSource);
 }

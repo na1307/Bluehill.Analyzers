@@ -4,7 +4,7 @@ namespace Bluehill.Analyzers;
 
 [ExportCodeRefactoringProvider(LanguageNames.CSharp, Name = nameof(BR0001ConvertFromSnakeCaseToPascalCaseRefactor))]
 [Shared]
-internal sealed class BR0001ConvertFromSnakeCaseToPascalCaseRefactor : CodeRefactoringProvider {
+public sealed class BR0001ConvertFromSnakeCaseToPascalCaseRefactor : CodeRefactoringProvider {
     private const string Cgsr = "Couldn't got syntax root";
     private static readonly Regex ScreamingSnakeCaseRegex = new("^[A-Z0-9_]+$");
 

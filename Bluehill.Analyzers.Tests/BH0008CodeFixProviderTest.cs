@@ -30,37 +30,33 @@ public sealed class BH0008CodeFixProviderTest : BHCodeFixProviderTest<BH0008Dont
             }
         }
         """)]
-#pragma warning disable SA1005, S125
 
-    // https://github.com/dotnet/roslyn-sdk/issues/1202
-    //[InlineData(
-    //    """
-    //    public class TestClass {
-    //        public void TestMethod(TestEnum te) {
-    //            _ = te is [|not not|] TestEnum.One;
-    //        }
-    //    }
+    [InlineData("""
+                public class TestClass {
+                    public void TestMethod(TestEnum te) {
+                        _ = te is [|not not|] TestEnum.One or TestEnum.Two;
+                    }
+                }
 
-    //    public enum TestEnum {
-    //        One,
-    //        Two,
-    //        Three
-    //    }
-    //    """, """
-    //    public class TestClass {
-    //        public void TestMethod(TestEnum te) {
-    //            _ = te is TestEnum.One;
-    //        }
-    //    }
+                public enum TestEnum {
+                    One,
+                    Two,
+                    Three
+                }
+                """,
+        """
+                     public class TestClass {
+                         public void TestMethod(TestEnum te) {
+                             _ = te is TestEnum.One or TestEnum.Two;
+                         }
+                     }
 
-    //    public enum TestEnum {
-    //        One,
-    //        Two,
-    //        Three
-    //    }
-    //    """
-    //    )]
-#pragma warning restore SA1005, S125
+                     public enum TestEnum {
+                         One,
+                         Two,
+                         Three
+                     }
+                     """)]
     [InlineData("""
                 public class TestClass {
                     public void TestMethod(TestEnum te) {

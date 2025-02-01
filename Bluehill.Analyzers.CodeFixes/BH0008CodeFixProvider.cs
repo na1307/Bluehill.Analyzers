@@ -18,10 +18,7 @@ public sealed class BH0008CodeFixProvider : CodeFixProvider {
             _ => RemoveRepeatedNegatedPatterns(context.Document, node, root), nameof(CodeFixResources.BH0008CodeFixTitle)), diagnostic);
     }
 
-    private static Task<Document> RemoveRepeatedNegatedPatterns(
-        Document document,
-        UnaryPatternSyntax notPattern,
-        SyntaxNode root) {
+    private static Task<Document> RemoveRepeatedNegatedPatterns(Document document, UnaryPatternSyntax notPattern, SyntaxNode root) {
         var parent = (ExpressionOrPatternSyntax)notPattern.Parent!;
         var notPatterns = notPattern.DescendantNodesAndSelf().OfType<UnaryPatternSyntax>().ToArray();
 

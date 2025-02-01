@@ -304,7 +304,7 @@ namespace Bluehill.Analyzers {
         }
         
         /// <summary>
-        ///   When comparing Span and a constant, you should use pattern matching instead of the equality/inequality operators, unless you want to directly compare what the Spans actually point to.과(와) 유사한 지역화된 문자열을 찾습니다.
+        ///   When comparing Span and a constant, you should use pattern matching instead of the equality/inequality operators, unless you want to compare what the addresses of the objects pointed to.과(와) 유사한 지역화된 문자열을 찾습니다.
         /// </summary>
         internal static string BH0010AnalyzerDescription {
             get {
@@ -313,7 +313,7 @@ namespace Bluehill.Analyzers {
         }
         
         /// <summary>
-        ///   Unless you want to directly compare what the span actually points to, use pattern matching instead과(와) 유사한 지역화된 문자열을 찾습니다.
+        ///   Unless you want to compare the address of the pointed object, use pattern matching instead과(와) 유사한 지역화된 문자열을 찾습니다.
         /// </summary>
         internal static string BH0010AnalyzerMessageFormat {
             get {
@@ -331,7 +331,7 @@ namespace Bluehill.Analyzers {
         }
         
         /// <summary>
-        ///   When comparing Span and a non-constant, you should use SequenceEqual method instead of the equality/inequality operators, unless you want to directly compare what the Spans actually point to.과(와) 유사한 지역화된 문자열을 찾습니다.
+        ///   When comparing Span and a non-constant, you should use SequenceEqual method instead of the equality/inequality operators, unless you want to directly compare what the addresses of the objects pointed to.과(와) 유사한 지역화된 문자열을 찾습니다.
         /// </summary>
         internal static string BH0011AnalyzerDescription {
             get {
@@ -340,7 +340,7 @@ namespace Bluehill.Analyzers {
         }
         
         /// <summary>
-        ///   Unless you want to directly compare what the span actually points to, use SequenceEqual instead과(와) 유사한 지역화된 문자열을 찾습니다.
+        ///   Unless you want to compare the address of the pointed object, use SequenceEqual method instead과(와) 유사한 지역화된 문자열을 찾습니다.
         /// </summary>
         internal static string BH0011AnalyzerMessageFormat {
             get {

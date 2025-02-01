@@ -12,32 +12,28 @@ public sealed class BR0001ConvertFromSnakeCaseToPascalCaseRefactor : CodeRefacto
         // Get the document and syntax root
         var document = context.Document;
         var root = await document.GetSyntaxRootAsync(context.CancellationToken);
-        var span = context.Span;
 
-        // Find the node at the specified span
-        var node = root?.FindToken(span.Start).Parent;
+        switch (root?.FindToken(context.Span.Start).Parent) {
+            // Check is the node is a type
+            case BaseTypeDeclarationSyntax type:
+                HandleType(context, document, type);
+                break;
 
-        // Check is the node is a type
-        if (node is BaseTypeDeclarationSyntax type) {
-            HandleType(context, document, type);
-        }
+            // Check if the node is a constant field
+            case VariableDeclaratorSyntax { Parent: VariableDeclarationSyntax { Parent: FieldDeclarationSyntax field } } variable when
+                field.Modifiers.Any(m => m.IsKind(SyntaxKind.ConstKeyword)):
+                HandleConstant(context, document, variable);
+                break;
 
-        // Check if the node is a constant field
-        if (node is VariableDeclaratorSyntax variable &&
-            variable.Parent is VariableDeclarationSyntax declaration &&
-            declaration.Parent is FieldDeclarationSyntax field &&
-            field.Modifiers.Any(m => m.IsKind(SyntaxKind.ConstKeyword))) {
-            HandleConstant(context, document, variable);
-        }
+            // Check if the node is an enum member
+            case EnumMemberDeclarationSyntax enumMember:
+                HandleEnumMember(context, document, enumMember);
+                break;
 
-        // Check if the node is an enum member
-        if (node is EnumMemberDeclarationSyntax enumMember) {
-            HandleEnumMember(context, document, enumMember);
-        }
-
-        // Check if the node is a delegate
-        if (node is DelegateDeclarationSyntax @delegate) {
-            HandleDelegate(context, document, @delegate);
+            // Check if the node is a delegate
+            case DelegateDeclarationSyntax @delegate:
+                HandleDelegate(context, document, @delegate);
+                break;
         }
     }
 
@@ -45,7 +41,7 @@ public sealed class BR0001ConvertFromSnakeCaseToPascalCaseRefactor : CodeRefacto
         var identifier = type.Identifier.Text;
 
         if (IsScreamingSnakeCase(identifier)) {
-            context.RegisterRefactoring(CodeAction.Create("Convert type to Pascal Case",
+            context.RegisterRefactoring(CodeAction.Create(CodeFixResources.BR0001Refactortitle,
                 ct => ConvertTypeToPascalCaseAsync(document, type, identifier, ct), equivalenceKey: "ConvertTypeToPascalCase"));
         }
     }
@@ -57,7 +53,7 @@ public sealed class BR0001ConvertFromSnakeCaseToPascalCaseRefactor : CodeRefacto
         var identifier = variable.Identifier.Text;
 
         if (IsScreamingSnakeCase(identifier)) {
-            context.RegisterRefactoring(CodeAction.Create("Convert constant to Pascal Case",
+            context.RegisterRefactoring(CodeAction.Create(CodeFixResources.BR0001Refactortitle,
                 ct => ConvertConstantToPascalCaseAsync(document, variable, identifier, ct), equivalenceKey: "ConvertConstantToPascalCase"));
         }
     }
@@ -69,7 +65,7 @@ public sealed class BR0001ConvertFromSnakeCaseToPascalCaseRefactor : CodeRefacto
         var identifier = enumMember.Identifier.Text;
 
         if (IsScreamingSnakeCase(identifier)) {
-            context.RegisterRefactoring(CodeAction.Create("Convert enum member to Pascal Case",
+            context.RegisterRefactoring(CodeAction.Create(CodeFixResources.BR0001Refactortitle,
                 ct => ConvertEnumMemberToPascalCaseAsync(document, enumMember, identifier, ct), equivalenceKey: "ConvertEnumMemberToPascalCase"));
         }
     }
@@ -81,7 +77,7 @@ public sealed class BR0001ConvertFromSnakeCaseToPascalCaseRefactor : CodeRefacto
         var identifier = @delegate.Identifier.Text;
 
         if (IsScreamingSnakeCase(identifier)) {
-            context.RegisterRefactoring(CodeAction.Create("Convert delegate to Pascal Case",
+            context.RegisterRefactoring(CodeAction.Create(CodeFixResources.BR0001Refactortitle,
                 ct => ConvertDelegateToPascalCaseAsync(document, @delegate, identifier, ct), equivalenceKey: "ConvertDelegateToPascalCase"));
         }
     }
@@ -92,7 +88,6 @@ public sealed class BR0001ConvertFromSnakeCaseToPascalCaseRefactor : CodeRefacto
         string identifier,
         CancellationToken cancellationToken) {
         var pascalCaseName = ToPascalCase(identifier);
-
         var root = await document.GetSyntaxRootAsync(cancellationToken) ?? throw new InvalidOperationException(Cgsr);
         var newType = type.WithIdentifier(SyntaxFactory.Identifier(pascalCaseName));
         var newRoot = root.ReplaceNode(type, newType);
@@ -106,7 +101,6 @@ public sealed class BR0001ConvertFromSnakeCaseToPascalCaseRefactor : CodeRefacto
         string identifier,
         CancellationToken cancellationToken) {
         var pascalCaseName = ToPascalCase(identifier);
-
         var root = await document.GetSyntaxRootAsync(cancellationToken) ?? throw new InvalidOperationException(Cgsr);
         var newVariable = variable.WithIdentifier(SyntaxFactory.Identifier(pascalCaseName));
         var newRoot = root.ReplaceNode(variable, newVariable);
@@ -120,7 +114,6 @@ public sealed class BR0001ConvertFromSnakeCaseToPascalCaseRefactor : CodeRefacto
         string identifier,
         CancellationToken cancellationToken) {
         var pascalCaseName = ToPascalCase(identifier);
-
         var root = await document.GetSyntaxRootAsync(cancellationToken) ?? throw new InvalidOperationException(Cgsr);
         var newEnumMember = enumMember.WithIdentifier(SyntaxFactory.Identifier(pascalCaseName));
         var newRoot = root.ReplaceNode(enumMember, newEnumMember);
@@ -134,7 +127,6 @@ public sealed class BR0001ConvertFromSnakeCaseToPascalCaseRefactor : CodeRefacto
         string identifier,
         CancellationToken cancellationToken) {
         var pascalCaseName = ToPascalCase(identifier);
-
         var root = await document.GetSyntaxRootAsync(cancellationToken) ?? throw new InvalidOperationException(Cgsr);
         var newDelegate = @delegate.WithIdentifier(SyntaxFactory.Identifier(pascalCaseName));
         var newRoot = root.ReplaceNode(@delegate, newDelegate);
@@ -144,7 +136,6 @@ public sealed class BR0001ConvertFromSnakeCaseToPascalCaseRefactor : CodeRefacto
 
     private static bool IsScreamingSnakeCase(string identifier) => ScreamingSnakeCaseRegex.IsMatch(identifier) && identifier.Contains("_");
 
-    private static string ToPascalCase(string screamingSnake)
-        => string.Concat(screamingSnake.Split(['_'], StringSplitOptions.RemoveEmptyEntries)
-            .Select(word => char.ToUpper(word[0]) + word.Substring(1).ToLower()));
+    private static string ToPascalCase(string screamingSnake) => string.Concat(screamingSnake.Split(['_'], StringSplitOptions.RemoveEmptyEntries)
+        .Select(word => char.ToUpper(word[0]) + word.Substring(1).ToLower()));
 }

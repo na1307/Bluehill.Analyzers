@@ -133,4 +133,7 @@
   <data name="BH0011CodeFixTitle" xml:space="preserve">
     <value>Use SequenceEqual</value>
   </data>
+  <data name="BR0001Refactortitle" xml:space="preserve">
+    <value>Convert to Pascal Case</value>
+  </data>
 </root>

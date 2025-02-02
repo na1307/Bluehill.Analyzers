@@ -1,0 +1,13 @@
+@page "/BH0012"
+
+<h1>BH0012: Field names should not conflict with primary constructor parameters</h1>
+
+<p>Field names should not conflict with primary constructor parameters.</p>
+
+<h2>Code with violation</h2>
+
+<CodeHighlight>
+    public class TestClass(int id) {
+        private readonly int id;
+    }
+</CodeHighlight>

@@ -104,6 +104,12 @@ dotnet_diagnostic.ide0038.severity = warning
 # Use 'is null' check
 dotnet_diagnostic.ide0041.severity = warning
 
+# Add readonly modifier
+dotnet_diagnostic.ide0044.severity = warning
+
+# Remove unused private member
+dotnet_diagnostic.ide0051.severity = warning
+
 # Remove unused parameter
 dotnet_diagnostic.ide0060.severity = warning
 
@@ -946,6 +952,9 @@ dotnet_diagnostic.rcs1093.severity = none
 # Add 'static' modifier to all partial class declarations
 dotnet_diagnostic.rcs1108.severity = none
 
+# Declare type inside namespace
+dotnet_diagnostic.rcs1110.severity = none
+
 # Remove redundant overriding member
 dotnet_diagnostic.rcs1132.severity = none
 
@@ -958,6 +967,9 @@ dotnet_diagnostic.rcs1161.severity = none
 # Unused parameter
 dotnet_diagnostic.rcs1163.severity = none
 
+# Make field read-only
+dotnet_diagnostic.rcs1169.severity = none
+
 # Convert comment to documentation comment
 dotnet_diagnostic.rcs1181.severity = none
 
@@ -967,11 +979,24 @@ dotnet_diagnostic.rcs1194.severity = none
 # Call extension method as instance method
 dotnet_diagnostic.rcs1196.severity = none
 
+# Remove unused member declaration
+dotnet_diagnostic.rcs1213.severity = none
+
 # Unused element in a documentation comment
 dotnet_diagnostic.rcs1228.severity = none
 
 # Use async/await when necessary
 dotnet_diagnostic.rcs1229.severity = none
+
+### Sonar ###
+
+## Nones ##
+
+# Unused private types or members should be removed
+dotnet_diagnostic.s1144.severity = none
+
+# Types should be defined in named namespaces
+dotnet_diagnostic.s3903.severity = none
 
 ### StyleCop ###
 

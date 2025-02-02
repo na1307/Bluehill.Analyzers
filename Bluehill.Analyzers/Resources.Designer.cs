@@ -356,5 +356,32 @@ namespace Bluehill.Analyzers {
                 return ResourceManager.GetString("BH0011AnalyzerTitle", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Field names should not conflict with primary constructor parameters.과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string BH0012AnalyzerDescription {
+            get {
+                return ResourceManager.GetString("BH0012AnalyzerDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   The name &apos;{0}&apos; conflicts one of the primary constructor parameters과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string BH0012AnalyzerMessageFormat {
+            get {
+                return ResourceManager.GetString("BH0012AnalyzerMessageFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Field names should not conflict with primary constructor parameters과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string BH0012AnalyzerTitle {
+            get {
+                return ResourceManager.GetString("BH0012AnalyzerTitle", resourceCulture);
+            }
+        }
     }
 }

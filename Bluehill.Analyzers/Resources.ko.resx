@@ -222,4 +222,13 @@
   <data name="BH0011AnalyzerTitle" xml:space="preserve">
     <value>Span과 비상수를 비교할 때 SequenceEqual 사용</value>
   </data>
+  <data name="BH0012AnalyzerDescription" xml:space="preserve">
+    <value>필드 이름은 주 생성자 매개변수와 충돌하지 말아야 합니다.</value>
+  </data>
+  <data name="BH0012AnalyzerMessageFormat" xml:space="preserve">
+    <value>'{0}' 이름은 기본 생성자 매개변수 중 하나와 충돌합니다</value>
+  </data>
+  <data name="BH0012AnalyzerTitle" xml:space="preserve">
+    <value>필드 이름은 주 생성자 매개변수와 충돌하지 말아야 함</value>
+  </data>
 </root>

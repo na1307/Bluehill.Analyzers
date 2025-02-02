@@ -222,4 +222,13 @@
   <data name="BH0011AnalyzerTitle" xml:space="preserve">
     <value>Use SequenceEqual when comparing Span and a non-constant</value>
   </data>
+  <data name="BH0012AnalyzerDescription" xml:space="preserve">
+    <value>Field names should not conflict with primary constructor parameters.</value>
+  </data>
+  <data name="BH0012AnalyzerMessageFormat" xml:space="preserve">
+    <value>The name '{0}' conflicts one of the primary constructor parameters</value>
+  </data>
+  <data name="BH0012AnalyzerTitle" xml:space="preserve">
+    <value>Field names should not conflict with primary constructor parameters</value>
+  </data>
 </root>

@@ -46,10 +46,7 @@ public sealed class BR0001ConvertFromSnakeCaseToPascalCaseRefactor : CodeRefacto
         }
     }
 
-    private static void HandleConstant(
-        CodeRefactoringContext context,
-        Document document,
-        VariableDeclaratorSyntax variable) {
+    private static void HandleConstant(CodeRefactoringContext context, Document document, VariableDeclaratorSyntax variable) {
         var identifier = variable.Identifier.Text;
 
         if (IsScreamingSnakeCase(identifier)) {
@@ -58,10 +55,7 @@ public sealed class BR0001ConvertFromSnakeCaseToPascalCaseRefactor : CodeRefacto
         }
     }
 
-    private static void HandleEnumMember(
-        CodeRefactoringContext context,
-        Document document,
-        EnumMemberDeclarationSyntax enumMember) {
+    private static void HandleEnumMember(CodeRefactoringContext context, Document document, EnumMemberDeclarationSyntax enumMember) {
         var identifier = enumMember.Identifier.Text;
 
         if (IsScreamingSnakeCase(identifier)) {
@@ -70,10 +64,7 @@ public sealed class BR0001ConvertFromSnakeCaseToPascalCaseRefactor : CodeRefacto
         }
     }
 
-    private static void HandleDelegate(
-        CodeRefactoringContext context,
-        Document document,
-        DelegateDeclarationSyntax @delegate) {
+    private static void HandleDelegate(CodeRefactoringContext context, Document document, DelegateDeclarationSyntax @delegate) {
         var identifier = @delegate.Identifier.Text;
 
         if (IsScreamingSnakeCase(identifier)) {

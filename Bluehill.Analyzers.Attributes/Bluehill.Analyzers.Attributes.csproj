@@ -10,12 +10,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Using Remove="System.Linq" Condition="'$(TargetFrameworkIdentifier)' == '.NETFramework' and $([MSBuild]::VersionLessThan($(TargetFrameworkVersion), '3.5'))" />
-    <Using Remove="System.Threading.Tasks" Condition="'$(TargetFrameworkIdentifier)' == '.NETFramework' and $([MSBuild]::VersionLessThan($(TargetFrameworkVersion), '4.0'))" />
-  </ItemGroup>
-  <ItemGroup>
-    <AssemblyAttribute Include="System.CLSCompliantAttribute">
-      <_Parameter1>true</_Parameter1>
-    </AssemblyAttribute>
+    <PackageReference Include="Bluehill.Imports">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
   </ItemGroup>
 </Project>

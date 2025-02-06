@@ -1,13 +1,5 @@
 <Project>
   <PropertyGroup>
-    <LangVersion>latest</LangVersion>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-    <WarningsAsErrors>Nullable</WarningsAsErrors>
-    <ProduceReferenceAssembly>false</ProduceReferenceAssembly>
-    <Authors>na1307</Authors>
-    <Company>Bluehill</Company>
-    <Copyright>Copyright © Bluehill 2025</Copyright>
     <Product>Bluehill.Analyzers</Product>
     <PackageProjectUrl>https://na1307.github.io/Bluehill.Analyzers</PackageProjectUrl>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
@@ -16,11 +8,7 @@
     <AssemblyVersion>1</AssemblyVersion>
     <FileVersion>1.6.0</FileVersion>
     <Version>1.6</Version>
-    <IncludeSourceRevisionInInformationalVersion>false</IncludeSourceRevisionInInformationalVersion>
     <NoWarn>$(NoWarn);RS2008;SA1600</NoWarn>
-    <EnforceCodeStyleInBuild>True</EnforceCodeStyleInBuild>
-    <EnableNETAnalyzers>True</EnableNETAnalyzers>
-    <AnalysisLevel>latest</AnalysisLevel>
   </PropertyGroup>
   <PropertyGroup Condition="'$(GITHUB_ACTIONS)' == 'true'">
     <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>

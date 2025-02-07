@@ -12,6 +12,7 @@
     <PackageId>*$(MSBuildProjectFile)*</PackageId>
   </PropertyGroup>
   <ItemGroup>
+    <Using Include="Bluehill.Analyzers.Utils" Static="true" />
     <Using Include="Microsoft.CodeAnalysis" />
     <Using Include="Microsoft.CodeAnalysis.CSharp" />
     <Using Include="Microsoft.CodeAnalysis.CSharp.Syntax" />

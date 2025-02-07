@@ -5,9 +5,6 @@ namespace Bluehill.Analyzers;
 
 [Generator]
 public sealed class EnumExtensionsGenerator : IIncrementalGenerator {
-    private static readonly SymbolDisplayFormat FqnFormat
-        = new(typeQualificationStyle: SymbolDisplayTypeQualificationStyle.NameAndContainingTypesAndNamespaces);
-
     public void Initialize(IncrementalGeneratorInitializationContext context) {
         var values = context.SyntaxProvider.ForAttributeWithMetadataName("Bluehill.EnumExtensionsAttribute",
             static (sn, _) => sn is EnumDeclarationSyntax,
@@ -26,7 +23,7 @@ public sealed class EnumExtensionsGenerator : IIncrementalGenerator {
             return;
         }
 
-        var typeName = @namespace is not null ? fqnName.Substring($"{@namespace}.".Length) : fqnName;
+        var typeName = GetTypeName(fqnName, @namespace);
         var tnArray = typeName.Split('.');
         StringBuilder sb = new();
 
@@ -36,7 +33,7 @@ public sealed class EnumExtensionsGenerator : IIncrementalGenerator {
             sb.Append("namespace ").Append(@namespace).AppendLine(";").AppendLine();
         }
 
-        sb.Append(accessibilityKeyword).Append(" static class ").Append(typeName.Replace('.', '_')).AppendLine("Extensions {")
+        sb.Append(accessibilityKeyword).Append(" static class ").Append(GetEscapedTypeName(typeName)).AppendLine("Extensions {")
             .Append("    ").Append(accessibilityKeyword).Append(" static string ToStringFast(this ").Append(typeName).AppendLine(" ev) => ev switch {");
 
         foreach (var member in members) {
@@ -70,28 +67,6 @@ public sealed class EnumExtensionsGenerator : IIncrementalGenerator {
     private static EnumInfo GetEnumInfo(INamedTypeSymbol enumSymbol)
         => new(enumSymbol.ToDisplayString(FqnFormat), enumSymbol.ContainingNamespace?.MetadataName, GetAccessibility(enumSymbol),
             enumSymbol.HasAttribute(MetadataName.Parse("System.FlagsAttribute")), Array.AsReadOnly(enumSymbol.MemberNames.ToArray()));
-
-    private static Accessibility GetAccessibility(ISymbol symbol) {
-        while (true) {
-            var ab = symbol.DeclaredAccessibility;
-
-            if (ab is not (Accessibility.Public or Accessibility.Internal)) {
-                return Accessibility.NotApplicable;
-            }
-
-            if (ab is Accessibility.Internal) {
-                return Accessibility.Internal;
-            }
-
-            var cs = symbol.ContainingSymbol;
-
-            if (cs is INamespaceSymbol) {
-                return Accessibility.Public;
-            }
-
-            symbol = cs;
-        }
-    }
 
     private static string GetAccessibilityKeyword(Accessibility accessibility) => accessibility switch {
         Accessibility.Public => "public",

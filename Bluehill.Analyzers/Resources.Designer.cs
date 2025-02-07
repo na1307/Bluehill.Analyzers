@@ -410,5 +410,59 @@ namespace Bluehill.Analyzers {
                 return ResourceManager.GetString("BH0013AnalyzerTitle", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   This enumeration has extension methods ToStringFast() or HasFlagFast(). For performance and AOT compatibility, you should use those extension methods instead.과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string BH0014AnalyzerDescription {
+            get {
+                return ResourceManager.GetString("BH0014AnalyzerDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Use &apos;{0}&apos; method과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string BH0014AnalyzerMessageFormat {
+            get {
+                return ResourceManager.GetString("BH0014AnalyzerMessageFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Use ToStringFast() or HasFlagFast()과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string BH0014AnalyzerTitle {
+            get {
+                return ResourceManager.GetString("BH0014AnalyzerTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   This enumeration does not have the Bluehill.EnumExtensionsAttribute, but calls the ToString() or HasFlag() methods. For performance and AOT compatibility, you should apply the Bluehill.EnumExtensionsAttribute and use the ToStringFast() or HasFlagFast() extension methods instead.과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string BH0015AnalyzerDescription {
+            get {
+                return ResourceManager.GetString("BH0015AnalyzerDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Apply the Bluehill.EnumExtensionsAttribute to the enumeration and use &apos;{0}&apos; method과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string BH0015AnalyzerMessageFormat {
+            get {
+                return ResourceManager.GetString("BH0015AnalyzerMessageFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Apply the Bluehill.EnumExtensionsAttribute to the enumeration and use ToStringFast() or HasFlagFast()과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string BH0015AnalyzerTitle {
+            get {
+                return ResourceManager.GetString("BH0015AnalyzerTitle", resourceCulture);
+            }
+        }
     }
 }

@@ -240,4 +240,22 @@
   <data name="BH0013AnalyzerTitle" xml:space="preserve">
     <value>람다를 정적으로 만들 수 있음</value>
   </data>
+  <data name="BH0014AnalyzerDescription" xml:space="preserve">
+    <value>이 열거형에는 ToStringFast() 또는 HasFlagFast() 확장 메서드가 있습니다. 성능 및 AOT 호환성을 위해서 해당 확장 메서드를 대신 사용해야 합니다.</value>
+  </data>
+  <data name="BH0014AnalyzerMessageFormat" xml:space="preserve">
+    <value>'{0}' 메서드 사용</value>
+  </data>
+  <data name="BH0014AnalyzerTitle" xml:space="preserve">
+    <value>ToStringFast() 또는 HasFlagFast() 사용</value>
+  </data>
+  <data name="BH0015AnalyzerDescription" xml:space="preserve">
+    <value>이 열거형에는 Bluehill.EnumExtensionsAttribute가 없지만 ToString() 또는 HasFlag() 메서드를 호출합니다. 성능 및 AOT 호환성을 위해서 Bluehill.EnumExtensionsAttribute를 적용하고 ToStringFast() 또는 HasFlagFast() 확장 메서드를 대신 사용해야 합니다.</value>
+  </data>
+  <data name="BH0015AnalyzerMessageFormat" xml:space="preserve">
+    <value>열거형에 Bluehill.EnumExtensionsAttribute를 적용하고 '{0}' 메서드 사용</value>
+  </data>
+  <data name="BH0015AnalyzerTitle" xml:space="preserve">
+    <value>열거형에 Bluehill.EnumExtensionsAttribute를 적용하고 ToStringFast() 또는 HasFlagFast() 사용</value>
+  </data>
 </root>

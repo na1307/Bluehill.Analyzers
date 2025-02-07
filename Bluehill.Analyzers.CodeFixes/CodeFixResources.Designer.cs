@@ -106,6 +106,15 @@ namespace Bluehill.Analyzers {
         }
         
         /// <summary>
+        ///   Make static과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string BH0013CodeFixTitle {
+            get {
+                return ResourceManager.GetString("BH0013CodeFixTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Convert to Pascal Case과(와) 유사한 지역화된 문자열을 찾습니다.
         /// </summary>
         internal static string BR0001Refactortitle {

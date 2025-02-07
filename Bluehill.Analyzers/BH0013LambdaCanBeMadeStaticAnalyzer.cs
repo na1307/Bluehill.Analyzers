@@ -27,7 +27,12 @@ public sealed class BH0013LambdaCanBeMadeStaticAnalyzer : BHAnalyzer {
         var lambda = (LambdaExpressionSyntax)context.Node;
         var model = context.SemanticModel;
         var token = context.CancellationToken;
-        var lambdaSymbol = model.GetSymbol(lambda, token);
+        var lambdaSymbol = model.GetSymbol(lambda, token)!;
+
+        if (lambdaSymbol.IsStatic) {
+            return;
+        }
+
         var operations = lambda.Body.DescendantNodes().Select(node => model.GetOperation(node, token)).ToArray();
 
         var hasInstanceReference = operations.OfType<IInstanceReferenceOperation>().Any()

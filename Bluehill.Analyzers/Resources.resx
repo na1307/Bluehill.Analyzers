@@ -231,4 +231,13 @@
   <data name="BH0012AnalyzerTitle" xml:space="preserve">
     <value>Field names should not conflict with primary constructor parameters</value>
   </data>
+  <data name="BH0013AnalyzerDescription" xml:space="preserve">
+    <value>Can make this lambda static.</value>
+  </data>
+  <data name="BH0013AnalyzerMessageFormat" xml:space="preserve">
+    <value>Lambda can be made static</value>
+  </data>
+  <data name="BH0013AnalyzerTitle" xml:space="preserve">
+    <value>A lambda can be made static</value>
+  </data>
 </root>

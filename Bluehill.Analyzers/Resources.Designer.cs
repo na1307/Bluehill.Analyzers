@@ -383,5 +383,32 @@ namespace Bluehill.Analyzers {
                 return ResourceManager.GetString("BH0012AnalyzerTitle", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Can make this lambda static.과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string BH0013AnalyzerDescription {
+            get {
+                return ResourceManager.GetString("BH0013AnalyzerDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Lambda can be made static과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string BH0013AnalyzerMessageFormat {
+            get {
+                return ResourceManager.GetString("BH0013AnalyzerMessageFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   A lambda can be made static과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string BH0013AnalyzerTitle {
+            get {
+                return ResourceManager.GetString("BH0013AnalyzerTitle", resourceCulture);
+            }
+        }
     }
 }

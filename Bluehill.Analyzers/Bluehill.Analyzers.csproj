@@ -17,6 +17,7 @@
     <Using Include="Microsoft.CodeAnalysis.CSharp.Syntax" />
     <Using Include="Microsoft.CodeAnalysis.Diagnostics" />
     <Using Include="Microsoft.CodeAnalysis.Operations" />
+    <Using Include="Microsoft.CodeAnalysis.SymbolEqualityComparer" Alias="SEC" />
     <Using Include="Roslynator" />
     <Using Include="System.Collections.Immutable" />
   </ItemGroup>

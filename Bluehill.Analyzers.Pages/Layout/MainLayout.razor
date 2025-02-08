@@ -1,4 +1,5 @@
 ﻿@using Bluehill.Blazor.Layout
 @inherits LayoutComponentBase
 
-<TopRowBluehillLayout HeadLinks="@([new("Home", "."), new("Rules", "rules"), new("Refactorings", "refactorings")])" Body="@Body"/>
+@* ReSharper disable ArrangeObjectCreationWhenTypeNotEvident *@
+<TopRowBluehillLayout HeadLinks="@([new("Home", "."), new("Rules", "rules"), new("Refactorings", "refactorings"),new("Source Generators", "generators")])" Body="@Body" />

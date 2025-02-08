@@ -34,7 +34,7 @@ public sealed class EnumExtensionsGenerator : IIncrementalGenerator {
         }
 
         sb.Append(accessibilityKeyword).Append(" static class ").Append(GetEscapedTypeName(typeName)).AppendLine("Extensions {")
-            .Append("    ").Append(accessibilityKeyword).Append(" static string ToStringFast(this ").Append(typeName).AppendLine(" ev) => ev switch {");
+            .Append("    ").Append(accessibilityKeyword).Append(" static string ToStringFast(this ").Append(typeName).AppendLine(" value) => value switch {");
 
         foreach (var member in members) {
             sb.Append("        ");
@@ -52,7 +52,7 @@ public sealed class EnumExtensionsGenerator : IIncrementalGenerator {
             sb.Append(member).AppendLine("),");
         }
 
-        sb.AppendLine("        _ => ev.ToString()").AppendLine("    };");
+        sb.AppendLine("        _ => value.ToString()").AppendLine("    };");
 
         if (isFlags) {
             sb.AppendLine().Append("    ").AppendLine("[System.Runtime.CompilerServices.MethodImplAttribute(256)]").Append("    ").Append(accessibilityKeyword).Append(" static bool HasFlagFast(this ").Append(typeName).Append(" value, ")

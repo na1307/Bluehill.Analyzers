@@ -22,11 +22,6 @@
 <h2>Code with violation</h2>
 
 <CodeHighlight>
-    using System;
-    using System.Xml;
-    using System.Xml.Schema;
-    using System.Xml.Serialization;
-
     public class Class1 : IXmlSerializable {
         public XmlSchema? GetSchema() => new();
         public void ReadXml(XmlReader reader) => throw new NotImplementedException();
@@ -39,11 +34,6 @@
 <h2>Fixed Code</h2>
 
 <CodeHighlight>
-    using System;
-    using System.Xml;
-    using System.Xml.Schema;
-    using System.Xml.Serialization;
-
     public class Class1 : IXmlSerializable {
         XmlSchema? IXmlSerializable.GetSchema() => null;
         public void ReadXml(XmlReader reader) => throw new NotImplementedException();

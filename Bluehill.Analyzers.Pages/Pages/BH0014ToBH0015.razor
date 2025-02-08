@@ -1,0 +1,52 @@
+@page "/BH0014ToBH0015"
+@page "/BH0014"
+@page "/BH0015"
+
+<h1>BH0014, BH0015: Use ToStringFast() or HasFlagFast()</h1>
+
+<p>This analyzer includes the <code>Bluehill.EnumExtensionsAttribute</code> attribute and a corresponding source generator for generating ToStringFast and HasFlagFast extension methods for enumerations. For performance and AOT compatibility, should use ToStringFast() or HasFlagFast() extension methods instead. See the <NavLink href="/enumextensionsgenerator">EnumExtensionsGenerator</NavLink> page for more details.</p>
+
+<h2>BH0014: Use ToStringFast() or HasFlagFast()</h2>
+
+<p>This rule is reported if there is already a ToStringFast() or HasFlagFast() extension method for that enumeration.</p>
+
+<h2>BH0015: Apply the Bluehill.EnumExtensionsAttribute to the enumeration and use ToStringFast() or HasFlagFast()</h2>
+
+<p>This rule is reported when the enumeration does not have the Bluehill.EnumExtensionsAttribute and the ToString() or HasFlag() method is called. Note: This is not reported if the project being called is different from the project of the enumeration (if the enumeration is in an external assembly). It is also not reported if the enumeration is a nested type and is not public or internal accessible.</p>
+
+<h2>Code with violation</h2>
+
+<CodeHighlight>
+    public enum TestEnum {
+        A,
+        B,
+        C
+    }
+
+    public class TestClass {
+        public void TestMethod() {
+            var e = TestEnum.A;
+            var str = e.ToString();
+            var hasFlag = e.HasFlag(TestEnum.B);
+        }
+    }
+</CodeHighlight>
+
+<h2>Fixed Code</h2>
+
+<CodeHighlight>
+    [Bluehill.EnumExtensions]
+    public enum TestEnum {
+        A,
+        B,
+        C
+    }
+
+    public class TestClass {
+        public void TestMethod() {
+            var e = TestEnum.A;
+            var str = e.ToStringFast();
+            var hasFlag = e.HasFlagFast(TestEnum.B);
+        }
+    }
+</CodeHighlight>

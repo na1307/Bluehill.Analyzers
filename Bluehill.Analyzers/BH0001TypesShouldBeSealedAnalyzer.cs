@@ -27,7 +27,7 @@ public sealed class BH0001TypesShouldBeSealedAnalyzer : BHAnalyzer {
         // Get all named types and their base types
         var typeAndBase = context.Compilation.GetSymbolsWithName(_ => true, SymbolFilter.Type, context.CancellationToken)
             .Cast<INamedTypeSymbol>().Select(symbol => new KeyValuePair<INamedTypeSymbol, INamedTypeSymbol?>(symbol, symbol.BaseType))
-            .ToImmutableDictionary(SymbolEqualityComparer.Default);
+            .ToImmutableDictionary(SEC.Default);
 
         // Register symbol action
         context.RegisterSymbolAction(ac => SymbolAction(ac, typeAndBase), SymbolKind.NamedType);
@@ -75,7 +75,7 @@ public sealed class BH0001TypesShouldBeSealedAnalyzer : BHAnalyzer {
         }
 
         // Check is there are derived classes
-        if (typeAndBase.Any(ts => SymbolEqualityComparer.Default.Equals(namedTypeSymbol, ts.Value))) {
+        if (typeAndBase.Any(ts => SEC.Default.Equals(namedTypeSymbol, ts.Value))) {
             return;
         }
 

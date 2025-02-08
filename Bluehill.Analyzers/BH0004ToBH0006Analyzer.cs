@@ -87,11 +87,12 @@ public sealed class BH0004ToBH0006Analyzer : BHAnalyzer {
         }
 
         // Report BH0004 if the method does not explicitly implement IXmlSerializable.GetSchema
-        if (!methodSymbol.ExplicitInterfaceImplementations.Any(i => SymbolEqualityComparer.Default.Equals(i, ixsgs))) {
+        if (!methodSymbol.ExplicitInterfaceImplementations.Any(i => SEC.Default.Equals(i, ixsgs))) {
             context.ReportDiagnostic(RuleBH0004, methodSymbol.Locations[0]);
         }
 
         // Report BH0005 if the method is abstract or its return value is not null
+        // TODO: Separate rules for reporting when a method is abstract and when the return value is not null
         if (methodSymbol.IsAbstract || IsReturnValueNotNull(methodDeclaration, model)) {
             var location = methodDeclaration.DescendantNodes()
                 .FirstOrDefault(n => n is BlockSyntax or ArrowExpressionClauseSyntax)?.GetLocation() ?? methodDeclaration.GetLocation();
@@ -104,7 +105,7 @@ public sealed class BH0004ToBH0006Analyzer : BHAnalyzer {
         var operation = (IInvocationOperation)context.Operation;
         var targetMethod = operation.TargetMethod;
 
-        if (SymbolEqualityComparer.Default.Equals(targetMethod, ixsgs) || IsGetSchema(targetMethod, ixs)) {
+        if (SEC.Default.Equals(targetMethod, ixsgs) || IsGetSchema(targetMethod, ixs)) {
             context.ReportDiagnostic(Diagnostic.Create(RuleBH0006, operation.Syntax.GetLocation()));
         }
     }

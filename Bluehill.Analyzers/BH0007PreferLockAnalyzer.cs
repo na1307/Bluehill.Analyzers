@@ -41,7 +41,7 @@ public sealed class BH0007PreferLockAnalyzer : BHAnalyzer {
         var lockedType = lockOperation.LockedValue.Type!;
 
         // Whether the locked type is System.Object
-        if (!SymbolEqualityComparer.Default.Equals(lockedType, objectType)) {
+        if (!SEC.Default.Equals(lockedType, objectType)) {
             return;
         }
 

@@ -4,10 +4,6 @@ on:
   pull_request:
     branches:
       - dependabot*
-    types:
-      - opened
-      - synchronize
-      - reopened
 
 jobs:
   auto_approve:

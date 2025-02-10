@@ -36,10 +36,8 @@ jobs:
           additional-properties: -d:sonar.cs.vscoveragexml.reportsPaths=coverage.xml
           build-commands: |
             dotnet restore
-            dotnet build --no-restore --no-incremental
+            dotnet jb inspectcode Bluehill.Analyzers.sln --swea -e=warning -f=sarif -o=rsharp.json
             dotnet coverage collect 'dotnet test --no-build --verbosity normal' -f xml  -o 'coverage.xml'
-      - name: ReSharper InspectCode
-        run: dotnet jb inspectcode Bluehill.Analyzers.sln --swea -e=warning -f=sarif -o=rsharp.json
       - name: Upload SARIF file
         uses: github/codeql-action/upload-sarif@v3
         with:

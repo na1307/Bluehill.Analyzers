@@ -15,13 +15,6 @@
         "dotnet-coverage"
       ],
       "rollForward": false
-    },
-    "jetbrains.resharper.globaltools": {
-      "version": "2024.3.5",
-      "commands": [
-        "jb"
-      ],
-      "rollForward": false
     }
   }
 }

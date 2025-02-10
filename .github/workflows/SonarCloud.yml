@@ -13,6 +13,8 @@ jobs:
     name: SonarCloud
     runs-on: ubuntu-latest
     if: github.event_name == 'push' || github.event.pull_request.head.repo.full_name == github.repository
+    permissions:
+      security-events: write
     env:
       NUGET_PACKAGES: ${{ github.workspace }}/.nuget/packages
     steps:

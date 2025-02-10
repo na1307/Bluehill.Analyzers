@@ -1338,6 +1338,9 @@ dotnet_diagnostic.sa1400.severity = none
 # Fields should be private
 dotnet_diagnostic.sa1401.severity = none
 
+# Arithmetic expressions should declare precedence
+dotnet_diagnostic.sa1407.severity = none
+
 # Attribute constructor should not use unnecessary parenthesis
 dotnet_diagnostic.sa1411.severity = none
 

@@ -12,13 +12,8 @@ jobs:
   lockfile:
     name: Update lock files
     runs-on: ubuntu-latest
-    #if: github.actor == 'dependabot[bot]' && startsWith( github.ref_name, 'dependabot_dotnet_sdk_' )
+    if: github.actor == 'dependabot[bot]' && startsWith( github.head_ref, 'dependabot_dotnet_sdk_' )
     steps:
-      - name: C8
-        run: |
-          echo "${{ github.actor }}"
-          echo "${{ github.head_ref }}"
-          exit 1
       - uses: actions/checkout@v4
       - name: Setup .NET
         uses: actions/setup-dotnet@v4

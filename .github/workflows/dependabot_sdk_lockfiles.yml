@@ -17,7 +17,7 @@ jobs:
       - name: C8
         run: |
           echo "${{ github.actor }}"
-          echo "${{ github.ref_name }}"
+          echo "${{ github.head_ref }}"
           exit 1
       - uses: actions/checkout@v4
       - name: Setup .NET

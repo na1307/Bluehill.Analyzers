@@ -2,22 +2,12 @@
 
 [ExportCodeFixProvider(LanguageNames.CSharp, Name = nameof(BH0013CodeFixProvider))]
 [Shared]
-public sealed class BH0013CodeFixProvider : CodeFixProvider {
+public sealed class BH0013CodeFixProvider : BHCodeFixProvider<LambdaExpressionSyntax> {
     public override ImmutableArray<string> FixableDiagnosticIds => [BH0013LambdaCanBeMadeStaticAnalyzer.DiagnosticId];
 
-    public override FixAllProvider GetFixAllProvider() => WellKnownFixAllProviders.BatchFixer;
-
-    public override async Task RegisterCodeFixesAsync(CodeFixContext context) {
-        var diagnostic = context.Diagnostics.Single(d => d.Id == BH0013LambdaCanBeMadeStaticAnalyzer.DiagnosticId);
-        var diagnosticSpan = diagnostic.Location.SourceSpan;
-        var root = await context.Document.GetSyntaxRootAsync(context.CancellationToken).ConfigureAwait(false);
-        var node = (LambdaExpressionSyntax)root!.FindToken(diagnosticSpan.Start).Parent!.Parent!;
-
-        // Register a code action that will invoke the fix.
-        context.RegisterCodeFix(CodeAction.Create(CodeFixResources.BH0013CodeFixTitle,
-            _ => MakeLambdaStatic(context.Document, node, root),
-            nameof(CodeFixResources.BH0013CodeFixTitle)), diagnostic);
-    }
+    protected override CodeAction CreateCodeAction(Document document, LambdaExpressionSyntax declaration, SyntaxNode root)
+        => CodeAction.Create(CodeFixResources.BH0013CodeFixTitle, _ => MakeLambdaStatic(document, declaration, root),
+            nameof(CodeFixResources.BH0013CodeFixTitle));
 
     private static Task<Document> MakeLambdaStatic(Document document, LambdaExpressionSyntax lambda, SyntaxNode root) {
         var newModifier = lambda.Modifiers.Add(SyntaxFactory.Token(SyntaxKind.StaticKeyword));

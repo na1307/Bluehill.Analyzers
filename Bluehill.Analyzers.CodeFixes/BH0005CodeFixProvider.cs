@@ -2,24 +2,15 @@
 
 [ExportCodeFixProvider(LanguageNames.CSharp, Name = nameof(BH0005CodeFixProvider))]
 [Shared]
-public sealed class BH0005CodeFixProvider : CodeFixProvider {
+public sealed class BH0005CodeFixProvider : BHCodeFixProvider<CSharpSyntaxNode> {
     public override ImmutableArray<string> FixableDiagnosticIds => [BH0004ToBH0006Analyzer.DiagnosticIdBH0005];
 
-    public override FixAllProvider GetFixAllProvider() => WellKnownFixAllProviders.BatchFixer;
+    protected override CodeAction CreateCodeAction(Document document, CSharpSyntaxNode declaration, SyntaxNode root)
+        => CodeAction.Create(CodeFixResources.BH0005CodeFixTitle, _ => ProcessAsync(document, declaration, root),
+            nameof(CodeFixResources.BH0005CodeFixTitle));
 
-    public override async Task RegisterCodeFixesAsync(CodeFixContext context) {
-        var diagnostic = context.Diagnostics.Single(d => d.Id == BH0004ToBH0006Analyzer.DiagnosticIdBH0005);
-        var diagnosticSpan = diagnostic.Location.SourceSpan;
-        var root = await context.Document.GetSyntaxRootAsync(context.CancellationToken).ConfigureAwait(false);
-        var node = root!.FindToken(diagnosticSpan.Start).Parent!;
-        var action = CodeAction.Create(CodeFixResources.BH0005CodeFixTitle, _ => ProcessAsync(context.Document, node, root), nameof(CodeFixResources.BH0005CodeFixTitle));
-
-        // Register a code action that will invoke the fix.
-        context.RegisterCodeFix(action, diagnostic);
-    }
-
-    private static Task<Document> ProcessAsync(Document document, SyntaxNode node, SyntaxNode root)
-        => Task.FromResult(document.WithSyntaxRoot(node switch {
+    private static Task<Document> ProcessAsync(Document document, SyntaxNode declaration, SyntaxNode root)
+        => Task.FromResult(document.WithSyntaxRoot(declaration switch {
             MethodDeclarationSyntax methodDeclaration => ProcessAbstract(methodDeclaration, root),
             BlockSyntax block => ProcessBlock(block, root),
             ArrowExpressionClauseSyntax arrow => ProcessArrow(arrow, root),

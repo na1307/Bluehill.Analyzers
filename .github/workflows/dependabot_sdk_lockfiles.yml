@@ -22,6 +22,7 @@ jobs:
       - name: Commit and push changes
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TARGET_BRANCH: ${{ github.head_ref }}
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
@@ -30,7 +31,7 @@ jobs:
           cmcode=$?
           set -e
           if [ $cmcode -eq 0 ]; then
-            git push
+            git push origin HEAD:$TARGET_BRANCH
           elif [ $cmcode -eq 1 ]; then
             echo "No changes to commit"
             exit 0

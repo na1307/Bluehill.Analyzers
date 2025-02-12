@@ -74,20 +74,20 @@
       },
       "Roslynator.Core": {
         "type": "Transitive",
-        "resolved": "4.12.11",
-        "contentHash": "9zEP5eGzAFMyyrzB6e1oqdmvMhQ0FGbcPRWlS+UJQMXPZ4RCHZOwqiZxUY3LAWCrFdTCGyb5GKfb5oLlnJjQfg==",
+        "resolved": "4.13.0",
+        "contentHash": "PsWTv4AMBez1KZKDRJdnbGyhwNfVOWROG2deMltFEWhWM2LdmjBsBkNyLKDrofoaIeZBQBwwGkZDFnxn0AfMMg==",
         "dependencies": {
           "Microsoft.CodeAnalysis.Common": "4.7.0"
         }
       },
       "Roslynator.Workspaces.Core": {
         "type": "Transitive",
-        "resolved": "4.12.11",
-        "contentHash": "+kawlBW6UU5DE8NOy0WPqgBYkW30NfyXSwhAI7LYxnFA4VMM+DBltcWlDkwojAwfR+Hl7Zorlgwn+gCt0gBAPw==",
+        "resolved": "4.13.0",
+        "contentHash": "SqcoApd2HksnfVFGLgmqDeLm6/N4COsjtKsd4ntCEjd0kchQCykfHpiRMaru4Xw0X2oMbmKVhrOQnJnrdXXkFg==",
         "dependencies": {
           "Microsoft.CodeAnalysis.Workspaces.Common": "4.7.0",
           "Microsoft.Extensions.FileSystemGlobbing": "8.0.0",
-          "Roslynator.Core": "4.12.11"
+          "Roslynator.Core": "4.13.0"
         }
       },
       "System.Buffers": {
@@ -219,14 +219,14 @@
       "*Bluehill.Analyzers.csproj*": {
         "type": "Project",
         "dependencies": {
-          "Roslynator.CSharp": "[4.12.11, )"
+          "Roslynator.CSharp": "[4.13.0, )"
         }
       },
       "bluehill.analyzers.codefixes": {
         "type": "Project",
         "dependencies": {
-          "*Bluehill.Analyzers.csproj*": "[1.6.0, )",
-          "Roslynator.CSharp.Workspaces": "[4.12.11, )"
+          "*Bluehill.Analyzers.csproj*": "[1.7.0, )",
+          "Roslynator.CSharp.Workspaces": "[4.13.0, )"
         }
       },
       "Microsoft.CodeAnalysis.Analyzers": {
@@ -280,23 +280,23 @@
       },
       "Roslynator.CSharp": {
         "type": "CentralTransitive",
-        "requested": "[4.12.11, )",
-        "resolved": "4.12.11",
-        "contentHash": "LHmbogexcFj8PEf4FnWQ+NKFMMxJ1mpMPV+FXbQDK5VTS5FIEmLIL2Cy9fzg0k7xgOa9ksTlgW1px8Em4eHZRQ==",
+        "requested": "[4.13.0, )",
+        "resolved": "4.13.0",
+        "contentHash": "9d0TcTJKK8JO4ht/02gLZAUgwbOc4AoiDN5UDwn8bEu19JMDChQEnTjbx17Mz9r6P6WBC1g0uCDxdhjRP7x7LQ==",
         "dependencies": {
           "Microsoft.CodeAnalysis.CSharp": "4.7.0",
-          "Roslynator.Core": "4.12.11"
+          "Roslynator.Core": "4.13.0"
         }
       },
       "Roslynator.CSharp.Workspaces": {
         "type": "CentralTransitive",
-        "requested": "[4.12.11, )",
-        "resolved": "4.12.11",
-        "contentHash": "nQ06HOl4ZXn2M02zwjUq7SWirjOLryB3b9Hyb//pUQW2r690wJcOEe13Q5XsgZi1pBaMrayfr+m/9ZGxX/YYLg==",
+        "requested": "[4.13.0, )",
+        "resolved": "4.13.0",
+        "contentHash": "m7T43L6cNXT6eosGsjYN7+b4S/6HB5AuvsGZufvza1TWq3YtwMnl1ICV/nugoCCUW4wxuKDHcBOyVA+bMLTj8A==",
         "dependencies": {
           "Microsoft.CodeAnalysis.CSharp.Workspaces": "4.7.0",
-          "Roslynator.CSharp": "4.12.11",
-          "Roslynator.Workspaces.Core": "4.12.11"
+          "Roslynator.CSharp": "4.13.0",
+          "Roslynator.Workspaces.Core": "4.13.0"
         }
       }
     }

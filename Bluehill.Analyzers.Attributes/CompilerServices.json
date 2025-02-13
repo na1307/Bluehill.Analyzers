@@ -1,0 +1,6 @@
+{
+  "NullableAttribute": true,
+  "NullableContextAttribute": true,
+  "RefSafetyRulesAttribute": true,
+  "ExperimentalAttribute": true
+}

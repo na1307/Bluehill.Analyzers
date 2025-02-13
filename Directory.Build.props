@@ -7,7 +7,7 @@
     <RepositoryUrl>https://github.com/na1307/Bluehill.Analyzers</RepositoryUrl>
     <AssemblyVersion>1</AssemblyVersion>
     <FileVersion>1.7.0</FileVersion>
-    <Version>1.7</Version>
+    <Version>1.7-alpha.0</Version>
     <NoWarn>$(NoWarn);RS2008;SA1600</NoWarn>
   </PropertyGroup>
   <PropertyGroup Condition="'$(GITHUB_ACTIONS)' == 'true'">

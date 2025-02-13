@@ -2,6 +2,12 @@
   "version": 2,
   "dependencies": {
     ".NETStandard,Version=v2.0": {
+      "Bluehill.CompilerServices.SourceGenerator": {
+        "type": "Direct",
+        "requested": "[1.3.0, )",
+        "resolved": "1.3.0",
+        "contentHash": "weuae9vWfNOm24ozA+AmI6hVsThMJwzZtmpeo3/9hDwr3QooY0g91i5TWDKol7Av+tLy8474J4XyQnvKu8t3gA=="
+      },
       "Bluehill.Imports": {
         "type": "Direct",
         "requested": "[1.0.14, )",

@@ -1,0 +1,7 @@
+{
+  "IsReadOnlyAttribute": true,
+  "IsExternalInit": true,
+  "NullableAttribute": true,
+  "NullableContextAttribute": true,
+  "RefSafetyRulesAttribute": true
+}

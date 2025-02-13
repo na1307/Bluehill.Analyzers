@@ -8,9 +8,9 @@ internal static class Utils {
     public static string GetTypeName(string fqnName, string? @namespace)
         => @namespace is not null ? fqnName.Substring($"{@namespace}.".Length) : fqnName;
 
-    public static string GetEscapedTypeName(string typeName) => typeName.Replace('.', '_');
+    public static string GetEscapedName(string name) => name.Replace('.', '_');
 
-    public static Accessibility GetAccessibility(ISymbol symbol) {
+    public static Accessibility GetTypeAccessibility(ISymbol symbol) {
         while (true) {
             var ab = symbol.DeclaredAccessibility;
 
@@ -30,5 +30,11 @@ internal static class Utils {
 
             symbol = cs;
         }
+    }
+
+    public static Accessibility GetMethodAccessibility(ISymbol symbol) {
+        var ab = symbol.DeclaredAccessibility;
+
+        return ab is Accessibility.Public or Accessibility.Internal or Accessibility.ProtectedOrInternal ? ab : Accessibility.NotApplicable;
     }
 }

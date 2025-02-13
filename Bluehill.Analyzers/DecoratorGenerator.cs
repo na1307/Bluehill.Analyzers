@@ -5,15 +5,16 @@ namespace Bluehill.Analyzers;
 
 [Generator]
 public sealed class DecoratorGenerator : IIncrementalGenerator {
-    private const string decoratorAttributeSource = """
-                                                    namespace System;
+    private const string EditorBrowsableNever = "[System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]";
 
-                                                    [AttributeUsage(AttributeTargets.Method)]
-                                                    #pragma warning disable 9113
-                                                    public sealed class DecoratorAttribute(string decoratorFQN) : Attribute;
-                                                    """;
+    private const string DecoratorMethodsSource = $"""
+                                            namespace Decorators;
 
-    private const string interceptsLocationAttributeSource = """
+                                            {EditorBrowsableNever}
+                                            public static partial class DecoratorMethods;
+                                            """;
+
+    private const string InterceptsLocationAttributeSource = """
                                                              namespace System.Runtime.CompilerServices {
                                                                  [AttributeUsage(AttributeTargets.Method, AllowMultiple = true)]
                                                                  #pragma warning disable 9113
@@ -21,112 +22,90 @@ public sealed class DecoratorGenerator : IIncrementalGenerator {
                                                              }
                                                              """;
 
-    private static readonly SymbolDisplayFormat fqnFormat = new(typeQualificationStyle: SymbolDisplayTypeQualificationStyle.NameAndContainingTypesAndNamespaces, memberOptions: SymbolDisplayMemberOptions.IncludeContainingType);
-
     public void Initialize(IncrementalGeneratorInitializationContext context) {
-        var compilationAndMethods = context.CompilationProvider.Combine(context.SyntaxProvider.ForAttributeWithMetadataName("System.DecoratorAttribute", (sn, t) => sn is MethodDeclarationSyntax, (c, t) => (MethodDeclarationSyntax)c.TargetNode).Collect());
+        var methods = context.SyntaxProvider.ForAttributeWithMetadataName("Bluehill.DecoratorAttribute", (n, _) => n is MethodDeclarationSyntax,
+            (c, _) => (IMethodSymbol)c.TargetSymbol).Collect();
 
-        context.RegisterSourceOutput(compilationAndMethods, execute);
-        context.RegisterPostInitializationOutput(context => context.AddSource("DecoratorAttribute.g.cs", SourceText.From(decoratorAttributeSource, Encoding.UTF8)));
+        context.RegisterSourceOutput(context.CompilationProvider.Combine(methods), Generate);
     }
 
-    private static void execute(SourceProductionContext context, (Compilation compilation, ImmutableArray<MethodDeclarationSyntax> methods) valueTuple) {
-        var compilation = valueTuple.compilation;
+    private static void Generate(SourceProductionContext context, (Compilation, ImmutableArray<IMethodSymbol>) valueTuple) {
+        var token = context.CancellationToken;
+        var (compilation, symbols) = valueTuple;
 
-        foreach (var method in valueTuple.methods) {
-            var model = compilation.GetSemanticModel(method.SyntaxTree);
-            var originalMethod = model.GetDeclaredSymbol(method) ?? throw new Exception("Original method couldn't be found!");
+        if (symbols.Any()) {
+            context.AddSource("DecoratorMethods.g.cs", SourceText.From(DecoratorMethodsSource, Encoding.UTF8));
+        }
 
-            if (originalMethod.TypeParameters.Any()) {
+        foreach (var symbol in symbols) {
+            if (symbol.Parameters.Any()) {
                 // Currently not supported
-                context.ReportDiagnostic(Diagnostic.Create(new DiagnosticDescriptor("DECORATOR002", "Placeholder", "Placeholder", "Usage", DiagnosticSeverity.Error, true), originalMethod.Locations[0]));
                 continue;
             }
 
-            if (!originalMethod.IsStatic) {
+            if (symbol.TypeParameters.Any()) {
                 // Also currently not supported
-                context.ReportDiagnostic(Diagnostic.Create(new DiagnosticDescriptor("DECORATOR002", "Placeholder", "Placeholder", "Usage", DiagnosticSeverity.Error, true), originalMethod.Locations[0]));
                 continue;
             }
 
-            StringBuilder sb = new(5120);
-
-            sb.AppendLine("namespace Decorators { internal sealed partial class DecoratorMethods {");
-
-            var attribute = method.AttributeLists.SelectMany(al => al.Attributes.Where(a => isDecorator(model, a, context.CancellationToken))).Single();
-            var ms = getMethod(compilation, model, attribute, context.CancellationToken);
-
-            if (ms is null) {
-                context.ReportDiagnostic(Diagnostic.Create(new DiagnosticDescriptor("DECORATOR001", "Placeholder", "Placeholder", "Usage", DiagnosticSeverity.Error, true), attribute.GetLocation()));
-
+            if (!symbol.IsStatic) {
+                // Also Also currently not supported
                 continue;
             }
 
-            if (originalMethod.IsStatic) {
-                foreach (var call in findMethodCalls(originalMethod, model, model.SyntaxTree.GetRoot(context.CancellationToken))) {
+            if (GetMethodAccessibility(symbol) is not Accessibility.Public) {
+                // Only public methods are supported
+                continue;
+            }
+
+            var decoratorName = symbol.GetAttribute(MetadataName.Parse("Bluehill.DecoratorAttribute"))?.ConstructorArguments[0].Value?.ToString();
+
+            if (decoratorName is null) {
+                // DecoratorAttribute is not applied or decorator name is not provided or invalid
+                continue;
+            }
+
+            var splitDecoratorName = decoratorName.Split('.');
+            var decoratorMethod = compilation.GetTypeByMetadataName(string.Join(".", splitDecoratorName.Take(splitDecoratorName.Length - 1)))?.GetMembers()
+                .OfType<IMethodSymbol>().FirstOrDefault(m => m.Name == splitDecoratorName[splitDecoratorName.Length - 1]);
+
+            if (decoratorMethod is null) {
+                // Decorator method not found
+                continue;
+            }
+
+            StringBuilder sb = new(1024);
+
+            sb.AppendLine("namespace Decorators {").AppendLine("    partial class DecoratorMethods {");
+
+            if (symbol.IsStatic) {
+                foreach (var model in compilation.SyntaxTrees.Select(t => compilation.GetSemanticModel(t))) {
+                    foreach (var invocation in model.SyntaxTree.GetRoot(token).DescendantNodes().OfType<InvocationExpressionSyntax>()) {
+                        if (model.GetSymbol(invocation) is IMethodSymbol method && SEC.Default.Equals(method, symbol)) {
 #pragma warning disable RSEXPERIMENTAL002 // 형식은 평가 목적으로 제공되며, 이후 업데이트에서 변경되거나 제거될 수 있습니다. 계속하려면 이 진단을 표시하지 않습니다.
-                    sb.AppendLine(model.GetInterceptableLocation(call, context.CancellationToken)!.GetInterceptsLocationAttributeSyntax());
+                            sb.Append("        ").AppendLine(model.GetInterceptableLocation(invocation, context.CancellationToken)!.GetInterceptsLocationAttributeSyntax());
 #pragma warning restore RSEXPERIMENTAL002 // 형식은 평가 목적으로 제공되며, 이후 업데이트에서 변경되거나 제거될 수 있습니다. 계속하려면 이 진단을 표시하지 않습니다.
+                        }
+                    }
                 }
 
-                sb.AppendLine(constructInterceptMethodSignature(originalMethod))
-                    .AppendLine("{")
-                    .AppendLine($"{ms.ToDisplayString(fqnFormat)}({originalMethod.ToDisplayString(fqnFormat)})();")
-                    .AppendLine("}");
+                sb.AppendLine($"        {EditorBrowsableNever}")
+                                .Append("        ").Append(ConstructInterceptMethodSignature(symbol)).AppendLine(" {")
+                                .Append("            ").AppendLine($"{decoratorMethod.ToDisplayString(FqnFormat)}({symbol.ToDisplayString(FqnFormat)})();")
+                                .AppendLine("        }");
             }
 
-            sb.AppendLine("}}")
-                .AppendLine(interceptsLocationAttributeSource);
+            sb.AppendLine("    }").AppendLine("}").AppendLine().AppendLine(InterceptsLocationAttributeSource);
 
-            context.AddSource($"{originalMethod.ToDisplayString(fqnFormat)}.g.cs", SourceText.From(sb.ToString(), Encoding.UTF8));
+            context.AddSource($"DecoratorMethods.{symbol.ToDisplayString(FqnFormat)}.g.cs", SourceText.From(sb.ToString(), Encoding.UTF8));
         }
+    }
 
-        static bool isDecorator(SemanticModel model, AttributeSyntax syntax, CancellationToken token) => model.GetSymbolInfo(syntax.Name, token).Symbol?.ToDisplayString(fqnFormat) == "System.DecoratorAttribute.DecoratorAttribute";
+    private static string ConstructInterceptMethodSignature(IMethodSymbol methodSymbol) {
+        // Get method name
+        var methodName = GetEscapedName(methodSymbol.ToDisplayString(FqnFormat)) + "Decorator";
 
-        static IMethodSymbol? getMethod(Compilation compilation, SemanticModel model, AttributeSyntax syntax, CancellationToken token) {
-            if (syntax.ArgumentList?.Arguments.Any() != true) {
-                throw new Exception("This attribute does not seem to be a DecoratorAttribute.");
-            }
-
-            var firstArgument = syntax.ArgumentList.Arguments[0];
-            var cValue = model.GetConstantValue(firstArgument.Expression, token);
-
-            if (!cValue.HasValue || cValue.Value is not string fqn) {
-                return null;
-            }
-
-            var components = fqn.Split('.');
-
-            if (components.Length < 2) {
-                return null;
-            }
-
-            return compilation.GetTypeByMetadataName(string.Join(".", components.Take(components.Length - 1)))?.GetMembers().OfType<IMethodSymbol>().FirstOrDefault(m => m.Name == components.Last());
-        }
-
-        static IEnumerable<InvocationExpressionSyntax> findMethodCalls(IMethodSymbol targetMethod, SemanticModel model, SyntaxNode root) {
-            // Filter the invocations by matching their resolved method symbol to the target symbol
-            foreach (var invocation in root.DescendantNodes().OfType<InvocationExpressionSyntax>()) {
-                if (model.GetSymbolInfo(invocation).Symbol is IMethodSymbol symbol && SymbolEqualityComparer.Default.Equals(symbol.OriginalDefinition, targetMethod.OriginalDefinition)) {
-                    yield return invocation;
-                }
-            }
-        }
-
-        static string constructInterceptMethodSignature(IMethodSymbol methodSymbol) {
-            // Get method name
-            var methodName = methodSymbol.Name + "Decorator";
-
-            // Handle generic type parameters
-            var typeParameters = methodSymbol.TypeParameters;
-            var genericSuffix = typeParameters.Length > 0 ? $"<{string.Join(", ", typeParameters.Select(tp => tp.Name))}>" : string.Empty;
-
-            // Get parameter list
-            var parameters = methodSymbol.Parameters;
-            var parameterList = string.Join(", ", parameters.Select(p => $"{p.Type.ToDisplayString()} {p.Name}"));
-
-            // Combine the pieces into a signature
-            return $"public {(methodSymbol.IsStatic ? "static " : string.Empty)}{methodSymbol.ReturnType.ToDisplayString()} {methodName}{genericSuffix}({parameterList})";
-        }
+        // Combine the pieces into a signature
+        return $"public static {methodSymbol.ReturnType.ToDisplayString()} {methodName}()";
     }
 }

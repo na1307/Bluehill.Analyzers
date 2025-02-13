@@ -7,7 +7,7 @@ namespace Bluehill.Analyzers;
 public sealed class EnumExtensionsGenerator : IIncrementalGenerator {
     public void Initialize(IncrementalGeneratorInitializationContext context) {
         var values = context.SyntaxProvider.ForAttributeWithMetadataName("Bluehill.EnumExtensionsAttribute",
-            static (sn, _) => sn is EnumDeclarationSyntax,
+            static (n, _) => n is EnumDeclarationSyntax,
             static (c, _) => GetEnumInfo((INamedTypeSymbol)c.TargetSymbol));
 
         context.RegisterSourceOutput(values, Generate);
@@ -33,7 +33,7 @@ public sealed class EnumExtensionsGenerator : IIncrementalGenerator {
             sb.Append("namespace ").Append(@namespace).AppendLine(";").AppendLine();
         }
 
-        sb.Append(accessibilityKeyword).Append(" static class ").Append(GetEscapedTypeName(typeName)).AppendLine("Extensions {")
+        sb.Append(accessibilityKeyword).Append(" static class ").Append(GetEscapedName(typeName)).AppendLine("Extensions {")
             .Append("    ").Append(accessibilityKeyword).Append(" static string ToStringFast(this ").Append(typeName).AppendLine(" value) => value switch {");
 
         foreach (var member in members) {
@@ -65,7 +65,7 @@ public sealed class EnumExtensionsGenerator : IIncrementalGenerator {
     }
 
     private static EnumInfo GetEnumInfo(INamedTypeSymbol enumSymbol)
-        => new(enumSymbol.ToDisplayString(FqnFormat), enumSymbol.ContainingNamespace?.MetadataName, GetAccessibility(enumSymbol),
+        => new(enumSymbol.ToDisplayString(FqnFormat), enumSymbol.ContainingNamespace?.MetadataName, GetTypeAccessibility(enumSymbol),
             enumSymbol.HasAttribute(MetadataName.Parse("System.FlagsAttribute")), Array.AsReadOnly(enumSymbol.MemberNames.ToArray()));
 
     private static string GetAccessibilityKeyword(Accessibility accessibility) => accessibility switch {

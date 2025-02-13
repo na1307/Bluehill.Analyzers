@@ -65,7 +65,7 @@ public sealed class BH0014ToBH0015Analyzer : BHAnalyzer {
         var fqnName = type.ToDisplayString(FqnFormat);
         var namespaceName = type.ContainingNamespace?.MetadataName;
         var typeName = GetTypeName(fqnName, namespaceName);
-        var escapedTypeName = GetEscapedTypeName(typeName);
+        var escapedTypeName = GetEscapedName(typeName);
         var extensionsType = compilation.GetTypeByMetadataName($"{namespaceName}.{escapedTypeName}Extensions");
         var fastMethodName = targetMethod.Name + "Fast";
 
@@ -74,7 +74,7 @@ public sealed class BH0014ToBH0015Analyzer : BHAnalyzer {
                 return;
             }
 
-            if (GetAccessibility(type) is not (Accessibility.Public or Accessibility.Internal)) {
+            if (GetTypeAccessibility(type) is not (Accessibility.Public or Accessibility.Internal)) {
                 return;
             }
 

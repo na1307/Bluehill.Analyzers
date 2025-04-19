@@ -32,18 +32,18 @@
       },
       "Roslynator.CodeAnalysis.Analyzers": {
         "type": "Direct",
-        "requested": "[4.13.0, )",
-        "resolved": "4.13.0",
-        "contentHash": "U3B78km4IZ6LX3MlHHk1dPN3MyEgvzNGt4RURNgpjpXtBmdP98gCYuTjwt97dK3z76E45GisaXg6b0+HNqc8cg=="
+        "requested": "[4.13.1, )",
+        "resolved": "4.13.1",
+        "contentHash": "PwbuGlRFp87pdx9GVIjDmFwkYEfxVQKs0yWuIedTrUht2JwIzLe0Y7QNzgeJaE7E3YsCVED09h1X6WBqQ95XIA=="
       },
       "Roslynator.CSharp": {
         "type": "Direct",
-        "requested": "[4.13.0, )",
-        "resolved": "4.13.0",
-        "contentHash": "9d0TcTJKK8JO4ht/02gLZAUgwbOc4AoiDN5UDwn8bEu19JMDChQEnTjbx17Mz9r6P6WBC1g0uCDxdhjRP7x7LQ==",
+        "requested": "[4.13.1, )",
+        "resolved": "4.13.1",
+        "contentHash": "lTCSryd57HYdjawOgOPJwC0UOb54ttQZrIZ/9/oj48MyOjTb1FUPwB072R9c2ROcGqArwQgId+R2P0DIkqLulA==",
         "dependencies": {
           "Microsoft.CodeAnalysis.CSharp": "4.7.0",
-          "Roslynator.Core": "4.13.0"
+          "Roslynator.Core": "4.13.1"
         }
       },
       "Bluehill.Analyzers": {
@@ -79,8 +79,8 @@
       },
       "Roslynator.Core": {
         "type": "Transitive",
-        "resolved": "4.13.0",
-        "contentHash": "PsWTv4AMBez1KZKDRJdnbGyhwNfVOWROG2deMltFEWhWM2LdmjBsBkNyLKDrofoaIeZBQBwwGkZDFnxn0AfMMg==",
+        "resolved": "4.13.1",
+        "contentHash": "aIBIYORLBVAxXJQsFkEsGH6AtBeTuoVp8z/2Jo8Ix2BOJRrut6gLE+3HvqkQOIa/Hvakea0A03bIrmjtVz/vHw==",
         "dependencies": {
           "Microsoft.CodeAnalysis.Common": "4.7.0"
         }

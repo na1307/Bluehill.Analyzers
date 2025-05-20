@@ -88,33 +88,6 @@ namespace Bluehill.Analyzers {
         }
         
         /// <summary>
-        ///   Fields should be at the top of the type definition.과(와) 유사한 지역화된 문자열을 찾습니다.
-        /// </summary>
-        internal static string BH0002AnalyzerDescription {
-            get {
-                return ResourceManager.GetString("BH0002AnalyzerDescription", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   &apos;{0}&apos; is not at the top of the type definition과(와) 유사한 지역화된 문자열을 찾습니다.
-        /// </summary>
-        internal static string BH0002AnalyzerMessageFormat {
-            get {
-                return ResourceManager.GetString("BH0002AnalyzerMessageFormat", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Fields should be at the top of the type definition과(와) 유사한 지역화된 문자열을 찾습니다.
-        /// </summary>
-        internal static string BH0002AnalyzerTitle {
-            get {
-                return ResourceManager.GetString("BH0002AnalyzerTitle", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   The parameters of the primary constructor must not be reassigned.과(와) 유사한 지역화된 문자열을 찾습니다.
         /// </summary>
         internal static string BH0003AnalyzerDescription {
@@ -219,33 +192,6 @@ namespace Bluehill.Analyzers {
         internal static string BH0006AnalyzerTitle {
             get {
                 return ResourceManager.GetString("BH0006AnalyzerTitle", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   It is recommended to use System.Threading.Lock instead of System.Object for locking.과(와) 유사한 지역화된 문자열을 찾습니다.
-        /// </summary>
-        internal static string BH0007AnalyzerDescription {
-            get {
-                return ResourceManager.GetString("BH0007AnalyzerDescription", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Use System.Threading.Lock과(와) 유사한 지역화된 문자열을 찾습니다.
-        /// </summary>
-        internal static string BH0007AnalyzerMessageFormat {
-            get {
-                return ResourceManager.GetString("BH0007AnalyzerMessageFormat", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Prefer System.Threading.Lock over System.Object과(와) 유사한 지역화된 문자열을 찾습니다.
-        /// </summary>
-        internal static string BH0007AnalyzerTitle {
-            get {
-                return ResourceManager.GetString("BH0007AnalyzerTitle", resourceCulture);
             }
         }
         
@@ -381,33 +327,6 @@ namespace Bluehill.Analyzers {
         internal static string BH0012AnalyzerTitle {
             get {
                 return ResourceManager.GetString("BH0012AnalyzerTitle", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Can make this lambda static.과(와) 유사한 지역화된 문자열을 찾습니다.
-        /// </summary>
-        internal static string BH0013AnalyzerDescription {
-            get {
-                return ResourceManager.GetString("BH0013AnalyzerDescription", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Lambda can be made static과(와) 유사한 지역화된 문자열을 찾습니다.
-        /// </summary>
-        internal static string BH0013AnalyzerMessageFormat {
-            get {
-                return ResourceManager.GetString("BH0013AnalyzerMessageFormat", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   A lambda can be made static과(와) 유사한 지역화된 문자열을 찾습니다.
-        /// </summary>
-        internal static string BH0013AnalyzerTitle {
-            get {
-                return ResourceManager.GetString("BH0013AnalyzerTitle", resourceCulture);
             }
         }
         

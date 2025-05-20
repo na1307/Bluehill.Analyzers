@@ -179,6 +179,12 @@ dotnet_diagnostic.ide0304.severity = warning
 # Use collection expression for fluent
 dotnet_diagnostic.ide0305.severity = warning
 
+# Make anonymous function static
+dotnet_diagnostic.ide0320.severity = warning
+
+# Prefer 'System.Threading.Lock'
+dotnet_diagnostic.ide0330.severity = warning
+
 # Use conditional delegate call
 dotnet_diagnostic.ide1005.severity = warning
 

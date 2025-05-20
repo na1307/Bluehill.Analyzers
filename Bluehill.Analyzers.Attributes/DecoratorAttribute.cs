@@ -1,4 +1,5 @@
-﻿using System.Diagnostics.CodeAnalysis;
+﻿#pragma warning disable
+using System.Diagnostics.CodeAnalysis;
 
 namespace Bluehill;
 

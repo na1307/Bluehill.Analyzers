@@ -1,4 +1,4 @@
-<Project>
+﻿<Project>
   <PropertyGroup>
     <Product>Bluehill.Analyzers</Product>
     <PackageProjectUrl>https://na1307.github.io/Bluehill.Analyzers</PackageProjectUrl>
@@ -6,8 +6,8 @@
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <RepositoryUrl>https://github.com/na1307/Bluehill.Analyzers</RepositoryUrl>
     <AssemblyVersion>1</AssemblyVersion>
-    <FileVersion>1.7.0</FileVersion>
-    <Version>1.7</Version>
+    <FileVersion>1.7.1</FileVersion>
+    <Version>1.7.1</Version>
     <NoWarn>$(NoWarn);RS2008;SA1600</NoWarn>
   </PropertyGroup>
   <PropertyGroup Condition="'$(GITHUB_ACTIONS)' == 'true'">

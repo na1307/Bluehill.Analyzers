@@ -3,7 +3,7 @@ using System.Text;
 
 namespace Bluehill.Analyzers;
 
-[Generator]
+[Generator(LanguageNames.CSharp)]
 public sealed class DecoratorGenerator : IIncrementalGenerator {
     private const string EditorBrowsableNever = "[System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]";
 

@@ -115,7 +115,7 @@ namespace Bluehill.Analyzers {
         }
         
         /// <summary>
-        ///   Placeholder과(와) 유사한 지역화된 문자열을 찾습니다.
+        ///   Use &apos;Fast&apos; Method과(와) 유사한 지역화된 문자열을 찾습니다.
         /// </summary>
         internal static string BH0014CodeFixTitle {
             get {

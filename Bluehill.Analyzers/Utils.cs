@@ -6,7 +6,7 @@ internal static class Utils {
             memberOptions: SymbolDisplayMemberOptions.IncludeContainingType);
 
     public static string GetTypeName(string fqnName, string? @namespace)
-        => @namespace is not null ? fqnName.Substring($"{@namespace}.".Length) : fqnName;
+        => !string.IsNullOrWhiteSpace(@namespace) ? fqnName.Substring($"{@namespace}.".Length) : fqnName;
 
     public static string GetEscapedName(string name) => name.Replace('.', '_');
 

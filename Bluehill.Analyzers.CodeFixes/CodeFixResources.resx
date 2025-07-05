@@ -137,7 +137,7 @@
     <value>Make static</value>
   </data>
   <data name="BH0014CodeFixTitle" xml:space="preserve">
-    <value>Placeholder</value>
+    <value>Use 'Fast' Method</value>
   </data>
   <data name="BR0001Refactortitle" xml:space="preserve">
     <value>Convert to Pascal Case</value>

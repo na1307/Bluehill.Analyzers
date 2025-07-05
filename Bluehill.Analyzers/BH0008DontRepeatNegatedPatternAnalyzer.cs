@@ -17,7 +17,7 @@ public sealed class BH0008DontRepeatNegatedPatternAnalyzer : BHAnalyzer {
         typeof(Resources));
 
     private static readonly DiagnosticDescriptor Rule = new(DiagnosticId, Title, MessageFormat, Category, DiagnosticSeverity.Warning, true,
-        Description, $"{BaseUrl}BH0008");
+        Description, BaseUrl + DiagnosticId);
 
     public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics => [Rule];
 

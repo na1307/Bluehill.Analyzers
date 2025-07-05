@@ -15,7 +15,7 @@ public sealed class BH0012FieldNameShouldNotConflictAnalyzer : BHAnalyzer {
         typeof(Resources));
 
     private static readonly DiagnosticDescriptor Rule = new(DiagnosticId, Title, MessageFormat, Category, DiagnosticSeverity.Warning, true,
-        Description, $"{BaseUrl}BH0012");
+        Description, BaseUrl + DiagnosticId);
 
     public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics => [Rule];
 

@@ -16,7 +16,7 @@ public sealed class BH0004ToBH0006Analyzer : BHAnalyzer {
         Resources.ResourceManager, typeof(Resources));
 
     private static readonly DiagnosticDescriptor RuleBH0004 = new(DiagnosticIdBH0004, TitleBH0004, MessageFormatBH0004, CategoryBH0004,
-        DiagnosticSeverity.Error, true, DescriptionBH0004, $"{BaseUrl}BH0004");
+        DiagnosticSeverity.Error, true, DescriptionBH0004, BaseUrl + DiagnosticIdBH0004);
 
     // BH0005
     public const string DiagnosticIdBH0005 = "BH0005";
@@ -32,7 +32,7 @@ public sealed class BH0004ToBH0006Analyzer : BHAnalyzer {
         Resources.ResourceManager, typeof(Resources));
 
     private static readonly DiagnosticDescriptor RuleBH0005 = new(DiagnosticIdBH0005, TitleBH0005, MessageFormatBH0005, CategoryBH0005,
-        DiagnosticSeverity.Error, true, DescriptionBH0005, $"{BaseUrl}BH0005");
+        DiagnosticSeverity.Error, true, DescriptionBH0005, BaseUrl + DiagnosticIdBH0005);
 
     // BH0006
     public const string DiagnosticIdBH0006 = "BH0006";
@@ -48,7 +48,7 @@ public sealed class BH0004ToBH0006Analyzer : BHAnalyzer {
         Resources.ResourceManager, typeof(Resources));
 
     private static readonly DiagnosticDescriptor RuleBH0006 = new(DiagnosticIdBH0006, TitleBH0006, MessageFormatBH0006, CategoryBH0006,
-        DiagnosticSeverity.Error, true, DescriptionBH0006, $"{BaseUrl}BH0006");
+        DiagnosticSeverity.Error, true, DescriptionBH0006, BaseUrl + DiagnosticIdBH0006);
 
     // Supported diagnostics
     public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics => [RuleBH0004, RuleBH0005, RuleBH0006];

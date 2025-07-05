@@ -15,7 +15,7 @@ public sealed class BH0001TypesShouldBeSealedAnalyzer : BHAnalyzer {
         typeof(Resources));
 
     private static readonly DiagnosticDescriptor Rule = new(DiagnosticId, Title, MessageFormat, Category, DiagnosticSeverity.Warning, true,
-        Description, $"{BaseUrl}BH0001");
+        Description, BaseUrl + DiagnosticId);
 
     public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics => [Rule];
 

@@ -15,7 +15,7 @@ public sealed class BH0003ProhibitPcpReassignmentAnalyzer : BHAnalyzer {
         typeof(Resources));
 
     private static readonly DiagnosticDescriptor Rule = new(DiagnosticId, Title, MessageFormat, Category, DiagnosticSeverity.Error, true, Description,
-        $"{BaseUrl}BH0003");
+        BaseUrl + DiagnosticId);
 
     public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics => [Rule];
 

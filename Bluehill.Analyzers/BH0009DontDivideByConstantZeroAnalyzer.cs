@@ -15,7 +15,7 @@ public sealed class BH0009DontDivideByConstantZeroAnalyzer : BHAnalyzer {
         typeof(Resources));
 
     private static readonly DiagnosticDescriptor Rule = new(DiagnosticId, Title, MessageFormat, Category, DiagnosticSeverity.Error, true, Description,
-        $"{BaseUrl}BH0009");
+        BaseUrl + DiagnosticId);
 
     public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics => [Rule];
 

@@ -15,7 +15,7 @@ public sealed class BH0016EegLangVersionAnalyzer : BHAnalyzer {
         typeof(Resources));
 
     private static readonly DiagnosticDescriptor Rule = new(DiagnosticId, Title, MessageFormat, Category, DiagnosticSeverity.Warning, true,
-        Description, $"{BaseUrl}BH0016");
+        Description, BaseUrl + DiagnosticId);
 
     public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics => [Rule];
 
@@ -35,7 +35,7 @@ public sealed class BH0016EegLangVersionAnalyzer : BHAnalyzer {
             return;
         }
 
-        context.RegisterSyntaxNodeAction(sa => SyntaxNodeAction(sa, eea, langVersion), SyntaxKind.EnumDeclaration);
+        context.RegisterSyntaxNodeAction(c => SyntaxNodeAction(c, eea, langVersion), SyntaxKind.EnumDeclaration);
     }
 
     private static void SyntaxNodeAction(SyntaxNodeAnalysisContext context, INamedTypeSymbol eea, LanguageVersion langVersion) {

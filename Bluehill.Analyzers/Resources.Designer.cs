@@ -383,5 +383,32 @@ namespace Bluehill.Analyzers {
                 return ResourceManager.GetString("BH0015AnalyzerTitle", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Please use C# 10 or higher.과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string BH0016AnalyzerDescription {
+            get {
+                return ResourceManager.GetString("BH0016AnalyzerDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Cannot generate enum extension methods in C# {0}과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string BH0016AnalyzerMessageFormat {
+            get {
+                return ResourceManager.GetString("BH0016AnalyzerMessageFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Enum extension methods cannot be generated due to low C# language version과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string BH0016AnalyzerTitle {
+            get {
+                return ResourceManager.GetString("BH0016AnalyzerTitle", resourceCulture);
+            }
+        }
     }
 }

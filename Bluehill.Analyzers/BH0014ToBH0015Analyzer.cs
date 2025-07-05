@@ -41,7 +41,16 @@ public sealed class BH0014ToBH0015Analyzer : BHAnalyzer {
         => context.RegisterCompilationStartAction(CompilationStartAction);
 
     private static void CompilationStartAction(CompilationStartAnalysisContext context) {
-        var compilation = context.Compilation;
+        var compilation = (CSharpCompilation)context.Compilation;
+
+        if (compilation.LanguageVersion < LanguageVersion.CSharp10) {
+            return;
+        }
+
+        if (compilation.GetTypeByMetadataName("Bluehill.EnumExtensionsAttribute") is null) {
+            return;
+        }
+
         var systemEnum = compilation.GetTypeByMetadataName("System.Enum")!;
         var enumToString = (IMethodSymbol)systemEnum.GetMembers("ToString").Single(m => m is IMethodSymbol { Parameters.Length: 0 });
         var enumHasFlag = (IMethodSymbol?)systemEnum.GetMembers("HasFlag").SingleOrDefault();
@@ -51,7 +60,7 @@ public sealed class BH0014ToBH0015Analyzer : BHAnalyzer {
 
     private static void OperationAction(
         OperationAnalysisContext context,
-        Compilation compilation,
+        CSharpCompilation compilation,
         IMethodSymbol enumToString,
         IMethodSymbol? enumHasFlag) {
         var operation = (IInvocationOperation)context.Operation;

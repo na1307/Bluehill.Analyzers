@@ -3,18 +3,22 @@ using System.Text;
 
 namespace Bluehill.Analyzers;
 
-[Generator]
+[Generator(LanguageNames.CSharp)]
 public sealed class EnumExtensionsGenerator : IIncrementalGenerator {
     public void Initialize(IncrementalGeneratorInitializationContext context) {
         var values = context.SyntaxProvider.ForAttributeWithMetadataName("Bluehill.EnumExtensionsAttribute",
             static (n, _) => n is EnumDeclarationSyntax,
-            static (c, _) => GetEnumInfo((INamedTypeSymbol)c.TargetSymbol));
+             (c, _) => ((CSharpCompilation)c.SemanticModel.Compilation).LanguageVersion >= LanguageVersion.CSharp10 ? GetEnumInfo((INamedTypeSymbol)c.TargetSymbol) : (EnumInfo?)null);
 
         context.RegisterSourceOutput(values, Generate);
     }
 
-    private static void Generate(SourceProductionContext context, EnumInfo info) {
-        var (fqnName, @namespace, accessibility, isFlags, members) = info;
+    private static void Generate(SourceProductionContext context, EnumInfo? info) {
+        if (info is null) {
+            return;
+        }
+
+        var (fqnName, @namespace, accessibility, isFlags, members) = info.Value;
         string accessibilityKeyword;
 
         try {

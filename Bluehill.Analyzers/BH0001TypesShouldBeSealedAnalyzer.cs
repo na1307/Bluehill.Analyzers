@@ -24,18 +24,17 @@ public sealed class BH0001TypesShouldBeSealedAnalyzer : BHAnalyzer {
         => context.RegisterCompilationStartAction(CompilationStartAction);
 
     private static void CompilationStartAction(CompilationStartAnalysisContext context) {
-        // Get all named types and their base types
-        var typeAndBase = context.Compilation.GetSymbolsWithName(_ => true, SymbolFilter.Type, context.CancellationToken)
-            .Cast<INamedTypeSymbol>().Select(symbol => new KeyValuePair<INamedTypeSymbol, INamedTypeSymbol?>(symbol, symbol.BaseType))
-            .ToImmutableDictionary(SEC.Default);
+        // Get all named base types
+        var baseTypes = context.Compilation.GetSymbolsWithName(_ => true, SymbolFilter.Type, context.CancellationToken)
+            .Cast<INamedTypeSymbol>().Select(symbol => symbol.BaseType).ToImmutableArray();
 
         // Register symbol action
-        context.RegisterSymbolAction(ac => SymbolAction(ac, typeAndBase), SymbolKind.NamedType);
+        context.RegisterSymbolAction(ac => SymbolAction(ac, baseTypes), SymbolKind.NamedType);
     }
 
     private static void SymbolAction(
         SymbolAnalysisContext context,
-        ImmutableDictionary<INamedTypeSymbol, INamedTypeSymbol?> typeAndBase) {
+        ImmutableArray<INamedTypeSymbol?> baseTypes) {
         // Get named type symbol
         var namedTypeSymbol = (INamedTypeSymbol)context.Symbol;
 
@@ -75,7 +74,7 @@ public sealed class BH0001TypesShouldBeSealedAnalyzer : BHAnalyzer {
         }
 
         // Check is there are derived classes
-        if (typeAndBase.Any(ts => SEC.Default.Equals(namedTypeSymbol, ts.Value))) {
+        if (baseTypes.Contains(namedTypeSymbol, SEC.Default)) {
             return;
         }
 

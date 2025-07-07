@@ -16,14 +16,14 @@
       },
       "Bluehill.Imports": {
         "type": "Direct",
-        "requested": "[1.0.16, )",
-        "resolved": "1.0.16",
-        "contentHash": "mqOAaKw7GjLS2J5D9AR6pqPdi+z5Z0G/yeYWsNk7K6W5l1uT/EZoO3zKVfxjcg/NTy0BBHYpb4NEKmW+2ugOLw==",
+        "requested": "[1.0.17, )",
+        "resolved": "1.0.17",
+        "contentHash": "7A9uSe1ZvRhd7AXfkiovMcTBSzJoiTT8GBG5dTipv/BP57Y4Ak5E8FqN5qZI+6DiyUSX1ZCxCZB6Dm1vBZy8RQ==",
         "dependencies": {
-          "Bluehill.Analyzers": "1.7.1",
+          "Bluehill.Analyzers": "1.8.0",
           "Roslynator.Analyzers": "4.13.1",
           "Roslynator.Formatting.Analyzers": "4.13.1",
-          "SonarAnalyzer.CSharp": "10.10.0.116381",
+          "SonarAnalyzer.CSharp": "10.12.0.118525",
           "StyleCop.Analyzers": "1.2.0-beta.556"
         }
       },
@@ -70,8 +70,8 @@
       },
       "Bluehill.Analyzers": {
         "type": "Transitive",
-        "resolved": "1.7.1",
-        "contentHash": "RtvU/FW5HafR70U9ofWPwjL7YQGEACkZOB2Bioi3B26a5i8B6mMY5aRAnBWSbziJYWu/BUmB/67alCZspfKvPA=="
+        "resolved": "1.8.0",
+        "contentHash": "R04UTJ5EBkpFULLgeEVs1O5jGm6yyY7mxA3ADG0bJbkwC8Z7XfQV/qPDCiniAXLMDildsorQkgTUm8afmEauaw=="
       },
       "Microsoft.AspNetCore.Authorization": {
         "type": "Transitive",
@@ -263,8 +263,8 @@
       },
       "SonarAnalyzer.CSharp": {
         "type": "Transitive",
-        "resolved": "10.10.0.116381",
-        "contentHash": "HkJuI8dBE64BF7ySlfN8t/lQ91E/pgiQPvOS51lIKKy3/IJiwHHqQ4dkI6gixDkKBDK7lImvvNa0ECH+I0PqmA=="
+        "resolved": "10.12.0.118525",
+        "contentHash": "uP38bsYegQBk8WOM6LYIAht6hrA7tcJgep/WuifPJjhjtjysPUP/iM/c1+P2+llNIDmm1s8Xh86+WG3K71eycw=="
       },
       "StyleCop.Analyzers": {
         "type": "Transitive",

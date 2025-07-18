@@ -30,7 +30,7 @@ jobs:
       - name: Install Tools
         run: dotnet tool restore
       - name: SonarScanner for .NET
-        uses: na1307/dotnet-sonarscanner-cloud@main
+        uses: na1307/dotnet-sonarscanner-cloud@v1
         with:
           sonar-token: ${{ secrets.SONAR_TOKEN }}
           additional-properties: -d:sonar.cs.vscoveragexml.reportsPaths=coverage.xml

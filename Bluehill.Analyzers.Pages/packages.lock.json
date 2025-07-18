@@ -4,9 +4,9 @@
     "net9.0": {
       "Bluehill.Blazor": {
         "type": "Direct",
-        "requested": "[0.9.0, )",
-        "resolved": "0.9.0",
-        "contentHash": "ze8fchl63EqohDUcMqKew94lf/pqMDVLOr5K23rUCjP+xc4XrQ1ZWYNAavEC0aB57fxQ6HXgO5mhlEFZNFtAyw=="
+        "requested": "[0.10.0, )",
+        "resolved": "0.10.0",
+        "contentHash": "HSGOiSZDPangDRYuzLqnw5U0CuHGLkFJ2do+0DREEgU0vvCN8prGOxziapKcVEnW4NVPe/ZTBm7ZUor18pT/wg=="
       },
       "Bluehill.Blazor.GHPages": {
         "type": "Direct",

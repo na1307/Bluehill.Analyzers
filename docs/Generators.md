@@ -11,5 +11,5 @@
 <p>There is no reason to include the Bluehill.Analyzers.Attributes assembly in the output directory because the attributes are removed at compile time.</p>
 
 <ul>
-    <li><a href="EnumExtensionsGenerator.md">EnumExtensionsGenerator</a></li>
+    <li><a href="EnumExtensionsGenerator">EnumExtensionsGenerator</a></li>
 </ul>

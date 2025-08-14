@@ -10,14 +10,14 @@
       },
       "Bluehill.Imports": {
         "type": "Direct",
-        "requested": "[1.0.17, )",
-        "resolved": "1.0.17",
-        "contentHash": "7A9uSe1ZvRhd7AXfkiovMcTBSzJoiTT8GBG5dTipv/BP57Y4Ak5E8FqN5qZI+6DiyUSX1ZCxCZB6Dm1vBZy8RQ==",
+        "requested": "[1.0.19, )",
+        "resolved": "1.0.19",
+        "contentHash": "QTaBh2Nj9XcjYBee1/HpM7ZQTOPXs4AjASMoQ+momgQf7lUm8uMwNt9WgzdBHvxSJI/1S/N8Kh5mub6FhTFQog==",
         "dependencies": {
-          "Bluehill.Analyzers": "1.8.0",
-          "Roslynator.Analyzers": "4.13.1",
-          "Roslynator.Formatting.Analyzers": "4.13.1",
-          "SonarAnalyzer.CSharp": "10.12.0.118525",
+          "Bluehill.Analyzers": "1.8.1",
+          "Roslynator.Analyzers": "4.14.0",
+          "Roslynator.Formatting.Analyzers": "4.14.0",
+          "SonarAnalyzer.CSharp": "10.15.0.120848",
           "StyleCop.Analyzers": "1.2.0-beta.556"
         }
       },
@@ -32,24 +32,24 @@
       },
       "Roslynator.CodeAnalysis.Analyzers": {
         "type": "Direct",
-        "requested": "[4.13.1, )",
-        "resolved": "4.13.1",
-        "contentHash": "PwbuGlRFp87pdx9GVIjDmFwkYEfxVQKs0yWuIedTrUht2JwIzLe0Y7QNzgeJaE7E3YsCVED09h1X6WBqQ95XIA=="
+        "requested": "[4.14.0, )",
+        "resolved": "4.14.0",
+        "contentHash": "iUiC7mfaLWgUxnKyG90sCIwd4fLLrnDtOsVqh1PuAL+drDNi8If+2lG9B+gPjRrP/pYSfcu9TMRYSDMKOEpnoQ=="
       },
       "Roslynator.CSharp": {
         "type": "Direct",
-        "requested": "[4.13.1, )",
-        "resolved": "4.13.1",
-        "contentHash": "lTCSryd57HYdjawOgOPJwC0UOb54ttQZrIZ/9/oj48MyOjTb1FUPwB072R9c2ROcGqArwQgId+R2P0DIkqLulA==",
+        "requested": "[4.14.0, )",
+        "resolved": "4.14.0",
+        "contentHash": "9QSvK/P6XqAoYDBl4gLkI/OmeYIr2rV7webbv6/Q6FVQa8e662Jbs5mqJ83/ubyPQ3f11rs8MDN00ZnQx6bzUQ==",
         "dependencies": {
           "Microsoft.CodeAnalysis.CSharp": "4.7.0",
-          "Roslynator.Core": "4.13.1"
+          "Roslynator.Core": "4.14.0"
         }
       },
       "Bluehill.Analyzers": {
         "type": "Transitive",
-        "resolved": "1.8.0",
-        "contentHash": "R04UTJ5EBkpFULLgeEVs1O5jGm6yyY7mxA3ADG0bJbkwC8Z7XfQV/qPDCiniAXLMDildsorQkgTUm8afmEauaw=="
+        "resolved": "1.8.1",
+        "contentHash": "DjJE8WrjGueBxM6sEwG5sx4+zr5xBjjWiPpVR7+8x31EGAUBwy885ecewivhNpntmYw7uAvmHguap+boRHDxAQ=="
       },
       "Microsoft.CodeAnalysis.Common": {
         "type": "Transitive",
@@ -74,26 +74,26 @@
       },
       "Roslynator.Analyzers": {
         "type": "Transitive",
-        "resolved": "4.13.1",
-        "contentHash": "KZpLy6ZlCebMk+d/3I5KU2R7AOb4LNJ6tPJqPtvFXmO8bEBHQvCIAvJOnY2tu4C9/aVOROTDYUFADxFqw1gh/g=="
+        "resolved": "4.14.0",
+        "contentHash": "AEWQMrb1rcmjv9FGzrwYSBb4INhDhsauS+wwTumG0wq8N1Il+CIQHqUZJ7bt0zYJEA1qXSqgpg8Fgwc88WrR/Q=="
       },
       "Roslynator.Core": {
         "type": "Transitive",
-        "resolved": "4.13.1",
-        "contentHash": "aIBIYORLBVAxXJQsFkEsGH6AtBeTuoVp8z/2Jo8Ix2BOJRrut6gLE+3HvqkQOIa/Hvakea0A03bIrmjtVz/vHw==",
+        "resolved": "4.14.0",
+        "contentHash": "bGhZRBa+j3feLBgzwysSgo8kWFYPM6ww2EjUD8xxr5gtxhbtPP3vJxCCkhBikMkghCoSGt7uMp4qsIg1TzpuHA==",
         "dependencies": {
           "Microsoft.CodeAnalysis.Common": "4.7.0"
         }
       },
       "Roslynator.Formatting.Analyzers": {
         "type": "Transitive",
-        "resolved": "4.13.1",
-        "contentHash": "V9gCt0T1Tnu+jMWJDLiUV/vOTmGzmofEdVeUPKPdh8MJW7f3kkhFXSeDotwl8Ob88OxrBf+4LrV/D7OA4tAluA=="
+        "resolved": "4.14.0",
+        "contentHash": "qGxeOq3qYZQo3nxCPqcU+QX82k2iPnStoE4mwIU1nMlOiN8yciOrGKfU4v7UgBv66GRi6Sqoc0/UDXoSdP+e1Q=="
       },
       "SonarAnalyzer.CSharp": {
         "type": "Transitive",
-        "resolved": "10.12.0.118525",
-        "contentHash": "uP38bsYegQBk8WOM6LYIAht6hrA7tcJgep/WuifPJjhjtjysPUP/iM/c1+P2+llNIDmm1s8Xh86+WG3K71eycw=="
+        "resolved": "10.15.0.120848",
+        "contentHash": "1hM3HVRl5jdC/ZBDu+G7CCYLXRGe/QaP01Zy+c9ETPhY7lWD8g8HiefY6sGaH0T3CJ4wAy0/waGgQTh0TYy0oQ=="
       },
       "StyleCop.Analyzers": {
         "type": "Transitive",

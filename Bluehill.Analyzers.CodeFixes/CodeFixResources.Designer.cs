@@ -133,6 +133,15 @@ namespace Bluehill.Analyzers {
         }
         
         /// <summary>
+        ///   Use pattern maching과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string BH0018CodeFixTitle {
+            get {
+                return ResourceManager.GetString("BH0018CodeFixTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Convert to Pascal Case과(와) 유사한 지역화된 문자열을 찾습니다.
         /// </summary>
         internal static string BR0001Refactortitle {

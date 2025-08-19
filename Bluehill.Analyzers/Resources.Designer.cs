@@ -410,5 +410,32 @@ namespace Bluehill.Analyzers {
                 return ResourceManager.GetString("BH0017AnalyzerTitle", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Prefer pattern matching over equality/inequality operators for null checks.과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string BH0018AnalyzerDescription {
+            get {
+                return ResourceManager.GetString("BH0018AnalyzerDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Use pattern matching for null checks과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string BH0018AnalyzerMessageFormat {
+            get {
+                return ResourceManager.GetString("BH0018AnalyzerMessageFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Prefer pattern matching over equality/inequality operators for null checks과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string BH0018AnalyzerTitle {
+            get {
+                return ResourceManager.GetString("BH0018AnalyzerTitle", resourceCulture);
+            }
+        }
     }
 }

@@ -810,6 +810,9 @@ dotnet_diagnostic.rcs1042.severity = error
 # Declare each attribute separately
 dotnet_diagnostic.rcs1052.severity = error
 
+# Constant values should be placed on right side of comparisons
+dotnet_diagnostic.rcs1058.severity = error
+
 # Split variable declaration
 dotnet_diagnostic.rcs1081.severity = error
 
@@ -1076,9 +1079,6 @@ dotnet_diagnostic.sa1123.severity = error
 # Use shorthand for nullable types
 dotnet_diagnostic.sa1125.severity = error
 
-# Use readable conditions
-dotnet_diagnostic.sa1131.severity = error
-
 # Use tuple syntax
 dotnet_diagnostic.sa1141.severity = error
 
@@ -1302,6 +1302,9 @@ dotnet_diagnostic.sa1127.severity = none
 
 # Put constructor initializers on their own line
 dotnet_diagnostic.sa1128.severity = none
+
+# Use readable conditions
+dotnet_diagnostic.sa1131.severity = none
 
 # Do not combine fields
 dotnet_diagnostic.sa1132.severity = none

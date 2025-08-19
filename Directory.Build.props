@@ -6,8 +6,8 @@
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <RepositoryUrl>https://github.com/BluehillNuGet/Bluehill.Analyzers</RepositoryUrl>
     <AssemblyVersion>1</AssemblyVersion>
-    <FileVersion>1.8.1</FileVersion>
-    <Version>1.8.1</Version>
+    <FileVersion>1.9.0</FileVersion>
+    <Version>1.9</Version>
     <NoWarn>$(NoWarn);RS2008;SA1600</NoWarn>
   </PropertyGroup>
   <PropertyGroup Condition="'$(GITHUB_ACTIONS)' == 'true'">

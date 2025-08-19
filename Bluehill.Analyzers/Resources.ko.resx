@@ -228,4 +228,13 @@
   <data name="BH0008AnalyzerTitle" xml:space="preserve">
     <value>부정 패턴을 반복해서 사용하면 안됨</value>
   </data>
+  <data name="BH0017AnalyzerDescription" xml:space="preserve">
+    <value>코드 길이를 조금이라도 줄일 수 있는 방법입니다.</value>
+  </data>
+  <data name="BH0017AnalyzerMessageFormat" xml:space="preserve">
+    <value>var = new {0}() 대신 {0} = new()를 선호</value>
+  </data>
+  <data name="BH0017AnalyzerTitle" xml:space="preserve">
+    <value>대상 타입 new 선호</value>
+  </data>
 </root>

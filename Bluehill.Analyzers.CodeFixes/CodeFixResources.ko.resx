@@ -139,6 +139,9 @@
   <data name="BH0014CodeFixTitle" xml:space="preserve">
     <value>'Fast' 메서드 사용</value>
   </data>
+  <data name="BH0017CodeFixTitle" xml:space="preserve">
+    <value>대상 타입 new 사용</value>
+  </data>
   <data name="BR0001Refactortitle" xml:space="preserve">
     <value>Pascal Case로 변환</value>
   </data>

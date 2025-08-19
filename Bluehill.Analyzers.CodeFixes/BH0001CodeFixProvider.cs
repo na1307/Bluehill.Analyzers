@@ -5,8 +5,8 @@
 public sealed class BH0001CodeFixProvider : BHCodeFixProvider<TypeDeclarationSyntax> {
     public override ImmutableArray<string> FixableDiagnosticIds => [BH0001TypesShouldBeSealedAnalyzer.DiagnosticId];
 
-    protected override CodeAction CreateCodeAction(Document document, TypeDeclarationSyntax declaration, SyntaxNode root)
-        => CodeAction.Create(CodeFixResources.BH0001CodeFixTitle, _ => MakeSealedAsync(document, declaration, root),
+    protected override CodeAction CreateCodeAction(Document document, TypeDeclarationSyntax syntax, SyntaxNode root)
+        => CodeAction.Create(CodeFixResources.BH0001CodeFixTitle, _ => MakeSealedAsync(document, syntax, root),
             nameof(CodeFixResources.BH0001CodeFixTitle));
 
     private static Task<Document> MakeSealedAsync(Document document, TypeDeclarationSyntax typeDecl, SyntaxNode root) {

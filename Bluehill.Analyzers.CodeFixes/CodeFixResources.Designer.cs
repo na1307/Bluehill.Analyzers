@@ -124,6 +124,15 @@ namespace Bluehill.Analyzers {
         }
         
         /// <summary>
+        ///   Use Target-Typed new과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string BH0017CodeFixTitle {
+            get {
+                return ResourceManager.GetString("BH0017CodeFixTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Convert to Pascal Case과(와) 유사한 지역화된 문자열을 찾습니다.
         /// </summary>
         internal static string BR0001Refactortitle {

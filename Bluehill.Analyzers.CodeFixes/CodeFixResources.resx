@@ -139,6 +139,9 @@
   <data name="BH0014CodeFixTitle" xml:space="preserve">
     <value>Use 'Fast' Method</value>
   </data>
+  <data name="BH0017CodeFixTitle" xml:space="preserve">
+    <value>Use Target-Typed new</value>
+  </data>
   <data name="BR0001Refactortitle" xml:space="preserve">
     <value>Convert to Pascal Case</value>
   </data>

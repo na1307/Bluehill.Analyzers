@@ -7,8 +7,8 @@ namespace Bluehill.Analyzers;
 public sealed class BH0010CodeFixProvider : BHCodeFixProvider<BinaryExpressionSyntax> {
     public override ImmutableArray<string> FixableDiagnosticIds => [BH0010ToBH0011Analyzer.DiagnosticIdBH0010];
 
-    protected override CodeAction CreateCodeAction(Document document, BinaryExpressionSyntax declaration, SyntaxNode root)
-        => CodeAction.Create(CodeFixResources.BH0010CodeFixTitle, _ => UsePatternMatchingForComparingSpanAndConstant(document, declaration, root),
+    protected override CodeAction CreateCodeAction(Document document, BinaryExpressionSyntax syntax, SyntaxNode root)
+        => CodeAction.Create(CodeFixResources.BH0010CodeFixTitle, _ => UsePatternMatchingForComparingSpanAndConstant(document, syntax, root),
             nameof(CodeFixResources.BH0010CodeFixTitle));
 
     private static Task<Document> UsePatternMatchingForComparingSpanAndConstant(Document document, BinaryExpressionSyntax binary, SyntaxNode root) {

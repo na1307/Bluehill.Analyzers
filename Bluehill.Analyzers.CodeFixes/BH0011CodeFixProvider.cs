@@ -5,8 +5,8 @@
 public sealed class BH0011CodeFixProvider : BHCodeFixProvider<BinaryExpressionSyntax> {
     public override ImmutableArray<string> FixableDiagnosticIds => [BH0010ToBH0011Analyzer.DiagnosticIdBH0011];
 
-    protected override CodeAction CreateCodeAction(Document document, BinaryExpressionSyntax declaration, SyntaxNode root)
-        => CodeAction.Create(CodeFixResources.BH0011CodeFixTitle, _ => UseSequenceEqualForComparingSpanAndNonConstant(document, declaration, root),
+    protected override CodeAction CreateCodeAction(Document document, BinaryExpressionSyntax syntax, SyntaxNode root)
+        => CodeAction.Create(CodeFixResources.BH0011CodeFixTitle, _ => UseSequenceEqualForComparingSpanAndNonConstant(document, syntax, root),
             nameof(CodeFixResources.BH0011CodeFixTitle));
 
     private static Task<Document> UseSequenceEqualForComparingSpanAndNonConstant(Document document, BinaryExpressionSyntax binary, SyntaxNode root) {

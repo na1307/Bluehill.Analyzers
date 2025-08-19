@@ -5,9 +5,9 @@
 public sealed class BH0014CodeFixProvider : BHCodeFixProvider<CSharpSyntaxNode> {
     public override ImmutableArray<string> FixableDiagnosticIds => [BH0014ToBH0015Analyzer.DiagnosticIdBH0014];
 
-    protected override CodeAction CreateCodeAction(Document document, CSharpSyntaxNode declaration, SyntaxNode root)
-        => CodeAction.Create(CodeFixResources.BH0014CodeFixTitle, _ => SuffixFast(document, declaration, root),
-        nameof(CodeFixResources.BH0014CodeFixTitle));
+    protected override CodeAction CreateCodeAction(Document document, CSharpSyntaxNode syntax, SyntaxNode root)
+        => CodeAction.Create(CodeFixResources.BH0014CodeFixTitle, _ => SuffixFast(document, syntax, root),
+            nameof(CodeFixResources.BH0014CodeFixTitle));
 
     private static Task<Document> SuffixFast(Document document, CSharpSyntaxNode declaration, SyntaxNode root) {
         var memberAccess = (MemberAccessExpressionSyntax)(declaration switch {

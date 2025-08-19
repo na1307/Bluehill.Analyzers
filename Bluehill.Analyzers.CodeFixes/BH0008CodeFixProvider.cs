@@ -5,8 +5,8 @@
 public sealed class BH0008CodeFixProvider : BHCodeFixProvider<UnaryPatternSyntax> {
     public override ImmutableArray<string> FixableDiagnosticIds => [BH0008DontRepeatNegatedPatternAnalyzer.DiagnosticId];
 
-    protected override CodeAction CreateCodeAction(Document document, UnaryPatternSyntax declaration, SyntaxNode root)
-        => CodeAction.Create(CodeFixResources.BH0008CodeFixTitle, _ => RemoveRepeatedNegatedPatterns(document, declaration, root),
+    protected override CodeAction CreateCodeAction(Document document, UnaryPatternSyntax syntax, SyntaxNode root)
+        => CodeAction.Create(CodeFixResources.BH0008CodeFixTitle, _ => RemoveRepeatedNegatedPatterns(document, syntax, root),
             nameof(CodeFixResources.BH0008CodeFixTitle));
 
     private static Task<Document> RemoveRepeatedNegatedPatterns(Document document, UnaryPatternSyntax notPattern, SyntaxNode root) {

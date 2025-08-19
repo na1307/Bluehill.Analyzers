@@ -5,8 +5,8 @@
 public sealed class BH0005CodeFixProvider : BHCodeFixProvider<CSharpSyntaxNode> {
     public override ImmutableArray<string> FixableDiagnosticIds => [BH0004ToBH0006Analyzer.DiagnosticIdBH0005];
 
-    protected override CodeAction CreateCodeAction(Document document, CSharpSyntaxNode declaration, SyntaxNode root)
-        => CodeAction.Create(CodeFixResources.BH0005CodeFixTitle, _ => ProcessAsync(document, declaration, root),
+    protected override CodeAction CreateCodeAction(Document document, CSharpSyntaxNode syntax, SyntaxNode root)
+        => CodeAction.Create(CodeFixResources.BH0005CodeFixTitle, _ => ProcessAsync(document, syntax, root),
             nameof(CodeFixResources.BH0005CodeFixTitle));
 
     private static Task<Document> ProcessAsync(Document document, SyntaxNode declaration, SyntaxNode root)
@@ -48,7 +48,8 @@ public sealed class BH0005CodeFixProvider : BHCodeFixProvider<CSharpSyntaxNode> 
         return root.ReplaceNode(methodDeclaration, newDeclaration);
     }
 
-    private static SyntaxNode ProcessArrow(ArrowExpressionClauseSyntax arrow, SyntaxNode root) => root.ReplaceNode(arrow, CreateNullLiteralArrowExpression());
+    private static SyntaxNode ProcessArrow(ArrowExpressionClauseSyntax arrow, SyntaxNode root)
+        => root.ReplaceNode(arrow, CreateNullLiteralArrowExpression());
 
     private static ArrowExpressionClauseSyntax CreateNullLiteralArrowExpression() {
         // Create an Arrow expression that return null

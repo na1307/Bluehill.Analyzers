@@ -13,5 +13,5 @@ public abstract class BHCodeFixProvider<TNode> : CodeFixProvider where TNode : C
         context.RegisterCodeFix(action, diagnostic);
     }
 
-    protected abstract CodeAction CreateCodeAction(Document document, TNode declaration, SyntaxNode root);
+    protected abstract CodeAction CreateCodeAction(Document document, TNode syntax, SyntaxNode root);
 }

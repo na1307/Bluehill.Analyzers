@@ -383,5 +383,32 @@ namespace Bluehill.Analyzers {
                 return ResourceManager.GetString("BH0015AnalyzerTitle", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   This is a way to reduce the code length even a little.과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string BH0017AnalyzerDescription {
+            get {
+                return ResourceManager.GetString("BH0017AnalyzerDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Prefer {0} = new() instead of var = new {0}()과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string BH0017AnalyzerMessageFormat {
+            get {
+                return ResourceManager.GetString("BH0017AnalyzerMessageFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Prefer Target-Typed new과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string BH0017AnalyzerTitle {
+            get {
+                return ResourceManager.GetString("BH0017AnalyzerTitle", resourceCulture);
+            }
+        }
     }
 }

@@ -228,4 +228,13 @@
   <data name="BH0008AnalyzerTitle" xml:space="preserve">
     <value>Don't repeat negative patterns</value>
   </data>
+  <data name="BH0017AnalyzerDescription" xml:space="preserve">
+    <value>This is a way to reduce the code length even a little.</value>
+  </data>
+  <data name="BH0017AnalyzerMessageFormat" xml:space="preserve">
+    <value>Prefer {0} = new() instead of var = new {0}()</value>
+  </data>
+  <data name="BH0017AnalyzerTitle" xml:space="preserve">
+    <value>Prefer Target-Typed new</value>
+  </data>
 </root>

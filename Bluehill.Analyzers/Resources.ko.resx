@@ -228,13 +228,4 @@
   <data name="BH0008AnalyzerTitle" xml:space="preserve">
     <value>부정 패턴을 반복해서 사용하면 안됨</value>
   </data>
-  <data name="BH0016AnalyzerDescription" xml:space="preserve">
-    <value>C# 10 이상을 사용하세요.</value>
-  </data>
-  <data name="BH0016AnalyzerMessageFormat" xml:space="preserve">
-    <value>C# {0}에서는 열거형 확장 메서드를 생성할 수 없음</value>
-  </data>
-  <data name="BH0016AnalyzerTitle" xml:space="preserve">
-    <value>C# 언어 버전이 낮아서 열거형 확장 메서드를 생성할 수 없음</value>
-  </data>
 </root>
